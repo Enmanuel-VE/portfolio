@@ -7,6 +7,7 @@ const elementIds: string[] = [
 ];
 
 const elements: Record<string, HTMLElement | null> = {};
+const currentTheme = document.documentElement.getAttribute("data-theme"); // dark or light
 
 elementIds.forEach((id) => {
   const element = document.getElementById(id);
@@ -18,7 +19,7 @@ const handleScroll = (): void => {
     const sentinelIsVisible: boolean = entries[0].isIntersecting;
 
     const blurAndShadowClasses: string[] = [
-      "bg-neutral/50",
+      "bg-base-100/50",
       "backdrop-blur-md",
       "shadow-4xl",
     ];
