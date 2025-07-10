@@ -1,36 +1,46 @@
 ---
 import { Github, Linkedin, Mail } from "@lucide/astro";
+
+/*
+Efecto de culumna centrada: w-full max-w-4xl mx-auto px-4
+md:max-w-2xl lg:max-w-4xl lg:px-0
+
+*/
 ---
 
-<footer class="flex flex-row flex-wrap justify-between items-center w-full p-4">
-  <aside class="flex flex-row items-center gap-2">
-    <p>
-      &copy; {new Date().getFullYear()} - Casi todos los derechos reservados.
-    </p>
-  </aside>
-  <nav class="flex flex-row flex-wrap gap-2 justify-end items-center">
-    <a
-      href="https://github.com/Enmanuel-VE"
-      target="_blank"
-      rel="noopener noreferrer"
-      role="link"
-    >
-      <Github />
-    </a>
-    <a
-      href="https://www.linkedin.com/in/enmanuel-villanueva-650182353/"
-      target="_blank"
-      rel="noopener noreferrer"
-      role="link"
-    >
-      <Linkedin />
-    </a>
-    <a
-      href="mailto:enmanuel02estudios@gmail.com"
-      rel="noopener noreferrer"
-      role="link"
-    >
-      <Mail />
-    </a>
-  </nav>
+<footer
+  class="flex flex-col justify-center mx-auto w-full h-full px-4 md:max-w-2xl lg:max-w-4xl lg:px-0"
+>
+  <div class="flex flex-row flex-wrap justify-between py-4">
+    <aside class="flex flex-row items-center gap-2">
+      <p>
+        &copy; {new Date().getFullYear()} - Casi todos los derechos reservados.
+      </p>
+    </aside>
+    <nav class="flex flex-row flex-wrap gap-2 justify-end items-center">
+      <a
+        href="https://github.com/Enmanuel-VE"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="link"
+      >
+        <Github />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/enmanuel-villanueva-650182353/"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="link"
+      >
+        <Linkedin />
+      </a>
+      <a
+        href="mailto:enmanuel02estudios@gmail.com"
+        rel="noopener noreferrer"
+        role="link"
+      >
+        <Mail />
+      </a>
+    </nav>
+  </div>
 </footer>
