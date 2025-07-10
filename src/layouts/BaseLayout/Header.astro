@@ -1,0 +1,38 @@
+---
+import { Moon, Sun } from "@lucide/astro";
+const sharedLayoutStyles = `flex flex-row justify-center items-center gap-4 rounded-full transition-all duration-250 ease-in-out`;
+
+const classNavActions = `${sharedLayoutStyles} px-4`;
+const classThemeToggle = `${sharedLayoutStyles} px-2 cursor-pointer`;
+---
+
+<div id=`header-sentinel`></div>
+
+<header
+  id=`header-layout`
+  class=`flex flex-row gap-2 justify-center w-full fixed top-1 px-4 z-50`
+>
+  <div id=`header-container` class=`flex flex-row flex-wrap gap-2`>
+    <div id=`nav-actions` class={classNavActions}>
+      <button class=`py-2 cursor-pointer`>Proyectos</button>
+      <button class=`py-2 cursor-pointer`>Certificados</button>
+      <button class=`py-2 cursor-pointer`>Sobre mi</button>
+      <button class=`py-2 cursor-pointer`>Contactos</button>
+    </div>
+
+    <label for="theme-change" id=`theme-toggle` class={classThemeToggle}>
+      <input type=`checkbox` id="theme-change" class=`sr-only peer` />
+
+      <!-- Ícono cuando está desactivado -->
+      <Sun
+        class=`w-6 h-6 peer-checked:hidden transition-all duration-250 ease`
+      />
+
+      <!-- Ícono cuando está activado -->
+      <Moon
+        class=`w-6 h-6 hidden peer-checked:inline transition-all duration-250 ease`
+      />
+    </label>
+  </div>
+  <script src=`./headerScript.ts`></script>
+</header>
