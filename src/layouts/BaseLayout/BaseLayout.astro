@@ -7,10 +7,26 @@ const { title, theme } = Astro.props;
 <html lang="es" data-theme={theme}>
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Essentials -->
     <title>{title}</title>
+    <meta
+      name="description"
+      content="Portafolio profesional de Enmanuel Bracho, desarrollador frontend especializado en Astro, TailwindCSS, JavaScript modular y diseño escalable."
+    />
+    <meta
+      name="keywords"
+      content="Enmanuel Bracho, portafolio frontend, desarrollador web, Astro framework, TailwindCSS, JavaScript modular, diseño web escalable, desarrollo SSR, UI dinámica"
+    />
+    <meta name="author" content="Enmanuel Bracho" />
+    <meta name="copyright" content="© Enmanuel Bracho 2025" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body class="flex flex-col relative">
     <Header />

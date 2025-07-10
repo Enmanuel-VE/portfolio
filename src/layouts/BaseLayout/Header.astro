@@ -1,6 +1,6 @@
 ---
 import { Moon, Sun } from "@lucide/astro";
-const sharedLayoutStyles = `flex flex-row justify-center items-center gap-4 rounded-full transition-all duration-250 ease-in-out`;
+const sharedLayoutStyles = `flex flex-row justify-center items-center rounded-full transition-all duration-250 ease-in-out`;
 
 const classNavActions = `${sharedLayoutStyles} px-4`;
 const classThemeToggle = `${sharedLayoutStyles} px-2 cursor-pointer`;
@@ -14,10 +14,11 @@ const classThemeToggle = `${sharedLayoutStyles} px-2 cursor-pointer`;
 >
   <div id=`header-container` class=`flex flex-row flex-wrap gap-2`>
     <div id=`nav-actions` class={classNavActions}>
-      <button class=`py-2 cursor-pointer`>Proyectos</button>
-      <button class=`py-2 cursor-pointer`>Certificados</button>
-      <button class=`py-2 cursor-pointer`>Sobre mi</button>
-      <button class=`py-2 cursor-pointer`>Contactos</button>
+      <button class=`p-2 cursor-pointer hover:text-primary`>Proyectos</button>
+      <button class=`p-2 cursor-pointer hover:text-primary`>Certificados</button
+      >
+      <button class=`p-2 cursor-pointer hover:text-primary`>Sobre mi</button>
+      <button class=`p-2 cursor-pointer hover:text-primary`>Contactos</button>
     </div>
 
     <label for="theme-change" id=`theme-toggle` class={classThemeToggle}>
@@ -25,12 +26,12 @@ const classThemeToggle = `${sharedLayoutStyles} px-2 cursor-pointer`;
 
       <!-- Ícono cuando está desactivado -->
       <Sun
-        class=`w-6 h-6 peer-checked:hidden transition-all duration-250 ease`
+        class=`w-6 h-6 peer-checked:hidden transition-all duration-250 ease-in-out hover:text-primary hover:animate-spin`
       />
 
       <!-- Ícono cuando está activado -->
       <Moon
-        class=`w-6 h-6 hidden peer-checked:inline transition-all duration-250 ease`
+        class=`w-6 h-6 hidden peer-checked:inline transition-all duration-250 ease-in-out hover:text-primary`
       />
     </label>
   </div>
