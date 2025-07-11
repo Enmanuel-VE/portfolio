@@ -1,69 +1,83 @@
 ---
-import { Github, Linkedin, Mail } from "@lucide/astro";
+import { ChevronDown, Download, Github, Linkedin, Mail } from "@lucide/astro";
 const { className } = Astro.props;
-
-/*
-Efecto de culumna centrada: w-full max-w-4xl mx-auto px-4
-md:max-w-2xl lg:max-w-4xl lg:px-0
-*/
 ---
 
 <section
   class={`${className} relative w-full h-[100vh]`}
   aria-label="Presentación personal de Enmanuel Bracho"
 >
-  <!-- Image de fondo -->
   <div
-    class="absolute inset-0 bg-[url('https://images4.alphacoders.com/137/thumb-1920-1374662.png')] bg-no-repeat bg-cover"
+    class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 bg-[radial-gradient(125%_125%_at_50%_10%,transparent_40%,#63e_100%)] rotate-180 opacity-70"
   >
   </div>
 
-  <!-- Filtro de color -->
-  <div class="absolute inset-0 bg-base-200/50"></div>
-
   <div
-    class="flex flex-col gap-4 justify-center mx-auto h-full relative z-5 px-4 md:max-w-2xl lg:max-w-4xl lg:px-0"
+    class="flex flex-col justify-center w-full h-full mx-auto px-4 lg:px-0 max-w-4xl md:max-w-2xl lg:max-w-4xl"
   >
-    <header>
-      <h1 class="text-5xl font-bold text-base-content">Enmanuel Bracho</h1>
-      <p class="text-3xl text-base-content/60">Frontend Developer</p>
-    </header>
+    <div class="grid grid-cols-[1fr_auto] auto-rows-auto gap-y-2 gap-x-5">
+      <header>
+        <h1 class="text-5xl font-bold text-base-content">Enmanuel Bracho</h1>
+        <p class="text-3xl text-base-content/60">Frontend Developer</p>
+      </header>
 
-    <article aria-label="Descripción personal">
-      <p class="text-base-content/60 max-w-lg">
-        Actualmente me encuentro estudiando Astro. Soy un desarrollador
-        frontend, soy un poco friki, detallista en cuanto al diseño en general
-        UX/UI, si me decantará por un paradigma de programación sería sin duda
-        el funcional.
-      </p>
-    </article>
+      <article
+        class="col-start-1 row-start-2"
+        aria-label="Descripción personal"
+      >
+        <p class="text-base-content/60 max-w-lg">
+          Actualmente me encuentro estudiando Astro. Soy un desarrollador
+          frontend, soy un poco friki, detallista en cuanto al diseño en general
+          UX/UI, si me decantará por un paradigma de programación sería sin duda
+          el funcional.
+        </p>
+      </article>
 
-    <footer aria-label="Enlaces personales">
-      <nav class="flex flex-row flex-wrap gap-2" aria-label="Redes sociales">
-        <a
-          href="https://github.com/Enmanuel-VE"
-          target="_blank"
-          rel="noopener noreferrer"
-          role="link"
-          class="flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-black/0 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
-          ><Github /><p>GitHub</p></a
-        >
-        <a
-          href="https://www.linkedin.com/in/enmanuel-villanueva-650182353/"
-          target="_blank"
-          rel="noopener noreferrer"
-          role="link"
-          class="flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-black/0 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
-          ><Linkedin /><p>LinkIn</p></a
-        >
-        <a
-          href="mailto:enmanuel02estudios@gmail.com"
-          rel="noopener noreferrer"
-          role="link"
-          class="flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-black/0 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
-          ><Mail /><p>Correo</p></a
-        >
-      </nav>
-    </footer>
+      <footer class="col-start-1 row-start-3" aria-label="Enlaces personales">
+        <nav class="flex flex-row flex-wrap gap-2" aria-label="Redes sociales">
+          <a
+            href="https://github.com/Enmanuel-VE"
+            target="_blank"
+            rel="noopener noreferrer"
+            role="link"
+            class="active:bg-white active:text-black active:border-black flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-gray-400/50 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
+            ><Github /><p>GitHub</p></a
+          >
+          <a
+            href="https://www.linkedin.com/in/enmanuel-villanueva-650182353/"
+            target="_blank"
+            rel="noopener noreferrer"
+            role="link"
+            class="active:bg-white active:text-black active:border-black flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-gray-400/50 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
+            ><Linkedin /><p>LinkIn</p></a
+          >
+          <a
+            href="mailto:enmanuel02estudios@gmail.com"
+            rel="noopener noreferrer"
+            role="link"
+            class="active:bg-white active:text-black active:border-black flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-gray-400/50 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
+            ><Mail /><p>Correo</p></a
+          >
+        </nav>
+      </footer>
+      <div class="col-start-2 row-start-1 row-span-3 place-self-center">
+        <div class="flex flex-col justify-center items-center gap-2">
+          <Download class="w-[10vh] h-[10vh]" />
+          <button
+            class="active:bg-white active:text-black active:border-black bg-base-200/50 backdrop-blur-md border border-gray-400/50 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
+            >Descarga mi CV</button
+          >
+        </div>
+      </div>
+    </div>
   </div>
+  <a
+    id="scroll-to-proyects"
+    aria-label="Desplazamiento a la sección de proyectos"
+    role="link"
+    href="#proyects"
+    class="transition-all duration-250 ease-in-out absolute bottom-4 left-1/2 transform -translate-x-1/2"
+  >
+    <ChevronDown class="w-[5vh] h-[5vh] opacity-50 animate-bounce" />
+  </a>
 </section>

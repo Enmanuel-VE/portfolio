@@ -4,6 +4,7 @@ const elementIds: string[] = [
   `header-container`,
   `nav-actions`,
   `theme-toggle`,
+  `scroll-to-proyects`,
 ];
 
 const elements: Record<string, HTMLElement | null> = {};
@@ -27,10 +28,19 @@ const handleScroll = (): void => {
     if (!sentinelIsVisible) {
       elements[`nav-actions`]!.classList.add(...blurAndShadowClasses);
       elements[`theme-toggle`]!.classList.add(...blurAndShadowClasses);
+      elements[`scroll-to-proyects`]!.classList.add(
+        `opacity-0`,
+        `cursor-default`,
+        `pointer-events-none`,
+      );
     } else {
       elements[`nav-actions`]!.classList.remove(...blurAndShadowClasses);
-
       elements[`theme-toggle`]!.classList.remove(...blurAndShadowClasses);
+      elements[`scroll-to-proyects`]!.classList.remove(
+        `opacity-0`,
+        `cursor-default`,
+        `pointer-events-none`,
+      );
     }
   });
   observer.observe(elements[`header-sentinel`]!);

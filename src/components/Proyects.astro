@@ -1,19 +1,9 @@
 ---
 import ProyectCard from "./ProyectCard.astro";
-
-/*
-  title,
-  description,
-  image = {
-    src: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-    alt: "Vista previa del proyecto Astro",
-  },
-  id,
-  className,
-*/
 ---
 
 <section
+  id="proyects"
   class="flex flex-col gap-y-4 justify-center mx-auto w-full p-4 md:max-w-2xl lg:max-w-4xl lg:px-0"
 >
   <header class="flex flex-col">
@@ -26,32 +16,31 @@ import ProyectCard from "./ProyectCard.astro";
   </header>
 
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center min-h-[calc(100vh-84px-32px-16px)]"
   >
     <ProyectCard
-      title="Proyecto 1"
+      title="Estudiacon!"
       description=""
       image={{
-        src: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-        alt: "Imagen del proyecto",
+        src: "/assets/img.png",
+        alt: "Imagen del proyecto 1",
       }}
       id="proyecto-1"
     />
     <ProyectCard
-      title="Proyecto 2"
+      title="Gestor de contraseña"
       description=""
       image={{
-        src: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+        src: "/assets/img.png",
         alt: "Imagen del proyecto 2",
       }}
       id="proyecto-2"
     />
-
     <ProyectCard
-      title="Proyecto 3"
+      title="Mokepon xd"
       description=""
       image={{
-        src: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+        src: "/assets/img.png",
         alt: "Imagen del proyecto 3",
       }}
       id="proyecto-3"
