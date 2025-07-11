@@ -26,16 +26,34 @@ const handleScroll = (): void => {
     ];
 
     if (!sentinelIsVisible) {
-      elements[`nav-actions`]!.classList.add(...blurAndShadowClasses);
-      elements[`theme-toggle`]!.classList.add(...blurAndShadowClasses);
+      elements[`nav-actions`]!.classList.remove("border-primary/0");
+      elements[`theme-toggle`]!.classList.remove("border-primary/0");
+
+      elements[`nav-actions`]!.classList.add(
+        ...blurAndShadowClasses,
+        "border-white/15",
+      );
+      elements[`theme-toggle`]!.classList.add(
+        ...blurAndShadowClasses,
+        "border-white/15",
+      );
       elements[`scroll-to-proyects`]!.classList.add(
         `opacity-0`,
         `cursor-default`,
         `pointer-events-none`,
       );
     } else {
-      elements[`nav-actions`]!.classList.remove(...blurAndShadowClasses);
-      elements[`theme-toggle`]!.classList.remove(...blurAndShadowClasses);
+      elements[`nav-actions`]!.classList.add("border-primary/0");
+      elements[`theme-toggle`]!.classList.add("border-primary/0");
+
+      elements[`nav-actions`]!.classList.remove(
+        ...blurAndShadowClasses,
+        "border-white/15",
+      );
+      elements[`theme-toggle`]!.classList.remove(
+        ...blurAndShadowClasses,
+        "border-white/15",
+      );
       elements[`scroll-to-proyects`]!.classList.remove(
         `opacity-0`,
         `cursor-default`,
