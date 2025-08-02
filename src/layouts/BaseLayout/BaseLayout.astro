@@ -1,10 +1,16 @@
 ---
 import Footer from "./Footer.astro";
-import Header from "./Header.astro";
-const { title, theme } = Astro.props;
+import Header from "./header/Header.astro";
+
+interface Props {
+  title: string;
+  dataTheme: string;
+}
+
+const { title, dataTheme } = Astro.props;
 ---
 
-<html lang="es" data-theme={theme} class="scroll-smooth">
+<html lang="es" data-theme={dataTheme} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

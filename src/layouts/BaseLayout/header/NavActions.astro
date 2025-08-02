@@ -1,0 +1,21 @@
+---
+const navItems = [
+  { label: "Proyectos", href: "#anchor-proyects" },
+  { label: "Certificados", href: "#anchor-certificates" },
+  { label: "Sobre mi", href: "#anchor-about" },
+  { label: "Contactos", href: "#anchor-contact" },
+];
+---
+
+<div
+  id="nav-actions"
+  class="flex flex-row justify-center items-center border-1 border-primary/0 rounded-full transition-all duration-250 ease-in-out px-4"
+>
+  {
+    navItems.map((item) => (
+      <a href={item.href} class="p-2 cursor-pointer hover:text-primary">
+        {item.label}
+      </a>
+    ))
+  }
+</div>

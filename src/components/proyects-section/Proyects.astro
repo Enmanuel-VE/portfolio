@@ -1,12 +1,15 @@
 ---
+import SectionRedirector from "../common/SectionRedirector.astro";
 import ProyectCard from "./ProyectCard.astro";
 ---
 
+<SectionRedirector address="proyects" />
+
 <section
   id="proyects"
-  class="flex flex-col gap-y-4 justify-center mx-auto w-full p-4 md:max-w-2xl lg:max-w-4xl lg:px-0"
+  class="flex flex-col gap-8 justify-center mt-[4vh] mx-auto w-full p-4 md:max-w-2xl lg:max-w-4xl lg:px-0"
 >
-  <header class="flex flex-col">
+  <header class="flex flex-col gap-2">
     <h1 class="text-3xl font-bold">Mis proyectos</h1>
     <p>
       Aquí puedes ver algunos de los proyectos que he realizado. Cada uno de
@@ -16,7 +19,7 @@ import ProyectCard from "./ProyectCard.astro";
   </header>
 
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center min-h-[calc(100vh-84px-32px-16px)]"
+    class="min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center"
   >
     <ProyectCard
       title="Estudiacon!"
@@ -28,24 +31,6 @@ import ProyectCard from "./ProyectCard.astro";
         alt: "Imagen del proyecto 1",
       }}
       id="proyecto-1"
-    />
-    <ProyectCard
-      title="Gestor de contraseña"
-      description=""
-      image={{
-        src: "/assets/img.png",
-        alt: "Imagen del proyecto 2",
-      }}
-      id="proyecto-2"
-    />
-    <ProyectCard
-      title="Mokepon xd"
-      description=""
-      image={{
-        src: "/assets/img.png",
-        alt: "Imagen del proyecto 3",
-      }}
-      id="proyecto-3"
     />
   </div>
 </section>

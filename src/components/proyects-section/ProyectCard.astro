@@ -1,34 +1,45 @@
 ---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  className: string;
+}
+
 const {
+  id,
   title,
   description,
   image = {
     src: "",
     alt: "Imagen del proyecto",
   },
-  id,
   className,
 } = Astro.props;
 ---
 
 <article
   id={id}
-  class={"card bg-base-100 h-fit w-full max-w-sm shadow-sm " + className}
+  class={"card bg-base-100 h-full max-h-[55vh] w-full shadow-sm " + className}
 >
   <figure>
     <img src={image.src} alt={image.alt} />
   </figure>
+
   <div class="card-body">
     <h2 class="card-title">
       {title}
       <div class="badge badge-secondary">NEW</div>
     </h2>
+
     <p>
       {description}
     </p>
-    <div class="card-actions justify-end">
-      <div class="badge badge-outline">Fashion</div>
-      <div class="badge badge-outline">Products</div>
-    </div>
+
+    <div class="flex flex-row gap-2 whitespace-nowrap overflow-x-auto"></div>
   </div>
 </article>

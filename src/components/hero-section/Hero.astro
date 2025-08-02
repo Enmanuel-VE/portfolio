@@ -1,10 +1,9 @@
 ---
 import { ChevronDown, Download, Github, Linkedin, Mail } from "@lucide/astro";
-const { className } = Astro.props;
 ---
 
 <section
-  class={`${className} relative w-full h-[100vh]`}
+  class="relative w-full h-screen"
   aria-label="Presentación personal de Enmanuel Bracho"
 >
   <div
@@ -15,16 +14,13 @@ const { className } = Astro.props;
   <div
     class="flex flex-col justify-center w-full h-full mx-auto px-4 lg:px-0 max-w-4xl md:max-w-2xl lg:max-w-4xl"
   >
-    <div class="grid grid-cols-[1fr_auto] auto-rows-auto gap-y-2 gap-x-5">
+    <div class="grid grid-cols-[1fr_auto] auto-rows-auto gap-5">
       <header>
         <h1 class="text-5xl font-bold text-base-content">Enmanuel Bracho</h1>
         <p class="text-3xl text-base-content/60">Frontend Developer</p>
       </header>
 
-      <article
-        class="col-start-1 row-start-2"
-        aria-label="Descripción personal"
-      >
+      <article aria-label="Descripción personal">
         <p class="text-base-content/60 max-w-lg">
           Actualmente me encuentro estudiando Astro. Soy un desarrollador
           frontend, soy un poco friki, detallista en cuanto al diseño en general
@@ -33,7 +29,7 @@ const { className } = Astro.props;
         </p>
       </article>
 
-      <footer class="col-start-1 row-start-3" aria-label="Enlaces personales">
+      <footer aria-label="Enlaces personales">
         <nav class="flex flex-row flex-wrap gap-2" aria-label="Redes sociales">
           <a
             href="https://github.com/Enmanuel-VE"
@@ -43,23 +39,28 @@ const { className } = Astro.props;
             class="active:bg-white active:text-black active:border-black flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-white/15 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
             ><Github /><p>GitHub</p></a
           >
+
           <a
             href="https://www.linkedin.com/in/enmanuel-villanueva-650182353/"
             target="_blank"
             rel="noopener noreferrer"
             role="link"
             class="active:bg-white active:text-black active:border-black flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-white/15 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
-            ><Linkedin /><p>LinkIn</p></a
           >
+            <Linkedin /><p>LinkIn</p>
+          </a>
+
           <a
             href="mailto:enmanuel02estudios@gmail.com"
             rel="noopener noreferrer"
             role="link"
             class="active:bg-white active:text-black active:border-black flex flex-row justify-center items-center gap-x-2 bg-base-100/50 backdrop-blur-md border border-white/15 hover:border-primary rounded-full px-4 py-2 cursor-pointer"
-            ><Mail /><p>Correo</p></a
           >
+            <Mail /><p>Correo</p>
+          </a>
         </nav>
       </footer>
+
       <div class="col-start-2 row-start-1 row-span-3 place-self-center">
         <div class="flex flex-col justify-center items-center gap-2">
           <Download class="w-[10vh] h-[10vh]" />
@@ -71,11 +72,12 @@ const { className } = Astro.props;
       </div>
     </div>
   </div>
+
   <a
     id="scroll-to-proyects"
     aria-label="Desplazamiento a la sección de proyectos"
     role="link"
-    href="#proyects"
+    href="#anchor-proyects"
     class="transition-all duration-250 ease-in-out absolute bottom-4 left-1/2 transform -translate-x-1/2"
   >
     <ChevronDown class="w-[5vh] h-[5vh] opacity-50 animate-bounce" />

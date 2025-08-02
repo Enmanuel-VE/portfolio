@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0",
+    "title": "EstudiaCon!",
+    "description": "EstudiaCon es una plataforma web orientada a la gestión y compartición de publicaciones académicas entre estudiantes.",
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "tags": [],
+    "repoUrl": "",
+    "demoUrl": "",
+    "techStack": ["MongoDB", "Express", "React", "Node"],
+    "meta": {
+      "owner": "Enmanuel",
+      "date": {
+        "created": "",
+        "finished": "",
+        "status": ""
+      },
+      "views": 0,
+      "contributors": [""],
+      "priority": ""
+    }
+  }
+]

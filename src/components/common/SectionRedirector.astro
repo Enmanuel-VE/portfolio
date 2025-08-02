@@ -1,0 +1,9 @@
+---
+interface Props {
+  address: string;
+}
+
+const { address } = Astro.props;
+---
+
+<div id=`anchor-${address}` class="w-full h-1"></div>

@@ -1,0 +1,25 @@
+---
+import { Moon, Sun } from "@lucide/astro";
+
+const transition = "transition-all duration-250 ease-in-out";
+
+// Core styling units
+const layoutBase =
+  "flex flex-row justify-center items-center border-1 border-primary/0 rounded-full";
+const iconBase = "w-6 h-6 hover:text-primary";
+const hiddenWhenChecked = "peer-checked:hidden";
+const visibleWhenChecked = "peer-checked:inline";
+
+// Composite styles
+const themeToggleContainer = `${layoutBase} px-2 cursor-pointer ${transition}`;
+const sunIcon = `${iconBase} ${hiddenWhenChecked} hover:animate-spin ${transition}`;
+const moonIcon = `${iconBase} hidden ${visibleWhenChecked} ${transition}`;
+---
+
+<label for="theme-change" id=`theme-toggle` class={themeToggleContainer}>
+  <input type=`checkbox` id="theme-change" class=`sr-only peer` />
+
+  <Sun class={sunIcon} />
+
+  <Moon class={moonIcon} />
+</label>
