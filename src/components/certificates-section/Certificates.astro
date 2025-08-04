@@ -1,0 +1,26 @@
+---
+import SectionRedirector from "../common/SectionRedirector.astro";
+---
+
+<SectionRedirector address="certificates" />
+
+<section
+  id="certificates-section"
+  class="flex flex-col gap-8 justify-center mt-[4vh] mx-auto w-full p-4 md:max-w-2xl lg:max-w-4xl lg:px-0"
+>
+  <header class="flex flex-col gap-2">
+    <h2 class="text-2xl font-bold">Certificados</h2>
+    <p>Aquí puedes ver algunos de los certificados que he obtenido.</p>
+  </header>
+
+  <article>
+    <div class="carousel gap-2 rounded-box w-full h-[45vh]">
+      <div class="carousel-item w-1/2">
+        <img class="w-full rounded-md" alt="certificado" />
+      </div>
+      <div class="carousel-item w-1/2">
+        <img class="w-full rounded-md" alt="certificado" />
+      </div>
+    </div>
+  </article>
+</section>
