@@ -1,0 +1,50 @@
+[
+  {
+    "id": "p0",
+    "title": "EstudiaCon!",
+    "description": "EstudiaCon es una plataforma web orientada a la gestión y compartición de publicaciones académicas entre estudiantes.",
+    "image": {
+      "src": "/assets/img.png",
+      "alt": "imagen del proyecto EstudiaCon"
+    },
+    "tags": [],
+    "repoUrl": "",
+    "demoUrl": "",
+    "techStack": ["React", "Tailwind CSS", "MongoDB", "Express"],
+    "meta": {
+      "owner": "Enmanuel",
+      "date": {
+        "created": "",
+        "finished": "",
+        "status": ""
+      },
+      "views": 0,
+      "contributors": [""],
+      "priority": ""
+    }
+  },
+  {
+    "id": "p1",
+    "title": "Gestor de contraseña",
+    "description": "Gestor de contraseña es una aplicación web para almacenar y gestionar contraseñas de forma segura.",
+    "image": {
+      "src": "../../../public/assets/img.png",
+      "alt": "imagen del proyecto gestor de contraseña"
+    },
+    "tags": [],
+    "repoUrl": "",
+    "demoUrl": "",
+    "techStack": ["React", "Tailwind CSS", "Supabase"],
+    "meta": {
+      "owner": "Enmanuel",
+      "date": {
+        "created": "",
+        "finished": "",
+        "status": ""
+      },
+      "views": 0,
+      "contributors": [""],
+      "priority": ""
+    }
+  }
+]

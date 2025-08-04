@@ -1,0 +1,29 @@
+---
+import { Github, Linkedin, Mail } from "@lucide/astro";
+import ContactButton from "./ContactButton.astro";
+
+const socialNetworks = [
+  {
+    label: { Icon: Mail, text: "Correo" },
+    href: "mailto:enmanuel02estudios@gmail.com",
+  },
+  {
+    label: { Icon: Github, text: "GitHub" },
+    href: "https://github.com/Enmanuel-VE",
+  },
+  {
+    label: { Icon: Linkedin, text: "LinkedIn" },
+    href: "https://www.linkedin.com/in/enmanuel-antoni-bracho-villanueva/",
+  },
+];
+---
+
+<footer>
+  <nav class="flex flex-row flex-wrap gap-2 items-center">
+    {
+      socialNetworks.map((network) => (
+        <ContactButton label={network.label} href={network.href} />
+      ))
+    }
+  </nav>
+</footer>

@@ -1,5 +1,6 @@
 ---
 import SectionRedirector from "../common/SectionRedirector.astro";
+import mockup from "./mockup.json";
 import ProyectCard from "./ProyectCard.astro";
 ---
 
@@ -21,16 +22,16 @@ import ProyectCard from "./ProyectCard.astro";
   <div
     class="min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center"
   >
-    <ProyectCard
-      title="Estudiacon!"
-      description={`
-        EstudiaCon es una plataforma web orientada a la gestión y compartición de publicaciones académicas entre estudiantes.
-      `}
-      image={{
-        src: "/assets/img.png",
-        alt: "Imagen del proyecto 1",
-      }}
-      id="proyecto-1"
-    />
+    {
+      mockup.map((card, index) => (
+        <ProyectCard
+          id={card.id}
+          title={card.title}
+          description={card.description}
+          image={{ src: card.image.src, alt: card.image.alt }}
+          techStack={card.techStack}
+        />
+      ))
+    }
   </div>
 </section>

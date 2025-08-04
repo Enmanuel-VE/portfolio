@@ -3,23 +3,46 @@ import { Moon, Sun } from "@lucide/astro";
 
 const transition = "transition-all duration-250 ease-in-out";
 
-// Core styling units
 const layoutBase =
   "flex flex-row justify-center items-center border-1 border-primary/0 rounded-full";
 const iconBase = "w-6 h-6 hover:text-primary";
 const hiddenWhenChecked = "peer-checked:hidden";
 const visibleWhenChecked = "peer-checked:inline";
 
-// Composite styles
 const themeToggleContainer = `${layoutBase} px-2 cursor-pointer ${transition}`;
 const sunIcon = `${iconBase} ${hiddenWhenChecked} hover:animate-spin ${transition}`;
 const moonIcon = `${iconBase} hidden ${visibleWhenChecked} ${transition}`;
 ---
 
-<label for="theme-change" id=`theme-toggle` class={themeToggleContainer}>
-  <input type=`checkbox` id="theme-change" class=`sr-only peer` />
+<label for="theme-change" id="theme-toggle" class={themeToggleContainer}>
+  <input type="checkbox" id="theme-change" class="sr-only peer" />
 
   <Sun class={sunIcon} />
 
   <Moon class={moonIcon} />
 </label>
+
+<script>
+  const THEMES = {
+    DARK: "dark",
+    LIGHT: "light",
+  } as const;
+
+  const toggleThemeHandler = (): void => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const isDark = currentTheme === THEMES.DARK;
+
+    switch (isDark) {
+      case true:
+        document.documentElement.setAttribute("data-theme", THEMES.LIGHT);
+        break;
+      case false:
+        document.documentElement.setAttribute("data-theme", THEMES.DARK);
+        break;
+    }
+  };
+
+  const inputThemeChange = document.getElementById("theme-change");
+
+  inputThemeChange!.addEventListener("click", toggleThemeHandler);
+</script>
