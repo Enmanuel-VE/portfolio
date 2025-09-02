@@ -1,47 +1,50 @@
-# Astro Starter Kit: Minimal
+<h1 align="center">👾 Mi portafolio web.</h1>
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Este repositorio contiene el código de mi portafolio. En él se muestra el catálogo de proyectos que he desarrollado hasta el momento, las tecnologías que manejo y mi trayectoria profesional.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## 🔥 Demo
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+❌ Aún no disponible; el portafolio sigue en desarrollo. 😅
 
-## 🚀 Project Structure
+## 🛠 Tecnologías y herramientas utilizadas
 
-Inside of your Astro project, you'll see the following folders and files:
+Intenté usar el mínimo de dependencias posibles —claro, sin llegar a ser completamente vanilla— ya que la intención es que sea una página estática para mostrar mi trayectoria. 📰
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+* **Lenguajes:** HTML, CSS, TypeScript. 🌐  
+* **Frameworks / Librerías:** Astro 🚀, Tailwind CSS 🖌, Lucide. 📏
+* **Herramientas:** pnpm 📦, VS Code 🧰, Vite. ⚡
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📦 Instalación y uso
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Para ejecutar este proyecto en tu entorno local, sigue los siguientes pasos:
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Clona el repositorio:
 
-## 🧞 Commands
+    ```bash
+    git clone https://github.com/Enmanuel-VE/portfolio.git
+    ```
 
-All commands are run from the root of the project, from a terminal:
+2. Navega al directorio del proyecto:
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+    ```bash
+    cd portfolio
+    ```
 
-## 👀 Want to learn more?
+3. Instala las dependencias:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+    ```bash
+    pnpm install
+    ```
+
+4. Inicia la aplicación en modo desarrollo:
+
+    ```bash
+    pnpm run dev
+    ```
+
+## 👉 Conéctate conmigo
+
+* **LinkedIn:** [Enmanuel Antoni Bracho Villanueva](https://www.linkedin.com/in/enmanuel-antoni-bracho-villanueva/)  
+* **Correo electrónico:** [enmanuelbracho.dev@gmail.com](mailto:enmanuelbracho.dev@gmail.com)
+
+🤗 Gracias por tu interés en mi trabajo. ¡Espero que te haya gustado!
