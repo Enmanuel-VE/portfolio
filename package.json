@@ -1,9 +1,16 @@
 {
   "name": "portfolio",
+  "description": "Clean and responsive portfolio to display personal projects, experience, and contact information.",
+  "license": "MIT",
+  "author": {
+    "name": "Enmanuel Antoni Bracho Villanueva",
+    "email": "enmanuelbracho.dev@gmail.com"
+  },
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "build-preview": "astro build && astro preview",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
