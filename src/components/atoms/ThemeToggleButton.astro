@@ -1,0 +1,57 @@
+---
+import { MoonIcon, Sun } from '@lucide/astro';
+---
+
+<button
+  class="nav-base-styles aspect-square cursor-pointer rounded-full border p-2"
+  aria-label="Cambiar tema"
+  title="Cambiar tema"
+  type="button"
+  id="theme-toggle-button"
+>
+  <div
+    class="relative h-[clamp(0px,3.5vw,1.5rem)] w-[clamp(0px,3.5vw,1.5rem)] overflow-hidden sm:h-6 sm:w-6"
+  >
+    <MoonIcon
+      class="theme-icon rotate-0 text-black opacity-100 dark:-rotate-180 dark:text-white dark:opacity-0"
+      id="icon-moon"
+    />
+
+    <Sun
+      class="theme-icon rotate-0 text-black opacity-0 dark:rotate-180 dark:text-white dark:opacity-100"
+      id="icon-sun"
+    />
+  </div>
+
+  <script>
+    const THEME: ThemeObjectType = {
+      LIGHT: 'light',
+      DARK: 'dark',
+    };
+
+    const toggleButton = document.getElementById('theme-toggle-button');
+    const HTML = document.documentElement;
+    const themeSaved = () => localStorage.getItem('theme');
+
+    const handleToggleTheme = () => {
+      const newTheme: ThemeType = themeSaved() === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+      localStorage.setItem('theme', newTheme);
+
+      if (HTML) HTML.setAttribute('data-theme', newTheme);
+    };
+
+    if (toggleButton) toggleButton.addEventListener('click', handleToggleTheme);
+  </script>
+</button>
+
+<style>
+  .theme-icon {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    transition:
+      rotate 300ms ease-in-out,
+      opacity 300ms ease-in-out;
+  }
+</style>

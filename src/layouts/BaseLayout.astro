@@ -1,0 +1,111 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/molecules/Navbar.astro';
+import Footer from '../components/molecules/Footer.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta
+      name="description"
+      content="Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro."
+    />
+    <meta
+      name="keywords"
+      content="Enmanuel Bracho, Ingeniería, frontend, React, TypeScript, Tailwind, Astro, desarrollador, portfolio, Venezuela, UNEFA, sistemas"
+    />
+    <meta name="author" content="Enmanuel Antoni Bracho Villanueva" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Enmanuel Bracho | Frontend Developer</title>
+
+    <meta http-equiv="Content-Language" content="es" />
+
+    <script is:inline>
+      const THEME = { LIGHT: 'light', DARK: 'dark' };
+
+      let theme = THEME.DARK;
+
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const themeOption = saved === THEME.DARK || saved === THEME.LIGHT;
+
+      if (themeOption) {
+        theme = saved === THEME.LIGHT ? THEME.LIGHT : THEME.DARK;
+      } else {
+        theme = prefersDark ? THEME.DARK : THEME.LIGHT;
+        localStorage.setItem('theme', theme);
+      }
+
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
+    <script>
+      const changeTitle = (title: string) => (document.title = title);
+
+      const TITLES = {
+        HIDDEN: '¡Te espero!',
+        VISIBLE: 'Enmanuel Bracho | Frontend Developer',
+      } as const;
+
+      const STATES = {
+        HIDDEN: 'hidden',
+        VISIBLE: 'visible',
+      } as const;
+
+      document.addEventListener('visibilitychange', () => {
+        switch (document.visibilityState) {
+          case STATES.HIDDEN:
+            changeTitle(TITLES.HIDDEN);
+            break;
+          case STATES.VISIBLE:
+            changeTitle(TITLES.VISIBLE);
+            break;
+          default:
+            changeTitle(TITLES.VISIBLE);
+            break;
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <Navbar />
+
+      <main class="flex flex-1 flex-col">
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    background-color: #f0f0f0;
+  }
+
+  html[data-theme='dark'] #app {
+    background-color: rgb(25, 0, 27);
+  }
+</style>
