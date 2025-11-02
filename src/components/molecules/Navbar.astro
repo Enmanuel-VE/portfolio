@@ -4,11 +4,11 @@ import ThemeToggleButton from '../atoms/ThemeToggleButton.astro';
 type NavLinkData = { url: `#${string}`; text: string; ariaLabel: string };
 
 const navLinkList: NavLinkData[] = [
-  { url: '#proyectos', text: 'Proyectos', ariaLabel: 'Proyectos' },
-  { url: '#sobre-mi', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
+	{ url: '#proyectos', text: 'Proyectos', ariaLabel: 'Proyectos' },
+	{ url: '#sobre-mi', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
 
-  { url: '#certificados', text: 'Certificados', ariaLabel: 'Certificados' },
-  { url: '#contactos', text: 'Contactos', ariaLabel: 'Contactos' },
+	{ url: '#certificados', text: 'Certificados', ariaLabel: 'Certificados' },
+	{ url: '#contactos', text: 'Contactos', ariaLabel: 'Contactos' },
 ];
 ---
 
@@ -41,9 +41,9 @@ const navLinkList: NavLinkData[] = [
   </nav>
 
   <script>
-    import { $, $$ } from '../../client/utils/shortFunction';
-    const navItems = $('#nav-items');
-    const sections = $$('section[id]');
+    import { $, $$ } from "../../client/utils/shortFunction";
+    const navItems = $("#nav-items");
+    const sections = $$("section[id]");
 
     let activeSectionId: null | string = null;
 
@@ -51,9 +51,12 @@ const navLinkList: NavLinkData[] = [
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => (intersectionRatios[entry.target.id] = entry.intersectionRatio));
+        entries.forEach(
+          (entry) =>
+            (intersectionRatios[entry.target.id] = entry.intersectionRatio),
+        );
 
-        let bestEntryId = '';
+        let bestEntryId = "";
         let maxRatio = 0;
 
         for (const sectionId in intersectionRatios) {
@@ -73,12 +76,16 @@ const navLinkList: NavLinkData[] = [
 
         if (!navItems) return;
 
-        navItems.querySelectorAll('a').forEach((link) => link.classList.remove('text-rose-500'));
+        navItems
+          .querySelectorAll("a")
+          .forEach((link) => link.classList.remove("text-rose-500"));
 
-        const activeLink = navItems.querySelector(`a[href="#${activeSectionId}"]`);
-        if (activeLink) activeLink.classList.add('text-rose-500');
+        const activeLink = navItems.querySelector(
+          `a[href="#${activeSectionId}"]`,
+        );
+        if (activeLink) activeLink.classList.add("text-rose-500");
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     sections.forEach((section) => {
@@ -97,7 +104,7 @@ const navLinkList: NavLinkData[] = [
     animation-range: 0 100px;
   }
 
-  html[data-theme='dark'] .nav-base-styles {
+  body[data-theme="dark"] .nav-base-styles {
     transition: all;
     animation: navScrollDark linear both;
     animation-timeline: scroll(root block);

@@ -1,5 +1,0 @@
-@layer components {
-  .hero-gradient-background {
-    @apply absolute inset-0 z-0 rotate-180 bg-[radial-gradient(125%_125%_at_50%_10%,transparent_40%,#63e_100%)] opacity-70;
-  }
-}

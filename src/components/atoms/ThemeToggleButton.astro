@@ -24,23 +24,31 @@ import { MoonIcon, Sun } from '@lucide/astro';
   </div>
 
   <script>
-    const THEME: ThemeObjectType = {
-      LIGHT: 'light',
-      DARK: 'dark',
-    };
+    import { Theme } from "../../client/types/types";
+    const toggleButton = document.getElementById("theme-toggle-button");
 
-    const toggleButton = document.getElementById('theme-toggle-button');
-    const HTML = document.documentElement;
-    const themeSaved = () => localStorage.getItem('theme');
+    function applyTheme(theme: Theme) {
+      const BODY = document.body;
+      BODY.setAttribute("data-theme", theme);
+    }
 
-    const handleToggleTheme = () => {
-      const newTheme: ThemeType = themeSaved() === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
-      localStorage.setItem('theme', newTheme);
+    function themeSaved(): Theme {
+      const getTheme = localStorage.getItem("theme");
+      const isLight = getTheme === Theme.Light;
+      const theme: Theme = isLight ? Theme.Light : Theme.Dark;
 
-      if (HTML) HTML.setAttribute('data-theme', newTheme);
-    };
+      return theme;
+    }
 
-    if (toggleButton) toggleButton.addEventListener('click', handleToggleTheme);
+    function handleToggleTheme() {
+      const isLight = themeSaved() === Theme.Light;
+      const newTheme: Theme = isLight ? Theme.Dark : Theme.Light;
+
+      localStorage.setItem("theme", newTheme);
+      applyTheme(newTheme);
+    }
+
+    if (toggleButton) toggleButton.addEventListener("click", handleToggleTheme);
   </script>
 </button>
 

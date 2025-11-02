@@ -9,9 +9,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "format": "biome format --write ./src",
+    "check": "biome check ./src",
+    "formatcheck": "biome format --write ./src && biome check ./src",
+    "predeploy": "pnpm run formatcheck && astro build && astro preview",
+    "build": "pnpm run formatcheck && astro build",
     "dev": "astro dev",
-    "build-preview": "astro build && astro preview",
-    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -22,8 +25,6 @@
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.1"
+    "@biomejs/biome": "2.3.2"
   }
 }

@@ -9,84 +9,99 @@ import Particle from '../atoms/Particle.astro';
 type ContactLink = { title: string; url: string; icon: AstroComponent };
 
 const styles: Record<string, string> = {
-  layoutContainer:
-    'flex flex-col justify-center items-center relative z-10 container mx-auto h-full w-full px-4 py-16 md:py-36 lg:max-w-6xl',
-  responsiveLayout: 'flex flex-col gap-8 md:flex-row md:items-center md:justify-between',
+	layoutContainer:
+		'flex flex-col justify-center items-center relative z-10 container mx-auto h-full w-full px-4 py-16 md:py-36 lg:max-w-6xl',
+	responsiveLayout:
+		'flex flex-col gap-8 md:flex-row md:items-center md:justify-between',
 };
 
 const contactLinks: ContactLink[] = [
-  {
-    title: 'Linkedin',
-    url: 'https://www.linkedin.com/in/enmanuel-antoni-bracho-villanueva/',
-    icon: LinkedinIcon,
-  },
-  {
-    title: 'Github',
-    url: 'https://github.com/Enmanuel-VE',
-    icon: Github,
-  },
-  {
-    title: 'Email',
-    url: 'mailto:enmanuelbracho.dev@gmail.com',
-    icon: Mail,
-  },
+	{
+		title: 'Linkedin',
+		url: 'https://www.linkedin.com/in/enmanuel-antoni-bracho-villanueva/',
+		icon: LinkedinIcon,
+	},
+	{
+		title: 'Github',
+		url: 'https://github.com/Enmanuel-VE',
+		icon: Github,
+	},
+	{
+		title: 'Email',
+		url: 'mailto:enmanuelbracho.dev@gmail.com',
+		icon: Mail,
+	},
 ];
 ---
 
 <SectionLayout
-  id="hero-section"
-  className="h-screen overflow-hidden"
-  ariaLabel="Presentación personal"
+    id="hero-section"
+    className="h-screen overflow-hidden"
+    ariaLabel="Presentación personal"
 >
-  <div class="hero-gradient-background hidden dark:flex" aria-hidden="true"></div>
+    <div
+        class="absolute inset-0 z-0 rotate-180 bg-[radial-gradient(125%_125%_at_50%_10%,transparent_40%,#63e_100%)] opacity-70 hidden dark:flex"
+        aria-hidden="true"
+    >
+    </div>
 
-  <div class={styles.layoutContainer}>
-    <header class={styles.responsiveLayout}>
-      <div class="flex max-w-xl flex-col">
-        <h1 class="text-2xl font-bold text-black md:text-4xl dark:text-white">Enmanuel Bracho</h1>
-        <h2 class="text-xl text-rose-500 md:text-2xl">Desarrollador Frontend</h2>
-        <p class="mt-4 text-sm text-black/75 dark:text-white/60">
-          Soy estudiante de Ingeniería de Sistemas en la UNEFA, enfocado en desarrollo front-end con
-          tecnologías como TypeScript, React, Tailwind y Astro. Si te interesa ver cómo trabajo,
-          sigue bajando. Hay cosas buenas más abajo.
-        </p>
+    <div class={styles.layoutContainer}>
+        <header class={styles.responsiveLayout}>
+            <div class="flex max-w-xl flex-col">
+                <h1
+                    class="text-2xl font-bold text-black md:text-4xl dark:text-white"
+                >
+                    Enmanuel Bracho
+                </h1>
+                <h2 class="text-xl text-rose-500 md:text-2xl">
+                    Desarrollador Frontend
+                </h2>
+                <p class="mt-4 text-sm text-black/75 dark:text-white/60">
+                    Soy estudiante de Ingeniería de Sistemas en la UNEFA,
+                    enfocado en desarrollo front-end con tecnologías como
+                    TypeScript, React, Tailwind y Astro. Si te interesa ver cómo
+                    trabajo, sigue bajando. Hay cosas buenas más abajo.
+                </p>
 
-        <nav class="mt-6 flex gap-4" aria-label="Redes sociales y contacto">
-          <ul class="flex flex-row flex-wrap justify-center gap-4">
-            {
-              contactLinks.map((link) => (
-                <li class="group">
-                  <a
-                    class="flex flex-row items-center justify-center gap-2 rounded-3xl border border-gray-500/40 bg-white px-2 py-1 text-sm text-black backdrop-blur transition-transform duration-300 ease-in-out group-hover:scale-120 group-hover:shadow-xl hover:border-rose-500 dark:border-rose-500/40 dark:bg-black dark:text-white"
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={link.title}
-                  >
-                    <link.icon class="h-4 w-4" />
+                <nav
+                    class="mt-6 flex gap-4"
+                    aria-label="Redes sociales y contacto"
+                >
+                    <ul class="flex flex-row flex-wrap justify-center gap-4">
+                        {
+                            contactLinks.map((link) => (
+                                <li class="group">
+                                    <a
+                                        class="flex flex-row items-center justify-center gap-2 rounded-3xl border border-gray-500/40 bg-white px-2 py-1 text-sm text-black backdrop-blur transition-transform duration-300 ease-in-out group-hover:scale-120 group-hover:shadow-xl hover:border-rose-500 dark:border-rose-500/40 dark:bg-black dark:text-white"
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        title={link.title}
+                                    >
+                                        <link.icon class="h-4 w-4" />
 
-                    {link.title}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
-      </div>
+                                        {link.title}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
+            </div>
 
-      <aside class="flex flex-col items-center justify-center">
-        <DownloadButton
-          className="text-sm"
-          label="Curriculum"
-          url="#"
-          download="CV-Enmanuel-Bracho-FrontendDeveloper.pdf"
-          Icon={Download}
-          ariaLabel="Descargar currículum"
-        />
-      </aside>
-    </header>
-  </div>
+            <aside class="flex flex-col items-center justify-center">
+                <DownloadButton
+                    className="text-sm"
+                    label="Curriculum"
+                    url="#"
+                    download="CV-Enmanuel-Bracho-FrontendDeveloper.pdf"
+                    Icon={Download}
+                    ariaLabel="Descargar currículum"
+                />
+            </aside>
+        </header>
+    </div>
 
-  <ArrowAux />
-  <Particle />
+    <ArrowAux />
+    <Particle />
 </SectionLayout>

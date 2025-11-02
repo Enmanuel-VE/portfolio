@@ -1,99 +1,102 @@
 ---
 interface Config {
-  count: number;
-  speed: {
-    min: number;
-    max: number;
-  };
-  parable: {
-    openingFactor: number;
-    vertex_X: number;
-    vertex_Y: number;
-  };
+	count: number;
+	speed: {
+		min: number;
+		max: number;
+	};
+	parable: {
+		openingFactor: number;
+		vertex_X: number;
+		vertex_Y: number;
+	};
 }
 
 interface FireflyAttributes {
-  top: string;
-  left: string;
-  size: string;
-  delay: string;
-  duration: string;
+	top: string;
+	left: string;
+	size: string;
+	delay: string;
+	duration: string;
 }
 
 type RandomNumber = (min: number, max: number) => number;
-const randomNumber: RandomNumber = (min, max) => Math.random() * (max - min) + min;
+const randomNumber: RandomNumber = (min, max) =>
+	Math.random() * (max - min) + min;
 
 class FireflyGenerator {
-  #config: Config;
-  #fireflies: FireflyAttributes[] = [];
-  #currentSpawnAttempts: number = 0;
-  #maxSpawnLoopIterations: number;
+	#config: Config;
+	#fireflies: FireflyAttributes[] = [];
+	#currentSpawnAttempts: number = 0;
+	#maxSpawnLoopIterations: number;
 
-  constructor(config: Config) {
-    this.#config = config;
-    this.#maxSpawnLoopIterations = config.count * 10;
-  }
+	constructor(config: Config) {
+		this.#config = config;
+		this.#maxSpawnLoopIterations = config.count * 10;
+	}
 
-  private get canSafelySpawn() {
-    const isTargetCountReached = this.#fireflies.length < this.#config.count;
-    const hasAttemptsLeft = this.#currentSpawnAttempts < this.#maxSpawnLoopIterations;
+	private get canSafelySpawn() {
+		const isTargetCountReached = this.#fireflies.length < this.#config.count;
+		const hasAttemptsLeft =
+			this.#currentSpawnAttempts < this.#maxSpawnLoopIterations;
 
-    return isTargetCountReached && hasAttemptsLeft;
-  }
+		return isTargetCountReached && hasAttemptsLeft;
+	}
 
-  public generate(): FireflyAttributes[] {
-    const { openingFactor, vertex_X, vertex_Y } = this.#config.parable;
+	public generate(): FireflyAttributes[] {
+		const { openingFactor, vertex_X, vertex_Y } = this.#config.parable;
 
-    while (this.canSafelySpawn) {
-      const randomSpawnX = randomNumber(0, 100);
+		while (this.canSafelySpawn) {
+			const randomSpawnX = randomNumber(0, 100);
 
-      const spawnCurveY = openingFactor * Math.pow(randomSpawnX - vertex_X, 2) + vertex_Y;
-      const spawnRangeYMin = Math.min(spawnCurveY + 1, 99);
-      const spawnRangeYMax = 99;
+			const spawnCurveY =
+				openingFactor * Math.pow(randomSpawnX - vertex_X, 2) + vertex_Y;
+			const spawnRangeYMin = Math.min(spawnCurveY + 1, 99);
+			const spawnRangeYMax = 99;
 
-      const isSpawnRangeInvalid = spawnRangeYMin >= spawnRangeYMax;
+			const isSpawnRangeInvalid = spawnRangeYMin >= spawnRangeYMax;
 
-      if (isSpawnRangeInvalid) {
-        this.#currentSpawnAttempts++;
-        continue;
-      }
+			if (isSpawnRangeInvalid) {
+				this.#currentSpawnAttempts++;
+				continue;
+			}
 
-      const randomSpawnY = randomNumber(spawnRangeYMin, spawnRangeYMax);
+			const randomSpawnY = randomNumber(spawnRangeYMin, spawnRangeYMax);
 
-      this.#fireflies.push({
-        top: `${randomSpawnY}vh`,
-        left: `${randomSpawnX}vw`,
-        size: `${randomNumber(0.3, 0.7)}vw`,
-        delay: `${randomNumber(0, 5)}s`,
-        duration: `${randomNumber(this.#config.speed.min, this.#config.speed.max)}s`,
-      });
+			this.#fireflies.push({
+				top: `${randomSpawnY}vh`,
+				left: `${randomSpawnX}vw`,
+				size: `${randomNumber(0.3, 0.7)}vw`,
+				delay: `${randomNumber(0, 5)}s`,
+				duration: `${randomNumber(this.#config.speed.min, this.#config.speed.max)}s`,
+			});
 
-      this.#currentSpawnAttempts++;
-    }
+			this.#currentSpawnAttempts++;
+		}
 
-    if (this.#fireflies.length === 0) {
-      console.warn('[FireflyGenerator] No se pudieron generar luciérnagas.');
-      this.#fireflies.push({
-        top: `90vh`,
-        left: `50vw`,
-        size: `0.5vw`,
-        delay: `0s`,
-        duration: `15s`,
-      });
-    }
+		if (this.#fireflies.length === 0) {
+			console.warn('[FireflyGenerator] No se pudieron generar luciérnagas.');
+			this.#fireflies.push({
+				top: `90vh`,
+				left: `50vw`,
+				size: `0.5vw`,
+				delay: `0s`,
+				duration: `15s`,
+			});
+		}
 
-    return this.#fireflies;
-  }
+		return this.#fireflies;
+	}
 }
 
 const config: Config = {
-  count: 25,
-  speed: { min: 20, max: 60 },
-  parable: {
-    openingFactor: -0.02,
-    vertex_X: 50,
-    vertex_Y: 98,
-  },
+	count: 25,
+	speed: { min: 20, max: 60 },
+	parable: {
+		openingFactor: -0.02,
+		vertex_X: 50,
+		vertex_Y: 98,
+	},
 };
 
 const generator = new FireflyGenerator(config);

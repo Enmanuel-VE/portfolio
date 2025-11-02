@@ -2,8 +2,18 @@
 import { LayoutGrid, Rows3 } from '@lucide/astro';
 
 const viewModes = [
-  { id: 'btn-rows-projects', title: 'Vista de filas', icon: Rows3, mode: 'rows' },
-  { id: 'btn-grid-projects', title: 'Vista de grilla', icon: LayoutGrid, mode: 'grid' },
+	{
+		id: 'btn-rows-projects',
+		title: 'Vista de filas',
+		icon: Rows3,
+		mode: 'rows',
+	},
+	{
+		id: 'btn-grid-projects',
+		title: 'Vista de grilla',
+		icon: LayoutGrid,
+		mode: 'grid',
+	},
 ];
 ---
 
@@ -17,7 +27,7 @@ const viewModes = [
       <button
         id={id}
         title={title}
-        class={`toggle-btn cursor-pointer p-2 text-sm ${mode === 'rows' ? 'btn-active' : ''}`}
+        class={`toggle-btn cursor-pointer p-2 text-sm ${mode === "rows" ? "btn-active" : ""}`}
       >
         <Icon class="h-4 w-4" />
       </button>
@@ -25,34 +35,35 @@ const viewModes = [
   }
 
   <script>
-    import { $, $$ } from '../../client/utils/shortFunction';
-    type Mode = 'grid' | 'rows';
+    import { $, $$ } from "../../client/utils/shortFunction";
+    type Mode = "grid" | "rows";
     interface ModeObject {
-      GRID: 'grid';
-      ROWS: 'rows';
+      GRID: "grid";
+      ROWS: "rows";
     }
-    const MODE: ModeObject = { GRID: 'grid', ROWS: 'rows' };
-    const buttons = $$('.toggle-btn');
-    const btnGrid = $('#btn-grid-projects');
-    const btnRows = $('#btn-rows-projects');
-    const cards = $$('.project-card');
+    const MODE: ModeObject = { GRID: "grid", ROWS: "rows" };
+    const buttons = $$(".toggle-btn");
+    const btnGrid = $("#btn-grid-projects");
+    const btnRows = $("#btn-rows-projects");
+    const cards = $$(".project-card");
 
     const modeSaved = () => {
       let mode: Mode;
-      let saved = localStorage.getItem('viewProjectMode');
+      let saved = localStorage.getItem("viewProjectMode");
 
       if (!saved) {
         mode = MODE.ROWS;
-        localStorage.setItem('viewProjectMode', mode);
+        localStorage.setItem("viewProjectMode", mode);
       } else {
-        const getMode = localStorage.getItem('viewProjectMode');
+        const getMode = localStorage.getItem("viewProjectMode");
         mode = getMode === MODE.GRID ? MODE.GRID : MODE.ROWS;
       }
 
       return mode;
     };
 
-    const setMode = (mode: string) => localStorage.setItem('viewProjectMode', mode);
+    const setMode = (mode: string) =>
+      localStorage.setItem("viewProjectMode", mode);
 
     const swapClass = ({ classList }: Element, add: string, remove: string) =>
       classList.replace(remove, add);
@@ -62,35 +73,36 @@ const viewModes = [
 
       const isGrid = mode === MODE.GRID;
 
-      btnGrid.classList.toggle('btn-active', isGrid);
-      btnRows.classList.toggle('btn-active', !isGrid);
+      btnGrid.classList.toggle("btn-active", isGrid);
+      btnRows.classList.toggle("btn-active", !isGrid);
 
       cards.forEach((card) =>
         swapClass(
           card,
-          isGrid ? 'card-grid-mode' : 'card-row-mode',
-          isGrid ? 'card-row-mode' : 'card-grid-mode'
-        )
+          isGrid ? "card-grid-mode" : "card-row-mode",
+          isGrid ? "card-row-mode" : "card-grid-mode",
+        ),
       );
     };
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       if (!buttons.length) return;
 
       applyViewMode(modeSaved());
 
       buttons.forEach((btn) =>
-        btn.addEventListener('click', ({ currentTarget }) => {
+        btn.addEventListener("click", ({ currentTarget }) => {
           if (!currentTarget) return;
 
           const { id } = currentTarget as HTMLButtonElement;
-          const selectedMode: Mode = id === 'btn-grid-projects' ? MODE.GRID : MODE.ROWS;
+          const selectedMode: Mode =
+            id === "btn-grid-projects" ? MODE.GRID : MODE.ROWS;
 
           if (selectedMode === modeSaved()) return;
 
           setMode(selectedMode);
           applyViewMode(selectedMode);
-        })
+        }),
       );
     });
   </script>
@@ -100,7 +112,8 @@ const viewModes = [
   #view-toggle-project .btn-active {
     background-color: rgba(106, 114, 130, 0.1);
   }
-  #app[data-theme='dark'] #view-toggle-project .btn-active {
+
+  body[data-theme="dark"] #view-toggle-project .btn-active {
     background-color: rgba(52, 0, 88, 0.4);
     color: white;
   }

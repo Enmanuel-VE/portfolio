@@ -1,18 +1,18 @@
 ---
 interface Props {
-  title: string;
-  image: string;
-  description: string;
-  stackTech: { icon: string; name: string; url: string }[];
-  demo: string;
-  repository: string;
+	title: string;
+	image: string;
+	description: string;
+	stackTech: { icon: string; name: string; url: string }[];
+	demo: string;
+	repository: string;
 }
 
 const { title, image, description, stackTech, demo, repository } = Astro.props;
 
 const links = [
-  { title: 'Ver demo', label: 'Demo', href: demo },
-  { title: 'Ver repositorio', label: 'Repositorio', href: repository },
+	{ title: 'Ver demo', label: 'Demo', href: demo },
+	{ title: 'Ver repositorio', label: 'Repositorio', href: repository },
 ] as const;
 ---
 

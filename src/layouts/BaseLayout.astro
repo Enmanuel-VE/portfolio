@@ -1,10 +1,9 @@
 ---
-import '../styles/global.css';
 import Navbar from '../components/molecules/Navbar.astro';
 import Footer from '../components/molecules/Footer.astro';
 
 interface Props {
-  lang: string;
+	lang: string;
 }
 
 const { lang } = Astro.props;
@@ -14,10 +13,11 @@ const { lang } = Astro.props;
   <head>
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png" />
 
+    <title>Enmanuel Bracho | Frontend Developer</title>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-
     <meta
       name="description"
       content="Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro."
@@ -28,84 +28,72 @@ const { lang } = Astro.props;
     />
     <meta name="author" content="Enmanuel Antoni Bracho Villanueva" />
     <meta name="robots" content="index, follow" />
-
-    <title>Enmanuel Bracho | Frontend Developer</title>
-
     <meta http-equiv="Content-Language" content="es" />
-
+  </head>
+  <body data-theme>
     <script is:inline>
-      const THEME = { LIGHT: 'light', DARK: 'dark' };
+      function getCurrentTheme() {
+        const THEME = { LIGHT: "light", DARK: "dark" };
 
-      let theme = THEME.DARK;
+        const saved = localStorage.getItem("theme");
+        const isSavedValid = saved === THEME.LIGHT || saved === THEME.DARK;
 
-      const saved = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const themeOption = saved === THEME.DARK || saved === THEME.LIGHT;
+        if (isSavedValid) return saved;
 
-      if (themeOption) {
-        theme = saved === THEME.LIGHT ? THEME.LIGHT : THEME.DARK;
-      } else {
-        theme = prefersDark ? THEME.DARK : THEME.LIGHT;
-        localStorage.setItem('theme', theme);
+        const schemeDark = `(prefers-color-scheme: ${THEME.DARK})`;
+        const prefersDark = window.matchMedia(schemeDark).matches;
+        const systemTheme = prefersDark ? THEME.DARK : THEME.LIGHT;
+
+        localStorage.setItem("theme", systemTheme);
+
+        return systemTheme;
       }
 
-      document.documentElement.setAttribute('data-theme', theme);
+      document.body.setAttribute("data-theme", getCurrentTheme());
     </script>
 
-    <script>
-      const changeTitle = (title: string) => (document.title = title);
-
-      const TITLES = {
-        HIDDEN: '¡Te espero!',
-        VISIBLE: 'Enmanuel Bracho | Frontend Developer',
-      } as const;
-
-      const STATES = {
-        HIDDEN: 'hidden',
-        VISIBLE: 'visible',
-      } as const;
-
-      document.addEventListener('visibilitychange', () => {
-        switch (document.visibilityState) {
-          case STATES.HIDDEN:
-            changeTitle(TITLES.HIDDEN);
-            break;
-          case STATES.VISIBLE:
-            changeTitle(TITLES.VISIBLE);
-            break;
-          default:
-            changeTitle(TITLES.VISIBLE);
-            break;
-        }
-      });
-    </script>
-  </head>
-  <body>
     <div id="app">
       <Navbar />
 
-      <main class="flex flex-1 flex-col">
+      <main>
         <slot />
       </main>
 
       <Footer />
     </div>
+
+    <script>
+      function toggleTitle() {
+        enum TitleState {
+          Hidden = "¡Te espero!",
+          Visible = "Enmanuel Bracho | Frontend Developer",
+        }
+
+        document.addEventListener("visibilitychange", () => {
+          const isHidden = document.visibilityState === "hidden";
+          const title = isHidden ? TitleState.Hidden : TitleState.Visible;
+          document.title = title;
+        });
+      }
+
+      toggleTitle();
+    </script>
   </body>
 </html>
 
 <style is:global>
+  @import "tailwindcss";
+  @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
   html {
     scroll-behavior: smooth;
   }
 
   #app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-    background-color: #f0f0f0;
+    @apply flex flex-col min-h-[100dvh] bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
   }
 
-  html[data-theme='dark'] #app {
-    background-color: rgb(25, 0, 27);
+  #app > main {
+    @apply flex flex-1 flex-col;
   }
 </style>

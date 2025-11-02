@@ -1,8 +1,8 @@
 ---
 interface Props {
-  id: string;
-  className?: string;
-  ariaLabel?: string;
+	id: string;
+	className?: string;
+	ariaLabel?: string;
 }
 
 const { id, className = '', ariaLabel } = Astro.props;
@@ -10,7 +10,7 @@ const { id, className = '', ariaLabel } = Astro.props;
 
 <section
   id={id}
-  class={'relative min-h-screen flex flex-col' + ' ' + className.trim()}
+  class={"relative min-h-screen flex flex-col" + " " + className.trim()}
   aria-label={ariaLabel}
   role="region"
 >

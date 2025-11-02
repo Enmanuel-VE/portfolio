@@ -1,45 +1,45 @@
 [
-  {
-    "title": "Bento Grid",
-    "description": "Proyecto desarrollado como parte del reto Bento Grid de Frontend Mentor, enfocado en practicar habilidades de estilizado y diseño responsivo. Implementa una cuadrícula adaptable con vistas móviles y de escritorio.",
-    "image": "/assets/images/bentoGridProject.png",
-    "repository": "https://github.com/Enmanuel-VE/bento-grid/",
-    "demo": "https://enmanuel-ve.github.io/bento-grid/",
-    "stackTech": [
-      {
-        "icon": "/assets/icons/tailwindIcon.svg",
-        "name": "Tailwind",
-        "url": "https://tailwindcss.com/"
-      },
-      {
-        "icon": "/assets/icons/typescriptIcon.svg",
-        "name": "TypeScript",
-        "url": "https://www.typescriptlang.org/"
-      }
-    ]
-  },
-  {
-    "title": "Calculadora vanilla",
-    "description": "Una calculadora simple construida con un stack vanilla, es decir, HTML, CSS y JavaScript. El objetivo de aprendizaje fue practicar la manipulación del DOM, el manejo de estado global y la construcción de una SPA en vanilla.",
-    "image": "/assets/images/calculatorProject.png",
-    "repository": "https://github.com/Enmanuel-VE/calculator-app/",
-    "demo": "https://enmanuel-ve.github.io/calculator-app/",
-    "stackTech": [
-      {
-        "icon": "/assets/icons/jsIcon.svg",
-        "name": "JavaScript",
-        "url": "https://developer.mozilla.org/es/docs/Web/JavaScript"
-      },
-      {
-        "icon": "/assets/icons/htmlIcon.svg",
-        "name": "HTML",
-        "url": "https://developer.mozilla.org/es/docs/Web/HTML"
-      },
-      {
-        "icon": "/assets/icons/cssIcon.svg",
-        "name": "CSS",
-        "url": "https://developer.mozilla.org/es/docs/Web/CSS"
-      }
-    ]
-  }
+	{
+		"title": "Bento Grid",
+		"description": "Proyecto desarrollado como parte del reto Bento Grid de Frontend Mentor, enfocado en practicar habilidades de estilizado y diseño responsivo. Implementa una cuadrícula adaptable con vistas móviles y de escritorio.",
+		"image": "/assets/images/bentoGridProject.png",
+		"repository": "https://github.com/Enmanuel-VE/bento-grid/",
+		"demo": "https://enmanuel-ve.github.io/bento-grid/",
+		"stackTech": [
+			{
+				"icon": "/assets/icons/tailwindIcon.svg",
+				"name": "Tailwind",
+				"url": "https://tailwindcss.com/"
+			},
+			{
+				"icon": "/assets/icons/typescriptIcon.svg",
+				"name": "TypeScript",
+				"url": "https://www.typescriptlang.org/"
+			}
+		]
+	},
+	{
+		"title": "Calculadora vanilla",
+		"description": "Una calculadora simple construida con un stack vanilla, es decir, HTML, CSS y JavaScript. El objetivo de aprendizaje fue practicar la manipulación del DOM, el manejo de estado global y la construcción de una SPA en vanilla.",
+		"image": "/assets/images/calculatorProject.png",
+		"repository": "https://github.com/Enmanuel-VE/calculator-app/",
+		"demo": "https://enmanuel-ve.github.io/calculator-app/",
+		"stackTech": [
+			{
+				"icon": "/assets/icons/jsIcon.svg",
+				"name": "JavaScript",
+				"url": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+			},
+			{
+				"icon": "/assets/icons/htmlIcon.svg",
+				"name": "HTML",
+				"url": "https://developer.mozilla.org/es/docs/Web/HTML"
+			},
+			{
+				"icon": "/assets/icons/cssIcon.svg",
+				"name": "CSS",
+				"url": "https://developer.mozilla.org/es/docs/Web/CSS"
+			}
+		]
+	}
 ]
