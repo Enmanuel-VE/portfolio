@@ -2,34 +2,60 @@
 import Navbar from '../components/molecules/Navbar.astro';
 import Footer from '../components/molecules/Footer.astro';
 
-interface Props {
-	lang: string;
-}
+const stack = [
+	Astro.generator,
+	'Tailwind',
+	'TypeScript',
+	'Lucide',
+	'Biome',
+	'Vite',
+	'pnpm',
+	'Nodejs',
+].join(', ');
 
-const { lang } = Astro.props;
+const keywords = [
+	'Enmanuel',
+	'Bracho',
+	'Ingeniería',
+	'frontend',
+	'React',
+	'TypeScript',
+	'Tailwind',
+	'Astro',
+	'desarrollador',
+	'portfolio',
+	'Venezuela',
+	'UNEFA',
+	'sistemas',
+].join(', ');
+
+const meta = {
+	seo: {
+		title: `Enmanuel Bracho | Frontend Developer`,
+		description: `Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro.`,
+		robots: 'index, follow',
+		keywords,
+	},
+	html: { language: 'es', charset: 'utf-8', viewport: 'width=device-width' },
+	author: { name: 'Enmanuel Antoni Bracho Villanueva' },
+	generator: { stack },
+};
 ---
 
-<html lang={lang}>
+<html lang={meta.html.language}>
   <head>
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png" />
-
-    <title>Enmanuel Bracho | Frontend Developer</title>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro."
-    />
-    <meta
-      name="keywords"
-      content="Enmanuel Bracho, Ingeniería, frontend, React, TypeScript, Tailwind, Astro, desarrollador, portfolio, Venezuela, UNEFA, sistemas"
-    />
-    <meta name="author" content="Enmanuel Antoni Bracho Villanueva" />
-    <meta name="robots" content="index, follow" />
-    <meta http-equiv="Content-Language" content="es" />
+    <title>{meta.seo.title}</title>
+    <meta name="description" content={meta.seo.description} />
+    <meta name="keywords" content={meta.seo.keywords} />
+    <meta name="robots" content={meta.seo.robots} />
+    <meta charset={meta.html.charset} />
+    <meta name="viewport" content={meta.html.viewport} />
+    <meta http-equiv="Content-Language" content={meta.html.language} />
+    <meta name="generator" content={meta.generator.stack} />
+    <meta name="author" content={meta.author.name} />
   </head>
+
   <body data-theme>
     <script is:inline>
       function getCurrentTheme() {
