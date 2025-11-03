@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import type { Project } from '../../data/projects';
+import type { ProjectType } from '../../data/projects';
 
-interface Props extends Project {}
+interface Props extends ProjectType {}
 
 const { title, image, description, stackTech, demo, repository } = Astro.props;
 

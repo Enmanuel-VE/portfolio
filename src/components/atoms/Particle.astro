@@ -21,8 +21,9 @@ interface FireflyAttributes {
 }
 
 type RandomNumber = (min: number, max: number) => number;
-const randomNumber: RandomNumber = (min, max) =>
-	Math.random() * (max - min) + min;
+const randomNumber: RandomNumber = (min, max) => {
+	return Math.round((Math.random() * (max - min) + min) * 100) / 100;
+};
 
 class FireflyGenerator {
 	#config: Config;
@@ -64,9 +65,9 @@ class FireflyGenerator {
 			const randomSpawnY = randomNumber(spawnRangeYMin, spawnRangeYMax);
 
 			this.#fireflies.push({
-				top: `${randomSpawnY}vh`,
-				left: `${randomSpawnX}vw`,
-				size: `${randomNumber(0.3, 0.7)}vw`,
+				top: `${randomSpawnY}dvh`,
+				left: `${randomSpawnX}dvw`,
+				size: `${randomNumber(0.3, 0.7)}dvw`,
 				delay: `${randomNumber(0, 5)}s`,
 				duration: `${randomNumber(this.#config.speed.min, this.#config.speed.max)}s`,
 			});
@@ -77,9 +78,9 @@ class FireflyGenerator {
 		if (this.#fireflies.length === 0) {
 			console.warn('[FireflyGenerator] No se pudieron generar luciérnagas.');
 			this.#fireflies.push({
-				top: `90vh`,
-				left: `50vw`,
-				size: `0.5vw`,
+				top: `90dvh`,
+				left: `50dvw`,
+				size: `0.5dvw`,
 				delay: `0s`,
 				duration: `15s`,
 			});
@@ -91,7 +92,7 @@ class FireflyGenerator {
 
 const config: Config = {
 	count: 25,
-	speed: { min: 20, max: 60 },
+	speed: { min: 30, max: 60 },
 	parable: {
 		openingFactor: -0.02,
 		vertex_X: 50,
@@ -103,11 +104,13 @@ const generator = new FireflyGenerator(config);
 const fireflies = generator.generate();
 ---
 
-<div class="firefly-container pointer-events-none fixed inset-0 z-0 hidden dark:block">
+<div
+  class="firefly-container animate-[fade-out-on-scroll] pointer-events-none fixed inset-0 z-0 hidden dark:block"
+>
   {
     fireflies.map(({ top, left, size, delay, duration }) => (
       <div
-        class="firefly absolute"
+        class={`firefly absolute animate-[float-s]`}
         style={`
           top: ${top};
           left: ${left};
@@ -122,7 +125,7 @@ const fireflies = generator.generate();
   }
 </div>
 
-<style is:global>
+<style>
   @keyframes float-s {
     from {
       transform: translate(0, 0);
@@ -158,16 +161,6 @@ const fireflies = generator.generate();
     }
   }
 
-  .firefly {
-    border-radius: 100%;
-    background-color: #ffffff3f;
-    box-shadow: 0 0 8px rgba(118, 3, 226, 0.4);
-    animation-name: float-s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-  }
-
   @keyframes fade-out-on-scroll {
     from {
       opacity: 1;
@@ -182,8 +175,17 @@ const fireflies = generator.generate();
     }
   }
 
+  .firefly {
+    border-radius: 100%;
+    background-color: #ffffff3f;
+    box-shadow: 0 0 8px rgba(118, 3, 226, 0.4);
+
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
   .firefly-container {
-    animation-name: fade-out-on-scroll;
     animation-timing-function: linear;
     animation-fill-mode: both;
     animation-timeline: scroll();

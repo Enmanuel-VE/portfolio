@@ -1,14 +1,17 @@
 ---
-import { projects as cards } from '../../data/projects.ts';
+import type { ProjectType } from '../../data/projects.ts';
+import { projects } from '../../data/projects.ts';
 import ViewToggle from '../atoms/ViewToggle.astro';
 import SectionLayout from '../layouts/SectionLayout.astro';
 import ProjectCard from '../molecules/ProjectCard.astro';
+
+const cards: ProjectType[] = projects.map((p) => ({ ...p.asObject }));
 
 const dataSection = {
 	title: 'Proyectos',
 	description:
 		'Una mirada a los proyectos que he creado con dedicación y curiosidad. Cada uno cuenta una historia, resuelve un problema o explora una idea que me entusiasmó construir.',
-};
+} as const;
 ---
 
 <SectionLayout id="proyectos" ariaLabel="Proyectos">
