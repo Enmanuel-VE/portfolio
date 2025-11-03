@@ -1,113 +1,112 @@
 ---
-interface Config {
-	count: number;
-	speed: {
-		min: number;
-		max: number;
-	};
-	parable: {
-		openingFactor: number;
-		vertex_X: number;
-		vertex_Y: number;
-	};
-}
-
-interface FireflyAttributes {
-	top: string;
-	left: string;
-	size: string;
-	delay: string;
-	duration: string;
-}
-
-type RandomNumber = (min: number, max: number) => number;
-const randomNumber: RandomNumber = (min, max) => {
-	return Math.round((Math.random() * (max - min) + min) * 100) / 100;
-};
-
-class FireflyGenerator {
-	#config: Config;
-	#fireflies: FireflyAttributes[] = [];
-	#currentSpawnAttempts: number = 0;
-	#maxSpawnLoopIterations: number;
-
-	constructor(config: Config) {
-		this.#config = config;
-		this.#maxSpawnLoopIterations = config.count * 10;
+	interface Config {
+		count: number;
+		speed: {
+			min: number;
+			max: number;
+		};
+		parable: {
+			openingFactor: number;
+			vertex_X: number;
+			vertex_Y: number;
+		};
 	}
 
-	private get canSafelySpawn() {
-		const isTargetCountReached = this.#fireflies.length < this.#config.count;
-		const hasAttemptsLeft =
-			this.#currentSpawnAttempts < this.#maxSpawnLoopIterations;
-
-		return isTargetCountReached && hasAttemptsLeft;
+	interface FireflyAttributes {
+		top: string;
+		left: string;
+		size: string;
+		delay: string;
+		duration: string;
 	}
 
-	public generate(): FireflyAttributes[] {
-		const { openingFactor, vertex_X, vertex_Y } = this.#config.parable;
+	type RandomNumber = (min: number, max: number) => number;
+	const randomNumber: RandomNumber = (min, max) => {
+		return Math.round((Math.random() * (max - min) + min) * 100) / 100;
+	};
 
-		while (this.canSafelySpawn) {
-			const randomSpawnX = randomNumber(0, 100);
+	class FireflyGenerator {
+		#config: Config;
+		#fireflies: FireflyAttributes[] = [];
+		#currentSpawnAttempts: number = 0;
+		#maxSpawnLoopIterations: number;
 
-			const spawnCurveY =
-				openingFactor * Math.pow(randomSpawnX - vertex_X, 2) + vertex_Y;
-			const spawnRangeYMin = Math.min(spawnCurveY + 1, 99);
-			const spawnRangeYMax = 99;
+		constructor(config: Config) {
+			this.#config = config;
+			this.#maxSpawnLoopIterations = config.count * 10;
+		}
 
-			const isSpawnRangeInvalid = spawnRangeYMin >= spawnRangeYMax;
+		private get canSafelySpawn() {
+			const isTargetCountReached = this.#fireflies.length < this.#config.count;
+			const hasAttemptsLeft =
+				this.#currentSpawnAttempts < this.#maxSpawnLoopIterations;
 
-			if (isSpawnRangeInvalid) {
+			return isTargetCountReached && hasAttemptsLeft;
+		}
+
+		public generate(): FireflyAttributes[] {
+			const { openingFactor, vertex_X, vertex_Y } = this.#config.parable;
+
+			while (this.canSafelySpawn) {
+				const randomSpawnX = randomNumber(0, 100);
+
+				const spawnCurveY =
+					openingFactor * Math.pow(randomSpawnX - vertex_X, 2) + vertex_Y;
+				const spawnRangeYMin = Math.min(spawnCurveY + 1, 99);
+				const spawnRangeYMax = 99;
+
+				const isSpawnRangeInvalid = spawnRangeYMin >= spawnRangeYMax;
+
+				if (isSpawnRangeInvalid) {
+					this.#currentSpawnAttempts++;
+					continue;
+				}
+
+				const randomSpawnY = randomNumber(spawnRangeYMin, spawnRangeYMax);
+
+				this.#fireflies.push({
+					top: `${randomSpawnY}dvh`,
+					left: `${randomSpawnX}dvw`,
+					size: `${randomNumber(0.3, 0.7)}dvw`,
+					delay: `${randomNumber(0, 5)}s`,
+					duration: `${randomNumber(this.#config.speed.min, this.#config.speed.max)}s`,
+				});
+
 				this.#currentSpawnAttempts++;
-				continue;
 			}
 
-			const randomSpawnY = randomNumber(spawnRangeYMin, spawnRangeYMax);
+			if (this.#fireflies.length === 0) {
+				console.warn('[FireflyGenerator] No se pudieron generar luciérnagas.');
+				this.#fireflies.push({
+					top: `90dvh`,
+					left: `50dvw`,
+					size: `0.5dvw`,
+					delay: `0s`,
+					duration: `15s`,
+				});
+			}
 
-			this.#fireflies.push({
-				top: `${randomSpawnY}dvh`,
-				left: `${randomSpawnX}dvw`,
-				size: `${randomNumber(0.3, 0.7)}dvw`,
-				delay: `${randomNumber(0, 5)}s`,
-				duration: `${randomNumber(this.#config.speed.min, this.#config.speed.max)}s`,
-			});
-
-			this.#currentSpawnAttempts++;
+			return this.#fireflies;
 		}
-
-		if (this.#fireflies.length === 0) {
-			console.warn('[FireflyGenerator] No se pudieron generar luciérnagas.');
-			this.#fireflies.push({
-				top: `90dvh`,
-				left: `50dvw`,
-				size: `0.5dvw`,
-				delay: `0s`,
-				duration: `15s`,
-			});
-		}
-
-		return this.#fireflies;
 	}
-}
 
-const config: Config = {
-	count: 25,
-	speed: { min: 30, max: 60 },
-	parable: {
-		openingFactor: -0.02,
-		vertex_X: 50,
-		vertex_Y: 98,
-	},
-};
+	const config: Config = {
+		count: 25,
+		speed: { min: 30, max: 60 },
+		parable: {
+			openingFactor: -0.02,
+			vertex_X: 50,
+			vertex_Y: 98,
+		},
+	};
 
-const generator = new FireflyGenerator(config);
-const fireflies = generator.generate();
+	const generator = new FireflyGenerator(config);
+	const fireflies = generator.generate();
 ---
-
 <div
-  class="firefly-container animate-[fade-out-on-scroll] pointer-events-none fixed inset-0 z-0 hidden dark:block"
+	class="firefly-container animate-[fade-out-on-scroll] pointer-events-none fixed inset-0 z-0 hidden dark:block"
 >
-  {
+	{
     fireflies.map(({ top, left, size, delay, duration }) => (
       <div
         class={`firefly absolute animate-[float-s]`}
@@ -126,69 +125,69 @@ const fireflies = generator.generate();
 </div>
 
 <style>
-  @keyframes float-s {
-    from {
-      transform: translate(0, 0);
-      opacity: 0.2;
-    }
-    15% {
-      transform: translate(8px, -14px);
-      opacity: 0.35;
-    }
-    30% {
-      transform: translate(-30px, 26px);
-      opacity: 0.4;
-    }
-    45% {
-      transform: translate(35px, 10px);
-      opacity: 0.54;
-    }
-    60% {
-      transform: translate(-34px, -26px);
-      opacity: 0.45;
-    }
-    75% {
-      transform: translate(33px, 24px);
-      opacity: 0.3;
-    }
-    90% {
-      transform: translate(-12px, -13px);
-      opacity: 0.2;
-    }
-    to {
-      transform: translate(0, 0);
-      opacity: 0.2;
-    }
-  }
+	@keyframes float-s {
+		from {
+			transform: translate(0, 0);
+			opacity: 0.2;
+		}
+		15% {
+			transform: translate(8px, -14px);
+			opacity: 0.35;
+		}
+		30% {
+			transform: translate(-30px, 26px);
+			opacity: 0.4;
+		}
+		45% {
+			transform: translate(35px, 10px);
+			opacity: 0.54;
+		}
+		60% {
+			transform: translate(-34px, -26px);
+			opacity: 0.45;
+		}
+		75% {
+			transform: translate(33px, 24px);
+			opacity: 0.3;
+		}
+		90% {
+			transform: translate(-12px, -13px);
+			opacity: 0.2;
+		}
+		to {
+			transform: translate(0, 0);
+			opacity: 0.2;
+		}
+	}
 
-  @keyframes fade-out-on-scroll {
-    from {
-      opacity: 1;
-      visibility: visible;
-    }
-    99% {
-      opacity: 0;
-    }
-    to {
-      opacity: 0;
-      display: hidden;
-    }
-  }
+	@keyframes fade-out-on-scroll {
+		from {
+			opacity: 1;
+			visibility: visible;
+		}
+		99% {
+			opacity: 0;
+		}
+		to {
+			opacity: 0;
+			display: hidden;
+		}
+	}
 
-  .firefly {
-    border-radius: 100%;
-    background-color: #ffffff3f;
-    box-shadow: 0 0 8px rgba(118, 3, 226, 0.4);
+	.firefly {
+		border-radius: 100%;
+		background-color: #ffffff3f;
+		box-shadow: 0 0 8px rgba(118, 3, 226, 0.4);
 
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-  }
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: infinite;
+		animation-fill-mode: both;
+	}
 
-  .firefly-container {
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-    animation-timeline: scroll();
-    animation-range: 0 150px;
-  }
+	.firefly-container {
+		animation-timing-function: linear;
+		animation-fill-mode: both;
+		animation-timeline: scroll();
+		animation-range: 0 150px;
+	}
 </style>

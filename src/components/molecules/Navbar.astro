@@ -1,29 +1,28 @@
 ---
-import ThemeToggleButton from '../atoms/ThemeToggleButton.astro';
+	import ThemeToggleButton from '../atoms/ThemeToggleButton.astro';
 
-type NavLinkData = { url: `#${string}`; text: string; ariaLabel: string };
+	type NavLinkData = { url: `#${string}`; text: string; ariaLabel: string };
 
-const navLinkList: NavLinkData[] = [
-	{ url: '#proyectos', text: 'Proyectos', ariaLabel: 'Proyectos' },
-	{ url: '#sobre-mi', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
+	const navLinkList: NavLinkData[] = [
+		{ url: '#proyectos', text: 'Proyectos', ariaLabel: 'Proyectos' },
+		{ url: '#sobre-mi', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
 
-	{ url: '#certificados', text: 'Certificados', ariaLabel: 'Certificados' },
-	{ url: '#contactos', text: 'Contactos', ariaLabel: 'Contactos' },
-];
+		{ url: '#certificados', text: 'Certificados', ariaLabel: 'Certificados' },
+		{ url: '#contactos', text: 'Contactos', ariaLabel: 'Contactos' },
+	];
 ---
-
 <header
-  class="fixed top-1 left-1/2 z-50 flex min-w-1/2 -translate-x-[50%] transform flex-row px-1 md:max-w-1/2 md:min-w-auto"
+	class="fixed top-1 left-1/2 z-50 flex min-w-1/2 -translate-x-[50%] transform flex-row px-1 md:max-w-1/2 md:min-w-auto"
 >
-  <nav
-    id="main-navbar"
-    class="flex w-full flex-row gap-2 text-[clamp(0px,3vw,14px)] text-black dark:text-white"
-  >
-    <div
-      id="nav-items"
-      class="nav-base-styles grid flex-1 grid-cols-[repeat(4,minmax(min-content,1fr))] gap-2 rounded-3xl border px-2 text-center font-medium text-nowrap text-ellipsis"
-    >
-      {
+	<nav
+		id="main-navbar"
+		class="flex w-full flex-row gap-2 text-[clamp(0px,3vw,14px)] text-black dark:text-white"
+	>
+		<div
+			id="nav-items"
+			class="nav-base-styles grid flex-1 grid-cols-[repeat(4,minmax(min-content,1fr))] gap-2 rounded-3xl border px-2 text-center font-medium text-nowrap text-ellipsis"
+		>
+			{
         navLinkList.map((link) => (
           <a
             aria-label={link.ariaLabel}
@@ -35,104 +34,103 @@ const navLinkList: NavLinkData[] = [
           </a>
         ))
       }
-    </div>
+		</div>
 
-    <ThemeToggleButton />
-  </nav>
+		<ThemeToggleButton/>
+	</nav>
 
-  <script>
-    const navItems = document.querySelector("#nav-items");
-    const sections = document.querySelectorAll("section[id]");
+	<script>
+		const navItems = document.querySelector('#nav-items');
+		const sections = document.querySelectorAll('section[id]');
 
-    let activeSectionId: null | string = null;
+		let activeSectionId: null | string = null;
 
-    const intersectionRatios: Record<string, number> = {};
+		const intersectionRatios: Record<string, number> = {};
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(
-          (entry) =>
-            (intersectionRatios[entry.target.id] = entry.intersectionRatio),
-        );
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					intersectionRatios[entry.target.id] = entry.intersectionRatio;
+				});
 
-        let bestEntryId = "";
-        let maxRatio = 0;
+				let bestEntryId = '';
+				let maxRatio = 0;
 
-        for (const sectionId in intersectionRatios) {
-          if (intersectionRatios[sectionId] > maxRatio) {
-            maxRatio = intersectionRatios[sectionId];
-            bestEntryId = sectionId;
-          }
-        }
+				for (const sectionId in intersectionRatios) {
+					if (intersectionRatios[sectionId] > maxRatio) {
+						maxRatio = intersectionRatios[sectionId];
+						bestEntryId = sectionId;
+					}
+				}
 
-        if (maxRatio === 0) return;
+				if (maxRatio === 0) return;
 
-        const newActiveSectionId = bestEntryId;
+				const newActiveSectionId = bestEntryId;
 
-        if (newActiveSectionId === activeSectionId) return;
+				if (newActiveSectionId === activeSectionId) return;
 
-        activeSectionId = newActiveSectionId;
+				activeSectionId = newActiveSectionId;
 
-        if (!navItems) return;
+				if (!navItems) return;
 
-        navItems
-          .querySelectorAll("a")
-          .forEach((link) => link.classList.remove("text-rose-500"));
+				navItems.querySelectorAll('a').forEach((link) => {
+					link.classList.remove('text-rose-500');
+				});
 
-        const activeLink = navItems.querySelector(
-          `a[href="#${activeSectionId}"]`,
-        );
-        if (activeLink) activeLink.classList.add("text-rose-500");
-      },
-      { threshold: 0.2 },
-    );
+				const activeLink = navItems.querySelector(
+					`a[href="#${activeSectionId}"]`,
+				);
+				if (activeLink) activeLink.classList.add('text-rose-500');
+			},
+			{ threshold: 0.2 },
+		);
 
-    sections.forEach((section) => {
-      intersectionRatios[section.id] = 0;
-      observer.observe(section);
-    });
-  </script>
+		sections.forEach((section) => {
+			intersectionRatios[section.id] = 0;
+			observer.observe(section);
+		});
+	</script>
 </header>
 
 <style is:global>
-  .nav-base-styles {
-    transition: all;
+	.nav-base-styles {
+		transition: all;
 
-    animation: navScrollLight linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 100px;
-  }
+		animation: navScrollLight linear both;
+		animation-timeline: scroll(root block);
+		animation-range: 0 100px;
+	}
 
-  body[data-theme="dark"] .nav-base-styles {
-    transition: all;
-    animation: navScrollDark linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 100px;
-  }
+	body[data-theme='dark'] .nav-base-styles {
+		transition: all;
+		animation: navScrollDark linear both;
+		animation-timeline: scroll(root block);
+		animation-range: 0 100px;
+	}
 
-  @keyframes navScrollLight {
-    from {
-      border-color: transparent;
-      background-color: transparent;
-      backdrop-filter: blur(0px);
-    }
-    to {
-      border-color: rgba(107, 114, 128, 0.4);
-      background-color: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(8px);
-    }
-  }
+	@keyframes navScrollLight {
+		from {
+			border-color: transparent;
+			background-color: transparent;
+			backdrop-filter: blur(0px);
+		}
+		to {
+			border-color: rgba(107, 114, 128, 0.4);
+			background-color: rgba(255, 255, 255, 0.7);
+			backdrop-filter: blur(8px);
+		}
+	}
 
-  @keyframes navScrollDark {
-    from {
-      border-color: transparent;
-      background-color: transparent;
-      backdrop-filter: blur(0px);
-    }
-    to {
-      border-color: rgba(244, 63, 94, 0.4);
-      background-color: rgba(30, 2, 50, 0.7);
-      backdrop-filter: blur(8px);
-    }
-  }
+	@keyframes navScrollDark {
+		from {
+			border-color: transparent;
+			background-color: transparent;
+			backdrop-filter: blur(0px);
+		}
+		to {
+			border-color: rgba(244, 63, 94, 0.4);
+			background-color: rgba(30, 2, 50, 0.7);
+			backdrop-filter: blur(8px);
+		}
+	}
 </style>

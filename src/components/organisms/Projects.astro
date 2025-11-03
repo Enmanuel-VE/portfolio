@@ -1,38 +1,37 @@
 ---
-import type { ProjectType } from '../../data/projects.ts';
-import { projects } from '../../data/projects.ts';
-import ViewToggle from '../atoms/ViewToggle.astro';
-import SectionLayout from '../layouts/SectionLayout.astro';
-import ProjectCard from '../molecules/ProjectCard.astro';
+	import type { ProjectType } from '../../data/projects.ts';
+	import { projects } from '../../data/projects.ts';
+	import ViewToggle from '../atoms/ViewToggle.astro';
+	import SectionLayout from '../layouts/SectionLayout.astro';
+	import ProjectCard from '../molecules/ProjectCard.astro';
 
-const cards: ProjectType[] = projects.map((p) => ({ ...p.asObject }));
+	const cards: ProjectType[] = projects.map((p) => ({ ...p.asObject }));
 
-const dataSection = {
-	title: 'Proyectos',
-	description:
-		'Una mirada a los proyectos que he creado con dedicación y curiosidad. Cada uno cuenta una historia, resuelve un problema o explora una idea que me entusiasmó construir.',
-} as const;
+	const dataSection = {
+		title: 'Proyectos',
+		description:
+			'Una mirada a los proyectos que he creado con dedicación y curiosidad. Cada uno cuenta una historia, resuelve un problema o explora una idea que me entusiasmó construir.',
+	} as const;
 ---
-
 <SectionLayout id="proyectos" ariaLabel="Proyectos">
-  <div
-    class="relative container mx-auto flex h-full w-full flex-col gap-15 px-4 py-15 md:py-25 lg:max-w-6xl"
-  >
-    <header class="flex flex-row flex-wrap items-center justify-center gap-4">
-      <div class="flex flex-1 flex-col gap-2">
-        <h2 class="text-xl font-bold text-black dark:text-white">
-          {dataSection.title}
-        </h2>
-        <p class="text-sm text-pretty text-black/75 dark:text-white/75">
-          {dataSection.description}
-        </p>
-      </div>
+	<div
+		class="relative container mx-auto flex h-full w-full flex-col gap-15 px-4 py-15 md:py-25 lg:max-w-6xl"
+	>
+		<header class="flex flex-row flex-wrap items-center justify-center gap-4">
+			<div class="flex flex-1 flex-col gap-2">
+				<h2 class="text-xl font-bold text-black dark:text-white">
+					{dataSection.title}
+				</h2>
+				<p class="text-sm text-pretty text-black/75 dark:text-white/75">
+					{dataSection.description}
+				</p>
+			</div>
 
-      <ViewToggle />
-    </header>
+			<ViewToggle/>
+		</header>
 
-    <div id="project-cards" class="flex flex-col gap-4">
-      {
+		<div id="project-cards" class="flex flex-col gap-4">
+			{
         cards.map((card) => (
           <ProjectCard
             title={card.title}
@@ -44,66 +43,66 @@ const dataSection = {
           />
         ))
       }
-    </div>
-  </div>
+		</div>
+	</div>
 
-  <script>
-    const cards = document.querySelector("#project-cards");
-    const btnRows = document.querySelector("#btn-rows-projects");
-    const btnGrid = document.querySelector("#btn-grid-projects");
+	<script>
+		const cards = document.querySelector('#project-cards');
+		const btnRows = document.querySelector('#btn-rows-projects');
+		const btnGrid = document.querySelector('#btn-grid-projects');
 
-    let activeView = "rows";
+		let activeView = 'rows';
 
-    const updateCardClasses = () => {
-      if (!cards) return;
-      const projectCards = cards.querySelectorAll(".project-card");
-      projectCards.forEach((card) => {
-        switch (activeView) {
-          case "grid":
-            card.classList.remove("card-row-mode");
-            card.classList.add("card-grid-mode");
-            break;
-          default:
-            card.classList.remove("card-grid-mode");
-            card.classList.add("card-row-mode");
-            break;
-        }
-      });
-    };
+		const updateCardClasses = () => {
+			if (!cards) return;
+			const projectCards = cards.querySelectorAll('.project-card');
+			projectCards.forEach((card) => {
+				switch (activeView) {
+					case 'grid':
+						card.classList.remove('card-row-mode');
+						card.classList.add('card-grid-mode');
+						break;
+					default:
+						card.classList.remove('card-grid-mode');
+						card.classList.add('card-row-mode');
+						break;
+				}
+			});
+		};
 
-    updateCardClasses();
+		updateCardClasses();
 
-    if (btnRows && btnGrid) {
-      btnRows.addEventListener("click", () => {
-        if (activeView === "rows") return;
+		if (btnRows && btnGrid) {
+			btnRows.addEventListener('click', () => {
+				if (activeView === 'rows') return;
 
-        activeView = "rows";
-        updateCardClasses();
-      });
+				activeView = 'rows';
+				updateCardClasses();
+			});
 
-      btnGrid.addEventListener("click", () => {
-        if (activeView === "grid") return;
+			btnGrid.addEventListener('click', () => {
+				if (activeView === 'grid') return;
 
-        activeView = "grid";
-        updateCardClasses();
-      });
-    }
-  </script>
+				activeView = 'grid';
+				updateCardClasses();
+			});
+		}
+	</script>
 </SectionLayout>
 
 <style>
-  .container:has(#btn-rows-projects.btn-active) #project-cards {
-    display: grid;
-    grid-auto-rows: minmax(10dvh, 45dvh);
+	.container:has(#btn-rows-projects.btn-active) #project-cards {
+		display: grid;
+		grid-auto-rows: minmax(10dvh, 45dvh);
 
-    gap: 1rem;
-  }
+		gap: 1rem;
+	}
 
-  .container:has(#btn-grid-projects.btn-active) #project-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    grid-auto-rows: minmax(15rem, 75dvh);
+	.container:has(#btn-grid-projects.btn-active) #project-cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		grid-auto-rows: minmax(15rem, 75dvh);
 
-    gap: 1rem;
-  }
+		gap: 1rem;
+	}
 </style>

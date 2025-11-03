@@ -1,21 +1,20 @@
 ---
-import SkillCard from './SkillCard.astro';
+	import SkillCard from './SkillCard.astro';
 ---
-
 <article
-  class="relative container mx-auto flex h-full w-full flex-col items-center gap-15 p-4 lg:max-w-6xl"
+	class="relative container mx-auto flex h-full w-full flex-col items-center gap-15 p-4 lg:max-w-6xl"
 >
-  <div
-    class="flex h-full w-full flex-col flex-wrap items-center gap-4 text-sm text-black/60 dark:text-white/60"
-  >
-    <header class="text-xl font-medium text-black dark:text-white">
-      <h3>Habilidades</h3>
-    </header>
+	<div
+		class="flex h-full w-full flex-col flex-wrap items-center gap-4 text-sm text-black/60 dark:text-white/60"
+	>
+		<header class="text-xl font-medium text-black dark:text-white">
+			<h3>Habilidades</h3>
+		</header>
 
-    <div class="grid grid-cols-3 grid-rows-3 gap-4">
-      <SkillCard title="React" icon="⚛️" />
-      <SkillCard title="Tailwind" icon="🌬️" />
-      <SkillCard title="JavaScript" icon="🟨" />
-    </div>
-  </div>
+		<div class="grid grid-cols-3 grid-rows-3 gap-4">
+			<SkillCard title="React" icon="⚛️"/>
+			<SkillCard title="Tailwind" icon="🌬️"/>
+			<SkillCard title="JavaScript" icon="🟨"/>
+		</div>
+	</div>
 </article>

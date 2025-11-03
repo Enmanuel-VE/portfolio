@@ -1,51 +1,56 @@
 ---
-const { title, icon } = Astro.props;
+	const { title, icon } = Astro.props;
 ---
-
 <div
-  class="group skill-card rounded-3xl border border-gray-500/40 bg-white dark:border-rose-500/40 dark:bg-[rgb(25,0,35)] dark:text-white"
+	class="group skill-card rounded-3xl border border-gray-500/40 bg-white dark:border-rose-500/40 dark:bg-[rgb(25,0,35)] dark:text-white"
 >
-  <div class="icon-wrapper">
-    <div class="icon opacity-50 transition-opacity duration-300 group-hover:opacity-100">
-      {icon}
-    </div>
-  </div>
-  <h3 class="title text-[#333] transition-colors duration-300 group-hover:text-white">{title}</h3>
+	<div class="icon-wrapper">
+		<div
+			class="icon opacity-50 transition-opacity duration-300 group-hover:opacity-100"
+		>
+			{icon}
+		</div>
+	</div>
+	<h3
+		class="title text-[#333] transition-colors duration-300 group-hover:text-white"
+	>
+		{title}
+	</h3>
 </div>
 
 <style>
-  .skill-card {
-    position: relative;
-    padding: 2rem 1.5rem 1.5rem;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    transition: transform 300ms ease-in-out;
-  }
+	.skill-card {
+		position: relative;
+		padding: 2rem 1.5rem 1.5rem;
+		overflow: hidden;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+		text-align: center;
+		transition: transform 300ms ease-in-out;
+	}
 
-  .skill-card:hover {
-    transform: translateY(-6px);
-  }
+	.skill-card:hover {
+		transform: translateY(-6px);
+	}
 
-  .icon-wrapper {
-    position: absolute;
-    top: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 0;
-    pointer-events: none;
-  }
+	.icon-wrapper {
+		position: absolute;
+		top: -1.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 0;
+		pointer-events: none;
+	}
 
-  .icon {
-    font-size: 5rem;
-    transform: rotate(-15deg);
-  }
+	.icon {
+		font-size: 5rem;
+		transform: rotate(-15deg);
+	}
 
-  .title {
-    position: relative;
-    z-index: 1;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-top: 3rem;
-  }
+	.title {
+		position: relative;
+		z-index: 1;
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-top: 3rem;
+	}
 </style>

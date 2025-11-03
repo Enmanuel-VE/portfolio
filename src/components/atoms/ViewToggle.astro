@@ -1,28 +1,27 @@
 ---
-import { LayoutGrid, Rows3 } from '@lucide/astro';
+	import { LayoutGrid, Rows3 } from '@lucide/astro';
 
-const viewModes = [
-	{
-		id: 'btn-rows-projects',
-		title: 'Vista de filas',
-		icon: Rows3,
-		mode: 'rows',
-	},
-	{
-		id: 'btn-grid-projects',
-		title: 'Vista de grilla',
-		icon: LayoutGrid,
-		mode: 'grid',
-	},
-];
+	const viewModes = [
+		{
+			id: 'btn-rows-projects',
+			title: 'Vista de filas',
+			icon: Rows3,
+			mode: 'rows',
+		},
+		{
+			id: 'btn-grid-projects',
+			title: 'Vista de grilla',
+			icon: LayoutGrid,
+			mode: 'grid',
+		},
+	];
 ---
-
 <div
-  id="view-toggle-project"
-  aria-label="Vista de proyectos"
-  class="group flex h-fit flex-row overflow-hidden rounded-xl border border-gray-500/40 bg-white text-black dark:border-rose-500/40 dark:bg-[rgb(25,0,35)] dark:text-white"
+	id="view-toggle-project"
+	aria-label="Vista de proyectos"
+	class="group flex h-fit flex-row overflow-hidden rounded-xl border border-gray-500/40 bg-white text-black dark:border-rose-500/40 dark:bg-[rgb(25,0,35)] dark:text-white"
 >
-  {
+	{
     viewModes.map(({ id, title, icon: Icon, mode }) => (
       <button
         id={id}
@@ -34,86 +33,86 @@ const viewModes = [
     ))
   }
 
-  <script>
-    type Mode = "grid" | "rows";
-    interface ModeObject {
-      GRID: "grid";
-      ROWS: "rows";
-    }
-    const MODE: ModeObject = { GRID: "grid", ROWS: "rows" };
-    const buttons = document.querySelectorAll(".toggle-btn");
-    const btnGrid = document.querySelector("#btn-grid-projects");
-    const btnRows = document.querySelector("#btn-rows-projects");
-    const cards = document.querySelectorAll(".project-card");
+	<script>
+		type Mode = 'grid' | 'rows';
+		interface ModeObject {
+			GRID: 'grid';
+			ROWS: 'rows';
+		}
+		const MODE: ModeObject = { GRID: 'grid', ROWS: 'rows' };
+		const buttons = document.querySelectorAll('.toggle-btn');
+		const btnGrid = document.querySelector('#btn-grid-projects');
+		const btnRows = document.querySelector('#btn-rows-projects');
+		const cards = document.querySelectorAll('.project-card');
 
-    const modeSaved = () => {
-      let mode: Mode;
-      let saved = localStorage.getItem("viewProjectMode");
+		const modeSaved = () => {
+			let mode: Mode;
+			let saved = localStorage.getItem('viewProjectMode');
 
-      if (!saved) {
-        mode = MODE.ROWS;
-        localStorage.setItem("viewProjectMode", mode);
-      } else {
-        const getMode = localStorage.getItem("viewProjectMode");
-        mode = getMode === MODE.GRID ? MODE.GRID : MODE.ROWS;
-      }
+			if (!saved) {
+				mode = MODE.ROWS;
+				localStorage.setItem('viewProjectMode', mode);
+			} else {
+				const getMode = localStorage.getItem('viewProjectMode');
+				mode = getMode === MODE.GRID ? MODE.GRID : MODE.ROWS;
+			}
 
-      return mode;
-    };
+			return mode;
+		};
 
-    const setMode = (mode: string) =>
-      localStorage.setItem("viewProjectMode", mode);
+		const setMode = (mode: string) =>
+			localStorage.setItem('viewProjectMode', mode);
 
-    const swapClass = ({ classList }: Element, add: string, remove: string) =>
-      classList.replace(remove, add);
+		const swapClass = ({ classList }: Element, add: string, remove: string) =>
+			classList.replace(remove, add);
 
-    const applyViewMode = (mode: Mode) => {
-      if (!btnGrid || !btnRows || !cards.length) return;
+		const applyViewMode = (mode: Mode) => {
+			if (!btnGrid || !btnRows || !cards.length) return;
 
-      const isGrid = mode === MODE.GRID;
+			const isGrid = mode === MODE.GRID;
 
-      btnGrid.classList.toggle("btn-active", isGrid);
-      btnRows.classList.toggle("btn-active", !isGrid);
+			btnGrid.classList.toggle('btn-active', isGrid);
+			btnRows.classList.toggle('btn-active', !isGrid);
 
-      cards.forEach((card) =>
-        swapClass(
-          card,
-          isGrid ? "card-grid-mode" : "card-row-mode",
-          isGrid ? "card-row-mode" : "card-grid-mode",
-        ),
-      );
-    };
+			cards.forEach((card) => {
+				swapClass(
+					card,
+					isGrid ? 'card-grid-mode' : 'card-row-mode',
+					isGrid ? 'card-row-mode' : 'card-grid-mode',
+				);
+			});
+		};
 
-    document.addEventListener("DOMContentLoaded", () => {
-      if (!buttons.length) return;
+		document.addEventListener('DOMContentLoaded', () => {
+			if (!buttons.length) return;
 
-      applyViewMode(modeSaved());
+			applyViewMode(modeSaved());
 
-      buttons.forEach((btn) =>
-        btn.addEventListener("click", ({ currentTarget }) => {
-          if (!currentTarget) return;
+			buttons.forEach((btn) => {
+				btn.addEventListener('click', ({ currentTarget }) => {
+					if (!currentTarget) return;
 
-          const { id } = currentTarget as HTMLButtonElement;
-          const selectedMode: Mode =
-            id === "btn-grid-projects" ? MODE.GRID : MODE.ROWS;
+					const { id } = currentTarget as HTMLButtonElement;
+					const selectedMode: Mode =
+						id === 'btn-grid-projects' ? MODE.GRID : MODE.ROWS;
 
-          if (selectedMode === modeSaved()) return;
+					if (selectedMode === modeSaved()) return;
 
-          setMode(selectedMode);
-          applyViewMode(selectedMode);
-        }),
-      );
-    });
-  </script>
+					setMode(selectedMode);
+					applyViewMode(selectedMode);
+				});
+			});
+		});
+	</script>
 </div>
 
 <style>
-  #view-toggle-project .btn-active {
-    background-color: rgba(106, 114, 130, 0.1);
-  }
+	#view-toggle-project .btn-active {
+		background-color: rgba(106, 114, 130, 0.1);
+	}
 
-  body[data-theme="dark"] #view-toggle-project .btn-active {
-    background-color: rgba(52, 0, 88, 0.4);
-    color: white;
-  }
+	body[data-theme='dark'] #view-toggle-project .btn-active {
+		background-color: rgba(52, 0, 88, 0.4);
+		color: white;
+	}
 </style>

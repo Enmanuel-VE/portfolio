@@ -1,128 +1,127 @@
 ---
-import Navbar from '../components/molecules/Navbar.astro';
-import Footer from '../components/molecules/Footer.astro';
+	import Navbar from '../components/molecules/Navbar.astro';
+	import Footer from '../components/molecules/Footer.astro';
 
-const stack = [
-	Astro.generator,
-	'Tailwind',
-	'TypeScript',
-	'Lucide',
-	'Biome',
-	'Vite',
-	'pnpm',
-	'Nodejs',
-].join(', ');
+	const stack = [
+		Astro.generator,
+		'Tailwind',
+		'TypeScript',
+		'Lucide',
+		'Biome',
+		'Vite',
+		'pnpm',
+		'Nodejs',
+	].join(', ');
 
-const keywords = [
-	'Enmanuel',
-	'Bracho',
-	'Ingeniería',
-	'frontend',
-	'React',
-	'TypeScript',
-	'Tailwind',
-	'Astro',
-	'desarrollador',
-	'portfolio',
-	'Venezuela',
-	'UNEFA',
-	'sistemas',
-].join(', ');
+	const keywords = [
+		'Enmanuel',
+		'Bracho',
+		'Ingeniería',
+		'frontend',
+		'React',
+		'TypeScript',
+		'Tailwind',
+		'Astro',
+		'desarrollador',
+		'portfolio',
+		'Venezuela',
+		'UNEFA',
+		'sistemas',
+	].join(', ');
 
-const meta = {
-	seo: {
-		title: `Enmanuel Bracho | Frontend Developer`,
-		description: `Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro.`,
-		robots: 'index, follow',
-		keywords,
-	},
-	html: { language: 'es', charset: 'utf-8', viewport: 'width=device-width' },
-	author: { name: 'Enmanuel Antoni Bracho Villanueva' },
-	generator: { stack },
-};
+	const meta = {
+		seo: {
+			title: `Enmanuel Bracho | Frontend Developer`,
+			description: `Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro.`,
+			robots: 'index, follow',
+			keywords,
+		},
+		html: { language: 'es', charset: 'utf-8', viewport: 'width=device-width' },
+		author: { name: 'Enmanuel Antoni Bracho Villanueva' },
+		generator: { stack },
+	};
 
-const base = import.meta.env.BASE_URL;
-const logo = `${base}/logo.png`;
+	const base = import.meta.env.BASE_URL;
+	const logo = `${base}/logo.png`;
 ---
-
 <html lang={meta.html.language}>
-  <head>
-    <link rel="icon" type="image/svg+xml" href={logo} />
-    <title>{meta.seo.title}</title>
-    <meta name="description" content={meta.seo.description} />
-    <meta name="keywords" content={meta.seo.keywords} />
-    <meta name="robots" content={meta.seo.robots} />
-    <meta charset={meta.html.charset} />
-    <meta name="viewport" content={meta.html.viewport} />
-    <meta http-equiv="Content-Language" content={meta.html.language} />
-    <meta name="generator" content={meta.generator.stack} />
-    <meta name="author" content={meta.author.name} />
-  </head>
+	<head>
+		<link rel="icon" type="image/svg+xml" href={logo}>
+		<title>{meta.seo.title}</title>
+		<meta name="description" content={meta.seo.description}>
+		<meta name="keywords" content={meta.seo.keywords}>
+		<meta name="robots" content={meta.seo.robots}>
+		<meta charset={meta.html.charset}>
+		<meta name="viewport" content={meta.html.viewport}>
+		<meta http-equiv="Content-Language" content={meta.html.language}>
+		<meta name="generator" content={meta.generator.stack}>
+		<meta name="author" content={meta.author.name}>
+	</head>
 
-  <body data-theme>
-    <script is:inline>
-      function getCurrentTheme() {
-        const THEME = { LIGHT: "light", DARK: "dark" };
+	<body data-theme>
+		<script is:inline>
+			function getCurrentTheme() {
+				const THEME = { LIGHT: 'light', DARK: 'dark' };
 
-        const saved = localStorage.getItem("theme");
-        const isSavedValid = saved === THEME.LIGHT || saved === THEME.DARK;
+				const saved = localStorage.getItem('theme');
+				const isSavedValid = saved === THEME.LIGHT || saved === THEME.DARK;
 
-        if (isSavedValid) return saved;
+				if (isSavedValid) return saved;
 
-        const schemeDark = `(prefers-color-scheme: ${THEME.DARK})`;
-        const prefersDark = window.matchMedia(schemeDark).matches;
-        const systemTheme = prefersDark ? THEME.DARK : THEME.LIGHT;
+				const schemeDark = `(prefers-color-scheme: ${THEME.DARK})`;
+				const prefersDark = window.matchMedia(schemeDark).matches;
+				const systemTheme = prefersDark ? THEME.DARK : THEME.LIGHT;
 
-        localStorage.setItem("theme", systemTheme);
+				localStorage.setItem('theme', systemTheme);
 
-        return systemTheme;
-      }
+				return systemTheme;
+			}
 
-      document.body.setAttribute("data-theme", getCurrentTheme());
-    </script>
+			document.body.setAttribute('data-theme', getCurrentTheme());
+		</script>
 
-    <div id="app">
-      <Navbar />
+		<div id="app">
+			<Navbar/>
 
-      <main>
-        <slot />
-      </main>
+			<main>
+				<slot/>
+			</main>
 
-      <Footer />
-    </div>
+			<footer/>
+		</div>
 
-    <script>
-      function toggleTitle() {
-        enum TitleState {
-          Hidden = "¡Te espero!",
-          Visible = "Enmanuel Bracho | Frontend Developer",
-        }
+		<script>
+			function toggleTitle() {
+				enum TitleState {
+					Hidden = '¡Te espero!',
+					Visible = 'Enmanuel Bracho | Frontend Developer',
+				}
 
-        document.addEventListener("visibilitychange", () => {
-          const isHidden = document.visibilityState === "hidden";
-          const title = isHidden ? TitleState.Hidden : TitleState.Visible;
-          document.title = title;
-        });
-      }
+				document.addEventListener('visibilitychange', () => {
+					const isHidden = document.visibilityState === 'hidden';
+					const title = isHidden ? TitleState.Hidden : TitleState.Visible;
+					document.title = title;
+				});
+			}
 
-      toggleTitle();
-    </script>
-  </body>
+			toggleTitle();
+		</script>
+	</body>
 </html>
 
 <style is:global>
-  @import "tailwindcss";
-  @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+	@import 'tailwindcss';
+	@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
-  html {
-    scroll-behavior: smooth;
-  }
+	html {
+		scroll-behavior: smooth;
+	}
 
-  #app {
-    @apply flex flex-col min-h-[100dvh] bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
-  }
+	#app {
+		@apply flex flex-col min-h-[100dvh] bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
+	}
 
-  #app > main {
-    @apply flex flex-1 flex-col;
-  }
+	#app > main {
+		@apply flex flex-1 flex-col;
+	}
 </style>

@@ -1,85 +1,84 @@
 ---
-import { Image } from 'astro:assets';
+	import { Image } from 'astro:assets';
 
-interface Props {
-	textPill: string;
-	image: {
-		src: ImageMetadata;
-		alt: string;
-	};
-}
-const { textPill, image } = Astro.props;
+	interface Props {
+		textPill: string;
+		image: {
+			src: ImageMetadata;
+			alt: string;
+		};
+	}
+	const { textPill, image } = Astro.props;
 ---
-
 <div id="img-container" class="relative flex w-fit justify-center">
-  <div class="group opacity-0 transition-opacity duration-300 ease-in-out">
-    <figure class="h-46 w-46 overflow-hidden rounded-full">
-      <Image
-        src={image.src}
-        loading="lazy"
-        alt={image.alt}
-        class="rounded-full object-cover shadow-xl transition-transform duration-300 group-hover:scale-110"
-      />
-    </figure>
+	<div class="group opacity-0 transition-opacity duration-300 ease-in-out">
+		<figure class="h-46 w-46 overflow-hidden rounded-full">
+			<Image
+				src={image.src}
+				loading="lazy"
+				alt={image.alt}
+				class="rounded-full object-cover shadow-xl transition-transform duration-300 group-hover:scale-110"
+			/>
+		</figure>
 
-    <div
-      class="pill absolute top-[84%] left-[90%] aspect-square max-h-8 max-w-8 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F0F0F0] bg-rose-500 px-0 py-0 text-center text-sm font-medium whitespace-nowrap text-white transition-all duration-300 ease-in-out group-hover:aspect-auto group-hover:max-h-none group-hover:max-w-none group-hover:animate-none group-hover:rounded-3xl group-hover:px-2 group-hover:py-1 dark:border-[#19001b]"
-    >
-      <p
-        class="flex h-full items-center justify-center opacity-0 group-hover:opacity-100"
-      >
-        {textPill}
-      </p>
-    </div>
-  </div>
+		<div
+			class="pill absolute top-[84%] left-[90%] aspect-square max-h-8 max-w-8 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F0F0F0] bg-rose-500 px-0 py-0 text-center text-sm font-medium whitespace-nowrap text-white transition-all duration-300 ease-in-out group-hover:aspect-auto group-hover:max-h-none group-hover:max-w-none group-hover:animate-none group-hover:rounded-3xl group-hover:px-2 group-hover:py-1 dark:border-[#19001b]"
+		>
+			<p
+				class="flex h-full items-center justify-center opacity-0 group-hover:opacity-100"
+			>
+				{textPill}
+			</p>
+		</div>
+	</div>
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const children = entry.target.children;
+	<script>
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const children = entry.target.children;
 
-          if (children.length > 0 && children[0] instanceof HTMLElement) {
-            children[0].classList.remove("opacity-0");
-            children[0].classList.add("image-container");
-          }
+					if (children.length > 0 && children[0] instanceof HTMLElement) {
+						children[0].classList.remove('opacity-0');
+						children[0].classList.add('image-container');
+					}
 
-          observer.unobserve(entry.target);
-        }
-      });
-    });
+					observer.unobserve(entry.target);
+				}
+			});
+		});
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const el = document.querySelector("#img-container");
-      if (el) observer.observe(el);
-    });
-  </script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const el = document.querySelector('#img-container');
+			if (el) observer.observe(el);
+		});
+	</script>
 </div>
 
 <style>
-  .image-container {
-    animation: move ease-in-out 3s both;
-    perspective: 1000px;
-  }
+	.image-container {
+		animation: move ease-in-out 3s both;
+		perspective: 1000px;
+	}
 
-  @keyframes move {
-    from {
-      transform: translateX(150%) scale(0.85) rotateY(-25deg);
-      opacity: 0;
-    }
-    50% {
-      transform: translateX(120%) rotate(20deg);
-      opacity: 0.65;
-    }
-    60% {
-      transform: translateX(120%) rotate(-15deg) rotateY(25deg);
-    }
-    65% {
-      transform: translateX(115%) rotate(-5deg);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0%) rotate(0) scale(1);
-    }
-  }
+	@keyframes move {
+		from {
+			transform: translateX(150%) scale(0.85) rotateY(-25deg);
+			opacity: 0;
+		}
+		50% {
+			transform: translateX(120%) rotate(20deg);
+			opacity: 0.65;
+		}
+		60% {
+			transform: translateX(120%) rotate(-15deg) rotateY(25deg);
+		}
+		65% {
+			transform: translateX(115%) rotate(-5deg);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0%) rotate(0) scale(1);
+		}
+	}
 </style>

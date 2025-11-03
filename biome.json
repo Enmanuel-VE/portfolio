@@ -43,7 +43,9 @@
   },
 
   "html": {
+    "experimentalFullSupportEnabled": true,
     "formatter": {
+      "indentScriptAndStyle": true,
       "enabled": true,
       "indentStyle": "tab",
       "indentWidth": 2
@@ -82,6 +84,16 @@
       },
       "linter": {
         "rules": {
+          "nursery": {
+            "useSortedClasses": {
+              "level": "info",
+
+              "options": {
+                "attributes": ["class", "className"],
+                "functions": ["clsx", "cva", "tw", "tw.*"]
+              }
+            }
+          },
           "style": {
             "useConst": "off",
             "useImportType": "off"

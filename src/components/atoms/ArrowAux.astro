@@ -1,54 +1,53 @@
 ---
-import { ChevronDown } from '@lucide/astro';
+	import { ChevronDown } from '@lucide/astro';
 ---
-
 <a
-  class="absolute bottom-4 left-[50%] z-15 -translate-x-[50%] transform cursor-pointer"
-  href="#proyectos"
-  aria-label="Ir a proyectos"
-  title="Ir a proyectos"
-  id="arrow-aux"
-  role="link"
+	class="absolute bottom-4 left-[50%] z-15 -translate-x-[50%] transform cursor-pointer"
+	href="#proyectos"
+	aria-label="Ir a proyectos"
+	title="Ir a proyectos"
+	id="arrow-aux"
+	role="link"
 >
-  <ChevronDown
-    class="animate-bounce-pulse h-8 w-8 text-black/50 dark:text-white/50"
-  />
+	<ChevronDown
+		class="animate-bounce-pulse h-8 w-8 text-black/50 dark:text-white/50"
+	/>
 </a>
 
 <style>
-  @keyframes bouncePulse {
-    from {
-      transform: translateY(0) scale(1);
-      opacity: 0.5;
-    }
-    to {
-      transform: translateY(-25%) scale(1.25);
-      opacity: 1;
-    }
-  }
+	@keyframes bouncePulse {
+		from {
+			transform: translateY(0) scale(1);
+			opacity: 0.5;
+		}
+		to {
+			transform: translateY(-25%) scale(1.25);
+			opacity: 1;
+		}
+	}
 
-  .animate-bounce-pulse {
-    animation: bouncePulse 1s ease-in-out alternate infinite;
-    &:hover {
-      animation-play-state: paused;
-    }
-  }
+	.animate-bounce-pulse {
+		animation: bouncePulse 1s ease-in-out alternate infinite;
+		&:hover {
+			animation-play-state: paused;
+		}
+	}
 
-  #arrow-aux {
-    animation: disapper-animation linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 100px;
-  }
+	#arrow-aux {
+		animation: disapper-animation linear both;
+		animation-timeline: scroll(root block);
+		animation-range: 0 100px;
+	}
 
-  @keyframes disapper-animation {
-    from {
-      opacity: 1;
-    }
-    99% {
-      opacity: 0;
-    }
-    to {
-      display: none;
-    }
-  }
+	@keyframes disapper-animation {
+		from {
+			opacity: 1;
+		}
+		99% {
+			opacity: 0;
+		}
+		to {
+			display: none;
+		}
+	}
 </style>
