@@ -1,0 +1,70 @@
+---
+	import { Image } from 'astro:assets';
+	import images from '../data/images';
+	import NotFoundLayout from '../layouts/NotFoundLayout.astro';
+
+	const base = import.meta.env.BASE_URL;
+---
+<NotFoundLayout>
+	<main class="flex flex-col justify-center items-center dark:text-white">
+		<header
+			class="flex flex-col w-fit text-center justify-center items-center gap-4"
+		>
+			<figure class="bounce">
+				<Image
+					class="h-[15dvh] w-[15dvh] image-logo hidden dark:block"
+					src={images.logoImage}
+					alt="logo"
+				/>
+			</figure>
+			<div class="flex flex-col gap-2">
+				<h1 class="text-3xl font-bold">404 - Pagina no encontrada</h1>
+				<p
+					class="text-sm text-black/75 dark:text-white/75 max-w-md text-pretty"
+				>
+					Parece ser que no existe la página que estás buscando. Click
+					<a href={base} class="underline font-semibold cursor-pointer">aquí</a>
+					para volver a la página principal.
+				</p>
+			</div>
+		</header>
+	</main>
+</NotFoundLayout>
+
+<style>
+	.image-logo {
+		animation: rotateAnimation 5s linear infinite;
+		transform-style: preserve-3d;
+	}
+
+	@keyframes rotateAnimation {
+		from {
+			transform: rotateY(0deg) rotateX(0deg);
+		}
+		50% {
+			transform: rotateY(180deg) rotateX(6deg);
+		}
+		to {
+			transform: rotateY(360deg) rotateX(0deg);
+		}
+	}
+
+	figure {
+		perspective: 1000px;
+	}
+
+	.bounce {
+		display: inline-block;
+		animation: bounce 10s ease-in-out infinite;
+	}
+
+	@keyframes bounce {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-12px);
+		}
+	}
+</style>

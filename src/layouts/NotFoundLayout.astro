@@ -1,0 +1,83 @@
+---
+	const base = import.meta.env.BASE_URL;
+	const logo = `${base}/logo.png`;
+
+	const meta = {
+		title:
+			'Página no encontrada | Portafolio - Enmanuel Antoni Bracho Villanueva',
+		description:
+			'La página que buscas no existe. Vuelve al inicio para seguir explorando el portafolio.',
+		robots: 'noindex, nofollow',
+		language: 'es',
+		charset: 'utf-8',
+		viewport: 'width=device-width',
+		author: 'Enmanuel Antoni Bracho Villanueva',
+		generator: [
+			Astro.generator,
+			'Tailwind',
+			'TypeScript',
+			'Lucide',
+			'Biome',
+			'Vite',
+			'pnpm',
+			'Nodejs',
+		].join(', '),
+	};
+---
+<html lang={meta.language}>
+	<head>
+		<meta charset={meta.charset}>
+		<meta name="viewport" content={meta.viewport}>
+		<meta http-equiv="Content-Language" content={meta.language}>
+		<meta name="author" content={meta.author}>
+		<meta name="generator" content={meta.generator}>
+		<meta name="robots" content={meta.robots}>
+		<meta name="description" content={meta.description}>
+		<title>{meta.title}</title>
+		<link rel="icon" type="image/svg+xml" href={logo}>
+	</head>
+
+	<body data-theme>
+		<script is:inline>
+			function getCurrentTheme() {
+				const THEME = { LIGHT: 'light', DARK: 'dark' };
+
+				const saved = localStorage.getItem('theme');
+				const isSavedValid = saved === THEME.LIGHT || saved === THEME.DARK;
+
+				if (isSavedValid) return saved;
+
+				const schemeDark = `(prefers-color-scheme: ${THEME.DARK})`;
+				const prefersDark = window.matchMedia(schemeDark).matches;
+				const systemTheme = prefersDark ? THEME.DARK : THEME.LIGHT;
+
+				localStorage.setItem('theme', systemTheme);
+
+				return systemTheme;
+			}
+
+			document.body.setAttribute('data-theme', getCurrentTheme());
+		</script>
+
+		<div id="app">
+			<slot/>
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	@import 'tailwindcss';
+	@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	#app {
+		@apply flex flex-col min-h-[100dvh] bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
+	}
+
+	#app > main {
+		@apply flex flex-1 flex-col;
+	}
+</style>
