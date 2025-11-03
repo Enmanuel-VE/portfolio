@@ -4,10 +4,10 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 const config = {
-  vite: {
-    plugins: [tailwindcss()],
-    base: "/portfolio/",
-  },
+  vite: { plugins: [tailwindcss()] },
+  site: "https://enmanuel-ve.github.io",
+  base: "/portfolio",
+  server: { port: 4321 },
 };
 
 export default defineConfig(config);

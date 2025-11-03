@@ -24,7 +24,11 @@ import { MoonIcon, Sun } from '@lucide/astro';
   </div>
 
   <script>
-    import { Theme } from "../../client/types/types";
+    enum Theme {
+      Light = "light",
+      Dark = "dark",
+    }
+
     const toggleButton = document.getElementById("theme-toggle-button");
 
     function applyTheme(theme: Theme) {

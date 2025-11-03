@@ -1,12 +1,8 @@
 ---
-interface Props {
-	title: string;
-	image: string;
-	description: string;
-	stackTech: { icon: string; name: string; url: string }[];
-	demo: string;
-	repository: string;
-}
+import { Image } from 'astro:assets';
+import type { Project } from '../../data/projects';
+
+interface Props extends Project {}
 
 const { title, image, description, stackTech, demo, repository } = Astro.props;
 
@@ -21,7 +17,10 @@ const links = [
 >
   <div class="info-card flex flex-1 flex-col gap-4 p-4">
     <header class="flex flex-1 flex-col gap-1">
-      <h3 title={title} class="font-bold group-hover:underline md:text-lg xl:text-xl">
+      <h3
+        title={title}
+        class="font-bold group-hover:underline md:text-lg xl:text-xl"
+      >
         <a href={demo} target="_blank" rel="noopener noreferrer">
           {title}
         </a>
@@ -43,7 +42,12 @@ const links = [
               href={tech.url}
               aria-label={tech.name}
             >
-              <img class="h-5 w-5 group-hover:saturate-150" src={tech.icon} alt={tech.name} />
+              <Image
+                class="h-5 w-5 group-hover:saturate-150"
+                src={tech.icon}
+                alt={tech.name}
+                loading="lazy"
+              />
               <p>{tech.name}</p>
             </a>
           </li>
@@ -86,7 +90,7 @@ const links = [
     >
     </div>
 
-    <img
+    <Image
       class="h-full w-full scale-105 object-cover opacity-70 transition-all duration-300 ease-out group-hover:scale-110 group-hover:opacity-100"
       src={image}
       alt="example"

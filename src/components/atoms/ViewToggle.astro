@@ -35,17 +35,16 @@ const viewModes = [
   }
 
   <script>
-    import { $, $$ } from "../../client/utils/shortFunction";
     type Mode = "grid" | "rows";
     interface ModeObject {
       GRID: "grid";
       ROWS: "rows";
     }
     const MODE: ModeObject = { GRID: "grid", ROWS: "rows" };
-    const buttons = $$(".toggle-btn");
-    const btnGrid = $("#btn-grid-projects");
-    const btnRows = $("#btn-rows-projects");
-    const cards = $$(".project-card");
+    const buttons = document.querySelectorAll(".toggle-btn");
+    const btnGrid = document.querySelector("#btn-grid-projects");
+    const btnRows = document.querySelector("#btn-rows-projects");
+    const cards = document.querySelectorAll(".project-card");
 
     const modeSaved = () => {
       let mode: Mode;

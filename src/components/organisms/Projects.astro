@@ -1,8 +1,8 @@
 ---
-import cards from '../data/projects.json';
+import { projects as cards } from '../../data/projects.ts';
 import ViewToggle from '../atoms/ViewToggle.astro';
+import SectionLayout from '../layouts/SectionLayout.astro';
 import ProjectCard from '../molecules/ProjectCard.astro';
-import SectionLayout from '../../layouts/SectionLayout.astro';
 
 const dataSection = {
 	title: 'Proyectos',
@@ -45,11 +45,9 @@ const dataSection = {
   </div>
 
   <script>
-    import { $ } from "../../client/utils/shortFunction";
-
-    const cards = $("#project-cards");
-    const btnRows = $("#btn-rows-projects");
-    const btnGrid = $("#btn-grid-projects");
+    const cards = document.querySelector("#project-cards");
+    const btnRows = document.querySelector("#btn-rows-projects");
+    const btnGrid = document.querySelector("#btn-grid-projects");
 
     let activeView = "rows";
 

@@ -40,11 +40,14 @@ const meta = {
 	author: { name: 'Enmanuel Antoni Bracho Villanueva' },
 	generator: { stack },
 };
+
+const base = import.meta.env.BASE_URL;
+const logo = `${base}/logo.png`;
 ---
 
 <html lang={meta.html.language}>
   <head>
-    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png" />
+    <link rel="icon" type="image/svg+xml" href={logo} />
     <title>{meta.seo.title}</title>
     <meta name="description" content={meta.seo.description} />
     <meta name="keywords" content={meta.seo.keywords} />

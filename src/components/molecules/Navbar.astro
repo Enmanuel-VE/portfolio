@@ -41,9 +41,8 @@ const navLinkList: NavLinkData[] = [
   </nav>
 
   <script>
-    import { $, $$ } from "../../client/utils/shortFunction";
-    const navItems = $("#nav-items");
-    const sections = $$("section[id]");
+    const navItems = document.querySelector("#nav-items");
+    const sections = document.querySelectorAll("section[id]");
 
     let activeSectionId: null | string = null;
 
