@@ -12,7 +12,8 @@
 		>
 			<figure class="bounce">
 				<Image
-					class="h-[15dvh] w-[15dvh] image-logo hidden dark:block"
+					class="h-[15dvh] w-[15dvh] image-logo hidden dark:block transition-scale duration-300 ease-in-out hover:scale-110"
+					title="Logo del portafolio"
 					src={images.logoImage}
 					alt="logo"
 				/>
@@ -23,7 +24,12 @@
 					class="text-sm text-black/75 dark:text-white/75 max-w-md text-pretty"
 				>
 					Parece ser que no existe la página que estás buscando. Click
-					<a href={base} class="underline font-semibold cursor-pointer">aquí</a>
+					<a
+						title="Volver a la pagina principal"
+						href={base}
+						class="underline font-semibold cursor-pointer"
+						>aquí</a
+					>
 					para volver a la página principal.
 				</p>
 			</div>

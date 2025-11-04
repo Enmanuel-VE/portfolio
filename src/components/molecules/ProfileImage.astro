@@ -57,28 +57,27 @@
 
 <style>
 	.image-container {
-		animation: move ease-in-out 3s both;
+		animation: move cubic-bezier(0.25, 1, 0.5, 1) 3s both;
 		perspective: 1000px;
 	}
 
 	@keyframes move {
 		from {
-			transform: translateX(150%) scale(0.85) rotateY(-25deg);
+			transform: translateX(25dvw) scale(0.65) rotateY(-25deg);
 			opacity: 0;
 		}
 		50% {
-			transform: translateX(120%) rotate(20deg);
-			opacity: 0.65;
+			transform: translateX(20dvw) rotate(20deg);
 		}
 		60% {
-			transform: translateX(120%) rotate(-15deg) rotateY(25deg);
+			transform: translateX(20dvw) rotate(-15deg) rotateY(25deg);
 		}
 		65% {
-			transform: translateX(115%) rotate(-5deg);
+			transform: translateX(19.17dvw) rotate(-5deg);
 		}
 		to {
 			opacity: 1;
-			transform: translateX(0%) rotate(0) scale(1);
+			transform: translateX(0dvw) rotate(0) scale(1);
 		}
 	}
 </style>
