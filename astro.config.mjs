@@ -3,11 +3,11 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
-const config = {
+const CONFIG = {
   vite: { plugins: [tailwindcss()] },
   site: "https://enmanuel-ve.github.io",
   base: "/portfolio",
-  server: { port: 4321 },
-};
+  server: { port: 4321 }
+}
 
-export default defineConfig(config);
+export default defineConfig(CONFIG);
