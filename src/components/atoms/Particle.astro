@@ -65,9 +65,9 @@
 				const randomSpawnY = randomNumber(spawnRangeYMin, spawnRangeYMax);
 
 				this.#fireflies.push({
-					top: `${randomSpawnY}dvh`,
-					left: `${randomSpawnX}dvw`,
-					size: `${randomNumber(0.3, 0.7)}dvw`,
+					top: `${randomSpawnY}vh`,
+					left: `${randomSpawnX}vw`,
+					size: `calc((${randomNumber(0.3, 0.7)}rem + ${randomNumber(0.1, 0.3)}rem)/2)`,
 					delay: `${randomNumber(0, 5)}s`,
 					duration: `${randomNumber(this.#config.speed.min, this.#config.speed.max)}s`,
 				});
@@ -78,9 +78,9 @@
 			if (this.#fireflies.length === 0) {
 				console.warn('[FireflyGenerator] No se pudieron generar luciérnagas.');
 				this.#fireflies.push({
-					top: `90dvh`,
-					left: `50dvw`,
-					size: `0.5dvw`,
+					top: `90vh`,
+					left: `50vw`,
+					size: `0.5vw`,
 					delay: `0s`,
 					duration: `15s`,
 				});
@@ -92,7 +92,7 @@
 
 	const config: Config = {
 		count: 25,
-		speed: { min: 30, max: 60 },
+		speed: { min: 30, max: 50 },
 		parable: {
 			openingFactor: -0.02,
 			vertex_X: 50,

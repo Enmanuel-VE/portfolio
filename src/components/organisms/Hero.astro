@@ -11,7 +11,7 @@
 
 	const styles: Record<string, string> = {
 		layoutContainer:
-			'flex flex-col justify-center items-center relative z-10 container mx-auto h-full w-full px-4 py-16 md:py-36 lg:max-w-6xl',
+			'flex flex-col justify-center items-center relative z-10 text-center sm:text-left container mx-auto h-full w-full px-4 py-16 md:py-36 lg:max-w-6xl',
 		responsiveLayout:
 			'flex flex-col gap-8 md:flex-row md:items-center md:justify-between',
 	};
@@ -35,7 +35,7 @@
 	];
 ---
 <SectionLayout
-	id="hero-section"
+	id="home-section"
 	className="h-screen overflow-hidden"
 	ariaLabel="Presentación personal"
 >
@@ -71,7 +71,10 @@
 					buenas más abajo.
 				</p>
 
-				<nav class="mt-6 flex gap-4" aria-label="Redes sociales y contacto">
+				<nav
+					class="mt-6 flex gap-4 justify-center sm:justify-start items-center"
+					aria-label="Redes sociales y contacto"
+				>
 					<ul class="flex flex-row flex-wrap justify-center gap-4">
 						{
               contactLinks.map((link) => (

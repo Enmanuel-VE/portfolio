@@ -4,12 +4,16 @@
 	type NavLinkData = { url: `#${string}`; text: string; ariaLabel: string };
 
 	const navLinkList: NavLinkData[] = [
-		{ url: '#hero-section', text: 'Inicio', ariaLabel: 'Inicio' },
-		{ url: '#proyectos', text: 'Proyectos', ariaLabel: 'Proyectos' },
-		{ url: '#sobre-mi', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
+		{ url: '#home-section', text: 'Inicio', ariaLabel: 'Inicio' },
+		{ url: '#projects-section', text: 'Proyectos', ariaLabel: 'Proyectos' },
+		{ url: '#about-me-section', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
 
-		{ url: '#certificados', text: 'Certificados', ariaLabel: 'Certificados' },
-		{ url: '#contactos', text: 'Contactos', ariaLabel: 'Contactos' },
+		{
+			url: '#certificates-section',
+			text: 'Certificados',
+			ariaLabel: 'Certificados',
+		},
+		{ url: '#contacts-section', text: 'Contactos', ariaLabel: 'Contactos' },
 	];
 ---
 <header

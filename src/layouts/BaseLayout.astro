@@ -117,11 +117,15 @@
 	@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 	html {
-		scroll-behavior: smooth;
+		@apply scroll-smooth overflow-x-hidden;
+	}
+
+	body {
+		@apply bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
 	}
 
 	#app {
-		@apply flex flex-col min-h-[100dvh] bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
+		@apply flex flex-col bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
 	}
 
 	#app > main {
@@ -131,7 +135,7 @@
 	@keyframes reveal {
 		from {
 			opacity: 0;
-			transform: translateY(25px) scale(0.9);
+			transform: translateY(8vh) scale(0.6);
 		}
 		to {
 			opacity: 1;
