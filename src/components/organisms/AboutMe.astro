@@ -2,67 +2,69 @@
 	import ProfileImage from '../molecules/ProfileImage.astro';
 	import IconLinter from '../atoms/IconLinter.astro';
 	import SkillArticle from '../molecules/SkillArticle.astro';
-	import images from '../../data/images';
 	import SectionLayout from '../layouts/SectionLayout.astro';
+	import images from '../../data/images';
 ---
-<SectionLayout className="overflow-hidden" id="sobre-mi" ariaLabel="Sobre mí">
-	<article
-		class="relative container mx-auto flex flex-wrap items-center justify-evenly gap-4 p-4 text-sm text-black/60 lg:max-w-6xl dark:text-white/75"
-	>
-		<section class="flex flex-col gap-2 md:max-w-[60%] md:min-w-[45%]">
-			<header
-				class="relative flex items-center justify-center gap-2 text-2xl font-medium text-black sm:justify-start dark:text-white"
-			>
-				<IconLinter/>
-				<h2
-					title="¿Quien soy?"
-					class="title dark:animate-[ilumination-title_2s_ease-in-out_infinite_alternate] dark:text-white"
+<SectionLayout className="gap-15" id="sobre-mi" ariaLabel="Sobre mí">
+	<div class="overflow-hidden">
+		<article
+			class="relative container mx-auto flex flex-wrap items-center justify-evenly gap-4 p-4 text-sm text-black/60 lg:max-w-6xl dark:text-white/75"
+		>
+			<section class="flex flex-col gap-2 md:max-w-[60%] md:min-w-[45%]">
+				<header
+					class="relative flex items-center justify-center gap-2 text-2xl font-medium text-black sm:justify-start dark:text-white"
 				>
-					¿Quien soy?
-				</h2>
-			</header>
+					<IconLinter/>
+					<h2
+						title="¿Quien soy?"
+						class="title dark:animate-[ilumination-title_2s_ease-in-out_infinite_alternate] dark:text-white"
+					>
+						¿Quien soy?
+					</h2>
+				</header>
 
-			<p class="text-justify indent-6 text-pretty sm:text-left">
-				Soy estudiante de Ingeniería en Sistemas. Me encuentro en el 6.º
-				semestre de mi formación como profesional en
-				<a
-					title="Universidad Nacional Experimental Politécnica de la Fuerza Armada."
-					target="_blank"
-					rel="noopener noreferrer"
-					class="underline hover:text-black dark:hover:text-white"
-					href="https://es.wikipedia.org/wiki/Universidad_Nacional_Experimental_Polit%C3%A9cnica_de_la_Fuerza_Armada"
-					>UNEFA</a
-				>, extensión Punto Fijo. Me especializo en el desarrollo frontend, con
-				área de especialidad en React, Tailwind y JavaScript. Me gusta
-				desarrollar experiencias visuales para quien vea lo que hago y ver cómo
-				la imagen se convierte en una realidad a través del desarrollo. Esto
-				último fue la chispa que hizo que me decantara por el desarrollo
-				frontend por encima del backend.
-			</p>
+				<p class="text-justify indent-6 text-pretty sm:text-left">
+					Soy estudiante de Ingeniería en Sistemas. Me encuentro en el 6.º
+					semestre de mi formación como profesional en
+					<a
+						title="Universidad Nacional Experimental Politécnica de la Fuerza Armada."
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline hover:text-black dark:hover:text-white"
+						href="https://es.wikipedia.org/wiki/Universidad_Nacional_Experimental_Polit%C3%A9cnica_de_la_Fuerza_Armada"
+						>UNEFA</a
+					>, extensión Punto Fijo. Me especializo en el desarrollo frontend, con
+					área de especialidad en React, Tailwind y JavaScript. Me gusta
+					desarrollar experiencias visuales para quien vea lo que hago y ver
+					cómo la imagen se convierte en una realidad a través del desarrollo.
+					Esto último fue la chispa que hizo que me decantara por el desarrollo
+					frontend por encima del backend.
+				</p>
 
-			<p class="text-justify text-pretty sm:text-left">
-				Mi trabajo se centra en construir experiencias digitales que funcionen
-				como soluciones reales. Ayudo a proyectos comerciales y comunitarios a
-				establecer una presencia en línea, dotándolos de herramientas web
-				desarrolladas con un stack moderno como React, Tailwind y JavaScript,
-				que pueden utilizar para conectar con más personas o agilizar sus flujos
-				de trabajo.
-			</p>
+				<p class="text-justify text-pretty sm:text-left">
+					Mi trabajo se centra en construir experiencias digitales que funcionen
+					como soluciones reales. Ayudo a proyectos comerciales y comunitarios a
+					establecer una presencia en línea, dotándolos de herramientas web
+					desarrolladas con un stack moderno como React, Tailwind y JavaScript,
+					que pueden utilizar para conectar con más personas o agilizar sus
+					flujos de trabajo.
+				</p>
 
-			<p class="hidden text-justify text-pretty sm:text-left lg:block">
-				Desde que descubrí la tecnología, me ha impulsado una curiosidad
-				constante por entender cómo funciona y cómo puede transformar
-				realidades. Cada experiencia abre nuevas puertas, y mi objetivo es
-				seguir aprendiendo, aportar soluciones útiles y compartir este camino
-				con personas que valoren el impacto de lo digital.
-			</p>
-		</section>
+				<p class="hidden text-justify text-pretty sm:text-left lg:block">
+					Desde que descubrí la tecnología, me ha impulsado una curiosidad
+					constante por entender cómo funciona y cómo puede transformar
+					realidades. Cada experiencia abre nuevas puertas, y mi objetivo es
+					seguir aprendiendo, aportar soluciones útiles y compartir este camino
+					con personas que valoren el impacto de lo digital.
+				</p>
+			</section>
 
-		<ProfileImage
-			textPill="Esté de aquí soy yo 👀"
-			image={{ src: images.profileImage, alt: "Foto de perfil" }}
-		/>
-	</article>
+			<ProfileImage
+				textPill="Esté de aquí soy yo 👀"
+				image={{ src: images.profileImage, alt: "Foto de perfil" }}
+			/>
+		</article>
+	</div>
 
 	<SkillArticle/>
 </SectionLayout>

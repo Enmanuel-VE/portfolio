@@ -13,7 +13,7 @@
 	] as const;
 ---
 <article
-	class="group project-card flex flex-row overflow-hidden rounded-xl border border-gray-500/40 bg-white dark:border-rose-500/40 dark:bg-[rgb(25,0,35)] dark:text-white"
+	class="group project-card animate-[reveal] flex flex-row overflow-hidden rounded-xl border border-gray-500/40 bg-white dark:border-rose-500/40 dark:bg-[rgb(25,0,35)] dark:text-white"
 >
 	<div class="info-card flex flex-1 flex-col gap-4 p-4">
 		<header class="flex flex-1 flex-col gap-1">
@@ -95,20 +95,8 @@
 </article>
 
 <style>
-	@keyframes reveal {
-		from {
-			opacity: 0;
-			transform: translateY(25px) scale(0.9);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0px) scale(1);
-		}
-	}
-
 	.project-card {
-		animation-name: reveal;
-		animation-timing-function: linear;
+		animation-timing-function: ease-in-out;
 		animation-fill-mode: both;
 		animation-timeline: view();
 		animation-range: entry 0% cover 25%;

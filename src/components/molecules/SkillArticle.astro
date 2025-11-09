@@ -1,20 +1,95 @@
 ---
-	import SkillCard from './SkillCard.astro';
+	import icons from '../../data/icons';
+	import { Image } from 'astro:assets';
+
+	const ICONS = [
+		{ image: icons.htmlIcon, alt: 'HTML' },
+		{ image: icons.jsIcon, alt: 'JavaScript' },
+		{ image: icons.tailwindIcon, alt: 'Tailwind CSS' },
+		{ image: icons.typescriptIcon, alt: 'TypeScript' },
+		{ image: icons.astroIcon, alt: 'Astro' },
+		{ image: icons.cssIcon, alt: 'CSS' },
+	];
 ---
 <article
-	class="relative container mx-auto flex h-full w-full flex-col items-center gap-15 p-4 lg:max-w-6xl"
+	class="flex h-full w-full p-4 flex-col items-center justify-center gap-4 "
 >
-	<div
-		class="flex h-full w-full flex-col flex-wrap items-center gap-4 text-sm text-black/60 dark:text-white/75"
-	>
-		<header class="text-xl font-medium text-black dark:text-white">
-			<h3>Habilidades</h3>
-		</header>
+	<header class="text-xl font-medium text-black dark:text-white">
+		<h3>Habilidades</h3>
+	</header>
 
-		<div class="grid grid-cols-3 grid-rows-3 gap-4">
-			<SkillCard title="React" icon="⚛️"/>
-			<SkillCard title="Tailwind" icon="🌬️"/>
-			<SkillCard title="JavaScript" icon="🟨"/>
-		</div>
+	<div
+		class="skills justify-center items-center flex flex-row flex-wrap gap-4 max-w-full"
+	>
+		{
+		  ICONS.map((icon, index) => {
+			const { image, alt } = icon;
+
+			return (
+   			<div title={alt} class={`group flex cursor-pointer flex-col transition-all duration-300 hover:scale-120 active:scale-100 skill-card sc-${index} h-30 w-30 p-4 rounded-md`}>
+                <Image
+   					class="group-hover:saturate-180 skill-icon object-contain w-full h-full"
+   					src={image}
+   					alt={alt}
+                />
+   			</div>
+			);
+		  })
+		}
 	</div>
 </article>
+
+<style>
+	.skill-icon {
+		animation-name: reveal;
+		animation-timing-function: linear;
+		animation-fill-mode: both;
+		animation-timeline: view();
+		animation-range: entry 0 cover 25%;
+	}
+
+	@keyframes magic-bounce {
+		from {
+			transform: translateY(0%) rotateY(10deg);
+		}
+
+		to {
+			transform: translateY(-10%) rotateY(0deg);
+		}
+	}
+	.skills {
+		perspective: 800px;
+	}
+
+	body[data-theme='dark'] .skill-card {
+		transform: translateY(0%) rotateY(0deg);
+
+		animation: 1.5s magic-bounce ease-in-out infinite alternate;
+	}
+
+	body[data-theme='dark'] .sc-0 {
+		animation-duration: 3s;
+		filter: drop-shadow(0 0 8px red);
+	}
+
+	body[data-theme='dark'] .sc-1 {
+		animation-duration: 2s;
+		filter: drop-shadow(0 0 8px yellow);
+	}
+	body[data-theme='dark'] .sc-2 {
+		animation-duration: 3.6s;
+		filter: drop-shadow(0 0 5px cyan);
+	}
+	body[data-theme='dark'] .sc-3 {
+		animation-duration: 2.4s;
+		filter: drop-shadow(0 0 8px #3178c6);
+	}
+	body[data-theme='dark'] .sc-4 {
+		animation-duration: 1.4s;
+		filter: drop-shadow(0 0 8px red);
+	}
+	body[data-theme='dark'] .sc-5 {
+		animation-duration: 1.4s;
+		filter: drop-shadow(0 0 8px rebeccapurple);
+	}
+</style>

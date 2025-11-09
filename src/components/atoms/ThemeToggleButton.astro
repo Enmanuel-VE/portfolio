@@ -1,51 +1,56 @@
 ---
 	import { MoonIcon, Sun } from '@lucide/astro';
+
+	interface Props {
+		className?: string;
+		id: string;
+		sizeIcon: `w-${string} h-${string}` | `h-${string} w-${string}`;
+	}
+
+	const { className, id, sizeIcon } = Astro.props;
 ---
 <button
-	class="nav-base-styles aspect-square cursor-pointer rounded-full border p-2"
+	class={`aspect-square cursor-pointer group hover:scale-105 active:scale-95 transition-scale duration-300 ease-in-out rounded-full p-2 ${className || ""}`}
 	aria-label="Cambiar tema"
 	title="Cambiar tema"
 	type="button"
-	id="theme-toggle-button"
+	id={id}
 >
 	<div
-		class="relative h-[clamp(0px,3.5vw,1.5rem)] w-[clamp(0px,3.5vw,1.5rem)] overflow-hidden sm:h-6 sm:w-6"
+		class={`relative ${sizeIcon} aspect-square overflow-hidden sm:h-6 sm:w-6`}
 	>
 		<MoonIcon
-			class="theme-icon rotate-0 text-black opacity-100 dark:-rotate-180 dark:text-white dark:opacity-0"
+			class="theme-icon group-active:text-rose-500 rotate-0 text-black opacity-100 dark:-rotate-180 dark:text-white dark:opacity-0"
 			id="icon-moon"
 		/>
 
 		<Sun
-			class="theme-icon rotate-0 text-black opacity-0 dark:rotate-180 dark:text-white dark:opacity-100"
+			class="theme-icon group-active:text-rose-500 rotate-0 text-black opacity-0 dark:rotate-180 dark:text-white dark:opacity-100"
 			id="icon-sun"
 		/>
 	</div>
 
-	<script>
-		enum Theme {
-			Light = 'light',
-			Dark = 'dark',
-		}
+	<script is:inline define:vars={{id}}>
+		const THEME = { Light: 'light', Dark: 'dark' };
 
-		const toggleButton = document.getElementById('theme-toggle-button');
+		const toggleButton = document.getElementById(id);
 
-		function applyTheme(theme: Theme) {
+		function applyTheme(theme) {
 			const BODY = document.body;
 			BODY.setAttribute('data-theme', theme);
 		}
 
-		function themeSaved(): Theme {
+		function themeSaved() {
 			const getTheme = localStorage.getItem('theme');
-			const isLight = getTheme === Theme.Light;
-			const theme: Theme = isLight ? Theme.Light : Theme.Dark;
+			const isLight = getTheme === THEME.Light;
+			const theme = isLight ? THEME.Light : THEME.Dark;
 
 			return theme;
 		}
 
 		function handleToggleTheme() {
-			const isLight = themeSaved() === Theme.Light;
-			const newTheme: Theme = isLight ? Theme.Dark : Theme.Light;
+			const isLight = themeSaved() === THEME.Light;
+			const newTheme = isLight ? THEME.Dark : THEME.Light;
 
 			localStorage.setItem('theme', newTheme);
 			applyTheme(newTheme);

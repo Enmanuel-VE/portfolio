@@ -7,7 +7,7 @@ const CONFIG = {
   vite: { plugins: [tailwindcss()] },
   site: "https://enmanuel-ve.github.io",
   base: "/portfolio",
-  server: { port: 4321 }
+  server: { port: 3000 }
 }
 
 export default defineConfig(CONFIG);

@@ -11,12 +11,15 @@
 			class="flex flex-col w-fit text-center justify-center items-center gap-4 p-4"
 		>
 			<figure class="bounce">
-				<Image
-					class="h-[15dvh] w-[15dvh] image-logo hidden dark:block transition-scale duration-300 ease-in-out hover:scale-110"
-					title="Logo del portafolio"
-					src={images.logoImage}
-					alt="logo"
-				/>
+				<a href={base}>
+					<Image
+						class="h-[15dvh] w-[15dvh] image-logo hidden dark:block transition-scale duration-300 ease-in-out hover:scale-110 cursor-pointer"
+						title="Logo del portafolio"
+						loading="eager"
+						src={images.logoImage}
+						alt="logo"
+					/>
+				</a>
 			</figure>
 			<div class="flex flex-col gap-2">
 				<h1 class="text-2xl font-semibold">404 - Pagina no encontrada</h1>
@@ -30,7 +33,7 @@
 						class="underline font-semibold cursor-pointer"
 						>aquí</a
 					>
-					para volver a la página principal.
+					o presiona el logo para volver a la página principal.
 				</p>
 			</div>
 		</header>

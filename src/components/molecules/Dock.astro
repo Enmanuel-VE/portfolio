@@ -1,0 +1,62 @@
+---
+	import { Home } from '@lucide/astro';
+---
+<nav
+	class="dock flex sticky nav-base-styles text-sm border-t text-center sm:hidden w-full h-[8vh] p-1 bottom-0 z-60"
+	role="navigation"
+>
+	<div
+		class=" flex flex-row justify-evenly items-center w-full gap-2 dark:text-white"
+	>
+		<a class="nav-link" href="#proyectos"
+			><div>Proyectos</div></a
+		>
+		<a class="nav-link" href="#sobre-mi">
+			<div>Sobre mi</div></a
+		>
+		<a class="nav-link" href="#hero-section">
+			<div>
+				<Home/>
+			</div>
+		</a>
+		<a class="nav-link" href="#certificados">
+			<div>Certificados</div></a
+		>
+		<a class="nav-link" href="#contactos">
+			<div>Contactos</div></a
+		>
+	</div>
+</nav>
+
+<script>
+</script>
+
+<style>
+	.nav-link {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		width: 40%;
+		height: 3px;
+		border-radius: 3px;
+		left: 50%;
+		transform: translateX(-50%) scaleX(0);
+		bottom: 5px;
+		background-color: var(--color-rose-500);
+		transition: transform 0.3s ease-in-out;
+	}
+	.nav-link:hover::after {
+		transform: translateX(-50%) scaleX(1);
+	}
+</style>
+
+<script>
+</script>

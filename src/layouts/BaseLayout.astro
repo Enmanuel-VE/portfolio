@@ -1,6 +1,7 @@
 ---
 	import Navbar from '../components/molecules/Navbar.astro';
 	import Footer from '../components/molecules/Footer.astro';
+	import Dock from '../components/molecules/Dock.astro';
 
 	const stack = [
 		Astro.generator,
@@ -88,6 +89,8 @@
 			</main>
 
 			<footer></footer>
+
+			<Dock/>
 		</div>
 
 		<script>
@@ -123,5 +126,16 @@
 
 	#app > main {
 		@apply flex flex-1 flex-col;
+	}
+
+	@keyframes reveal {
+		from {
+			opacity: 0;
+			transform: translateY(25px) scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0px) scale(1);
+		}
 	}
 </style>

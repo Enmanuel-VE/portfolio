@@ -15,7 +15,7 @@
 ---
 <SectionLayout id="proyectos" ariaLabel="Proyectos">
 	<div
-		class="relative container mx-auto flex h-full w-full flex-col gap-15 px-4 py-15 md:py-25 lg:max-w-6xl"
+		class="relative container mx-auto flex w-full flex-col gap-15 px-4 py-15 md:py-25 lg:max-w-6xl"
 	>
 		<header class="flex flex-row flex-wrap items-center justify-center gap-4">
 			<div class="flex flex-1 flex-col gap-2">
@@ -95,9 +95,12 @@
 </SectionLayout>
 
 <style>
+	/* ROW MODE */
 	.container:has(#btn-rows-projects.btn-active) #project-cards {
 		display: grid;
-		grid-auto-rows: minmax(5dvh, 1fr);
+		grid-template-columns: 1fr;
+		grid-auto-rows: minmax(15rem, auto);
+
 		gap: 1rem;
 
 		@media (height >= 28rem) {
@@ -105,6 +108,7 @@
 		}
 	}
 
+	/* GRID MODE */
 	.container:has(#btn-grid-projects.btn-active) #project-cards {
 		display: grid;
 		grid-template-columns: 1fr;
