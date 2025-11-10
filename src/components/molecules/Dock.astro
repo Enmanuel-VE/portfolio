@@ -2,17 +2,17 @@
 	import { Home } from '@lucide/astro';
 ---
 <nav
-	class="dock flex sticky nav-base-styles text-sm border-t text-center sm:hidden w-full h-[8vh] p-1 bottom-0 z-60"
+	class="dock flex sticky nav-base-styles text-sm border-t text-center sm:hidden w-full h-[8dvh] p-1 bottom-0 z-60"
 	role="navigation"
 >
 	<div
 		class=" flex flex-row justify-evenly text-[clamp(0px,3.5vw,16px)] items-center w-full gap-2 dark:text-white"
 	>
-		<a class="nav-link" href="#projects-section"
-			><div>Proyectos</div></a
-		>
 		<a class="nav-link" href="#about-me-section">
 			<div>Sobre mi</div></a
+		>
+		<a class="nav-link" href="#projects-section"
+			><div>Proyectos</div></a
 		>
 		<a class="nav-link" href="#home-section">
 			<div>
@@ -31,7 +31,7 @@
 <script>
 	import activeSectionObserver from '../../client/activeSectionObserver';
 
-	activeSectionObserver(['.dock']);
+	activeSectionObserver(['.dock'], '.dock');
 </script>
 
 <style>

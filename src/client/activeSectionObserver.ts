@@ -1,4 +1,7 @@
-function activeSectionObserver(navSelectors: string[]) {
+function activeSectionObserver(
+	navSelectors: string[],
+	visibilityTargetSelector?: string,
+) {
 	// Selecciona todas las secciones que tienen un id para poder observarlas.
 	const sections = document.querySelectorAll('section[id]');
 
@@ -8,16 +11,25 @@ function activeSectionObserver(navSelectors: string[]) {
 	// Identificador de la sección actualmente activa.
 	let activeSectionId: string | null;
 
+	// Verifica si el elemento objetivo está visible.
+	const isVisibilityTargetVisible = () => {
+		if (!visibilityTargetSelector) return true;
+
+		const target = document.querySelector(visibilityTargetSelector);
+		if (!target) return false;
+
+		const style = window.getComputedStyle(target);
+		return style.display !== 'none' && style.visibility !== 'hidden';
+	};
+
 	// Actualiza los enlaces de navegación para resaltar el activo.
 	const updateNavLinks = () => {
+		if (!isVisibilityTargetVisible()) return;
+
 		navSelectors.forEach((selector) => {
 			const nav = document.querySelector(selector);
 
 			if (!nav) return;
-
-			const style = window.getComputedStyle(nav);
-
-			if (style.display === 'none' || style.visibility === 'hidden') return;
 
 			const links = nav.querySelectorAll('a[href^="#"]');
 			links.forEach((link) => {

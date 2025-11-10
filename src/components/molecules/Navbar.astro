@@ -17,7 +17,7 @@
 	];
 ---
 <header
-	class="fixed hidden sm:flex top-2 left-1/2 z-50 min-w-1/2 justify-evenly -translate-x-1/2 transform flex-row px-1 md:min-w-auto"
+	class="header-primary-nav fixed hidden sm:flex top-2 left-1/2 z-50 min-w-1/2 justify-evenly -translate-x-1/2 transform flex-row px-1 md:min-w-auto"
 >
 	<nav
 		id="main-navbar"
@@ -51,9 +51,7 @@
 	<script>
 		import activeSectionObserver from '../../client/activeSectionObserver';
 
-		const navItems = document.querySelector('#nav-items');
-
-		activeSectionObserver(['#nav-items']);
+		activeSectionObserver(['#nav-items'], '.header-primary-nav');
 	</script>
 </header>
 
