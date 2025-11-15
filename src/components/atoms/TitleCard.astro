@@ -1,0 +1,13 @@
+---
+	interface Prop {
+		title: string;
+		url: string;
+	}
+	const { title, url } = Astro.props;
+---
+<h3
+	title={title}
+	class="text-black dark:text-white font-bold group-hover:underline md:text-lg xl:text-xl"
+>
+	<a href={url} target="_blank" rel="noopener noreferrer"> {title}</a>
+</h3>

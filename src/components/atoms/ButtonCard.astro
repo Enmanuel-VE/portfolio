@@ -1,0 +1,33 @@
+---
+	interface Props {
+		title: string;
+		href: string;
+		label: string;
+	}
+
+	const { title, href, label } = Astro.props;
+---
+<a
+	title={title}
+	target="_blank"
+	rel="noopener noreferrer"
+	href={href}
+	class="button-card transform cursor-pointer rounded-xl border border-gray-500/40
+         px-3 py-1 transition-transform duration-150 ease-in-out
+         hover:scale-105 hover:border-rose-500 active:scale-90
+         dark:border-rose-500/40 text-black dark:text-white
+         "
+>
+	{label}
+</a>
+
+<style>
+	a {
+		background-color: rgba(255, 255, 255, 0.7);
+		backdrop-filter: blur(8px);
+	}
+
+	body[data-theme='dark'] a.button-card {
+		background-color: rgba(30, 2, 50, 0.7);
+	}
+</style>

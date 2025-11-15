@@ -2,17 +2,18 @@
 	import { Image } from 'astro:assets';
 
 	interface Props {
+		className?: string;
 		textPill: string;
 		image: {
 			src: ImageMetadata;
 			alt: string;
 		};
 	}
-	const { textPill, image } = Astro.props;
+	const { textPill, image, className } = Astro.props;
 ---
 <div
 	id="img-container"
-	class="relative flex w-fit justify-center hover:scale-105 active:scale-95 transition-scale duration-300 ease-in-out"
+	class={`relative flex w-fit justify-center hover:scale-105 active:scale-95 transition-scale duration-300 ease-in-out ${className || ''}`}
 >
 	<div class="group opacity-0 transition-opacity duration-300 ease-in-out">
 		<figure
@@ -34,28 +35,6 @@
 			</p>
 		</div>
 	</div>
-
-	<script>
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const children = entry.target.children;
-
-					if (children.length > 0 && children[0] instanceof HTMLElement) {
-						children[0].classList.remove('opacity-0');
-						children[0].classList.add('image-container');
-					}
-
-					observer.unobserve(entry.target);
-				}
-			});
-		});
-
-		document.addEventListener('DOMContentLoaded', () => {
-			const el = document.querySelector('#img-container');
-			if (el) observer.observe(el);
-		});
-	</script>
 </div>
 
 <style>
@@ -97,3 +76,25 @@
 		}
 	}
 </style>
+
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				const children = entry.target.children;
+
+				if (children.length > 0 && children[0] instanceof HTMLElement) {
+					children[0].classList.remove('opacity-0');
+					children[0].classList.add('image-container');
+				}
+
+				observer.unobserve(entry.target);
+			}
+		});
+	});
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const el = document.querySelector('#img-container');
+		if (el) observer.observe(el);
+	});
+</script>

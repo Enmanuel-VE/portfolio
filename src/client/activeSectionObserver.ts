@@ -1,31 +1,11 @@
-function activeSectionObserver(
-	navSelectors: string[],
-	visibilityTargetSelector?: string,
-) {
-	// Selecciona todas las secciones que tienen un id para poder observarlas.
+function activeSectionObserver(navSelectors: string[]) {
 	const sections = document.querySelectorAll('section[id]');
 
-	// Guarda el ratio de visibilidad de cada sección.
 	const intersectionRatios: Record<string, number> = {};
 
-	// Identificador de la sección actualmente activa.
 	let activeSectionId: string | null;
 
-	// Verifica si el elemento objetivo está visible.
-	const isVisibilityTargetVisible = () => {
-		if (!visibilityTargetSelector) return true;
-
-		const target = document.querySelector(visibilityTargetSelector);
-		if (!target) return false;
-
-		const style = window.getComputedStyle(target);
-		return style.display !== 'none' && style.visibility !== 'hidden';
-	};
-
-	// Actualiza los enlaces de navegación para resaltar el activo.
 	const updateNavLinks = () => {
-		if (!isVisibilityTargetVisible()) return;
-
 		navSelectors.forEach((selector) => {
 			const nav = document.querySelector(selector);
 
@@ -75,6 +55,4 @@ function activeSectionObserver(
 	});
 }
 
-export default activeSectionObserver;
-
-/* Documentado para evitar dolores de cabeza. jejeje. */
+activeSectionObserver(['.dock', '#nav-items']);

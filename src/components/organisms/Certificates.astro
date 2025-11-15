@@ -1,27 +1,18 @@
 ---
-	import type { CertificateType } from '../../data/certificates';
-	import { certificates } from '../../data/certificates';
 	import SectionLayout from '../layouts/SectionLayout.astro';
-
-	const cards: CertificateType[] = certificates.map((c) => ({ ...c.asObject }));
+	import CertSlider from '../molecules/CertSlider.astro';
 ---
-<SectionLayout
-	id="certificates-section"
-	className="border-4 border-gray-300"
-	ariaLabel="Sobre mí"
->
-	<header class="flex flex-col justify-center items-center">
-		<h2>Certificados</h2>
-	</header>
-	<div class="flex flex-col gap-2 md:max-w-[60%] md:min-w-[45%]">
-		{cards.map((card) => (
-			<div class="card">
-				<img src={card.image} alt={card.title} />
-				<h3>{card.title}</h3>
-				<p>{card.description}</p>
-			</div>
-		))}
+<SectionLayout className="gap-8" id="certificates-section" ariaLabel="Sobre mí">
+	<div
+		class="relative container mx-auto flex w-full flex-col  px-4 lg:max-w-6xl"
+	>
+		<header class="flex flex-col justify-center items-center">
+			<h2 class="text-2xl font-bold text-black dark:text-white">
+				Certificados
+			</h2>
+		</header>
+	</div>
+	<div class="p-4 rounded-3xl">
+		<CertSlider/>
 	</div>
 </SectionLayout>
-
-<style></style>

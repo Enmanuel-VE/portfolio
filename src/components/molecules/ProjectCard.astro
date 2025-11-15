@@ -1,6 +1,8 @@
 ---
 	import { Image } from 'astro:assets';
 	import type { ProjectType } from '../../data/projects';
+	import ButtonCard from '../atoms/ButtonCard.astro';
+	import TitleCard from '../atoms/TitleCard.astro';
 
 	interface Props extends ProjectType {}
 
@@ -17,12 +19,8 @@
 >
 	<div class="info-card flex flex-1 flex-col gap-4 p-4">
 		<header class="flex flex-1 flex-col gap-1">
-			<h3
-				title={title}
-				class="font-bold group-hover:underline md:text-lg xl:text-xl"
-			>
-				<a href={demo} target="_blank" rel="noopener noreferrer"> {title}</a>
-			</h3>
+			<TitleCard title={title} url={demo}/>
+
 			<p class="text-sm text-black/75 dark:text-white/75">{description}</p>
 		</header>
 
@@ -54,15 +52,11 @@
 		<div class="flex flex-row flex-wrap items-center gap-2">
 			{
         links.map(({ title, label, href }) => (
-          <a
-            title={title}
-            target="_blank"
-            rel="noopener noreferrer"
-            href={href}
-            class="transform cursor-pointer rounded-xl border border-gray-500/40 px-3 py-1 transition-transform duration-150 ease-in-out hover:scale-105 hover:border-rose-500 active:scale-90 dark:border-rose-500/40"
-          >
-            {label}
-          </a>
+        <ButtonCard
+          title={title}
+          href={href}
+          label={label}
+        />
         ))
       }
 		</div>

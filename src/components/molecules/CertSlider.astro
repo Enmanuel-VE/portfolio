@@ -1,0 +1,82 @@
+---
+	import 'swiper/css';
+	import { certificates, type CertificateType } from '../../data/certificates';
+	import CertificateCard from './CertificateCard.astro';
+	const cards: CertificateType[] = certificates.map((c) => ({ ...c.asObject }));
+---
+<div class="swiper w-full">
+	<div class="swiper-wrapper">
+		{cards.map((card) => {
+			return (
+			<div class="swiper-slide">
+     			<CertificateCard
+                    institution={card.institution}
+                    url={card.url}
+                    title={card.title}
+                    date={card.date}
+                    image={card.image}
+                />
+			</div>
+			);
+		})}
+	</div>
+</div>
+
+<script>
+	import Swiper from 'swiper';
+	import { Autoplay, Manipulation } from 'swiper/modules';
+
+	const swiper = new Swiper('.swiper', {
+		modules: [Autoplay, Manipulation],
+		slidesPerView: 1,
+		centeredSlides: true,
+		loop: true,
+		autoplay: {
+			delay: 3000,
+			disableOnInteraction: true,
+			pauseOnMouseEnter: true,
+		},
+		spaceBetween: 10,
+
+		breakpoints: {
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 20,
+			},
+			1024: {
+				slidesPerView: 3,
+				spaceBetween: 30,
+			},
+		},
+	});
+
+	swiper.el.addEventListener('mouseleave', () => {
+		swiper.autoplay.start();
+	});
+</script>
+<style>
+	.swiper {
+		height: 50dvh;
+		overflow: visible;
+		overflow-x: hidden;
+	}
+
+	.swiper-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.swiper-slide {
+		/*opacity: 0.8;*/
+		transform: scale(0.9);
+		transition:
+			transform 300ms ease-in-out,
+			opacity 300ms ease-in-out;
+	}
+
+	.swiper-slide-active {
+		opacity: 1;
+		transform: scale(1);
+	}
+</style>
