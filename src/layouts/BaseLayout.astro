@@ -1,7 +1,8 @@
 ---
 	import Navbar from '../components/molecules/Navbar.astro';
-	import Footer from '../components/molecules/Footer.astro';
 	import Dock from '../components/molecules/Dock.astro';
+
+	import '../styles/global.css';
 
 	const stack = [
 		Astro.generator,
@@ -25,6 +26,7 @@
 		'Astro',
 		'desarrollador',
 		'portfolio',
+		'portafolio',
 		'Venezuela',
 		'UNEFA',
 		'sistemas',
@@ -32,8 +34,8 @@
 
 	const meta = {
 		seo: {
-			title: `Enmanuel Bracho | Frontend Developer`,
-			description: `Portfolio de Enmanuel Bracho, desarrollador frontend enfocado en React, Tailwind y Astro.`,
+			title: `Enmanuel Bracho | Desarrollador frontend especializado en React, Astro y Tailwind`,
+			description: `Descubre el portafolio de Enmanuel Bracho, desarrollador frontend de Venezuela experto en React, Astro y Tailwind. Proyectos modernos, UI elegante y código escalable.`,
 			robots: 'index, follow',
 			keywords,
 		},
@@ -43,12 +45,12 @@
 	};
 
 	const base = import.meta.env.BASE_URL;
-	const logo = `${base}/logo.png`;
+	const logo = `${base}/logo.webp`;
+	const initTheme = `${base}/client/initTheme.js`;
 ---
 <html lang={meta.html.language}>
 	<head>
-		<link rel="icon" type="image/svg+xml" href={logo}>
-		<title>{meta.seo.title}</title>
+		<link rel="canonical">
 		<meta name="description" content={meta.seo.description}>
 		<meta name="keywords" content={meta.seo.keywords}>
 		<meta name="robots" content={meta.seo.robots}>
@@ -57,29 +59,25 @@
 		<meta http-equiv="Content-Language" content={meta.html.language}>
 		<meta name="generator" content={meta.generator.stack}>
 		<meta name="author" content={meta.author.name}>
+		<link rel="icon" type="image/svg+xml" href={logo}>
+
+		<meta
+			property="og:title"
+			content="Enmanuel Bracho | Desarrollador Frontend"
+		>
+		<meta
+			property="og:description"
+			content="Soy un desarrollador frontend experto en React, Astro y Tailwind, con buenos gustos en diseño y una pasión por la innovación. Descubre más sobre mi trabajo y proyectos aquí."
+		>
+		<meta property="og:image" content={`${base}/assets/screenshotOfThePage`}>
+		<meta property="og:url" content="https://enmanuel-ve.github.io">
+		<meta property="og:type" content="website">
+
+		<title>{meta.seo.title}</title>
 	</head>
 
 	<body data-theme>
-		<script is:inline>
-			function getCurrentTheme() {
-				const THEME = { LIGHT: 'light', DARK: 'dark' };
-
-				const saved = localStorage.getItem('theme');
-				const isSavedValid = saved === THEME.LIGHT || saved === THEME.DARK;
-
-				if (isSavedValid) return saved;
-
-				const schemeDark = `(prefers-color-scheme: ${THEME.DARK})`;
-				const prefersDark = window.matchMedia(schemeDark).matches;
-				const systemTheme = prefersDark ? THEME.DARK : THEME.LIGHT;
-
-				localStorage.setItem('theme', systemTheme);
-
-				return systemTheme;
-			}
-
-			document.body.setAttribute('data-theme', getCurrentTheme());
-		</script>
+		<script src={initTheme} is:inline></script>
 
 		<div id="app">
 			<Navbar/>
@@ -88,59 +86,15 @@
 				<slot/>
 			</main>
 
-			<footer></footer>
-
 			<Dock/>
-			<script src="../client/activeSectionObserver"></script>
 		</div>
 
 		<script>
-			function toggleTitle() {
-				enum TitleState {
-					Hidden = '¡Te espero!',
-					Visible = 'Enmanuel Bracho | Frontend Developer',
-				}
+			import activeSectionObserver from '../client/activeSectionObserver';
+			import toggleTitle from '../client/toggleTitle';
 
-				document.addEventListener('visibilitychange', () => {
-					const isHidden = document.visibilityState === 'hidden';
-					const title = isHidden ? TitleState.Hidden : TitleState.Visible;
-					document.title = title;
-				});
-			}
-
+			activeSectionObserver(['.dock', '#nav-items']);
 			toggleTitle();
 		</script>
 	</body>
 </html>
-
-<style is:global>
-	@import 'tailwindcss';
-	@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
-
-	html {
-		@apply scroll-smooth overflow-x-hidden;
-	}
-
-	body {
-		@apply bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
-	}
-
-	#app {
-		@apply flex flex-col bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
-	}
-
-	#app > main {
-		@apply flex flex-1 flex-col;
-	}
-
-	@keyframes reveal {
-		from {
-			opacity: 0;
-			transform: translateY(8vh) scale(0.6);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0px) scale(1);
-		}
-	}
-</style>

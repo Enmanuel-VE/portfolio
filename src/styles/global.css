@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+html {
+	@apply scroll-smooth overflow-x-hidden;
+}
+
+body {
+	@apply bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
+}
+
+#app {
+	@apply flex flex-col bg-[#f0f0f0] dark:bg-[rgb(25,0,27)];
+}
+
+div#app > main {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+@keyframes reveal {
+	from {
+		opacity: 0;
+		transform: translateY(8vh) scale(0.6);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0px) scale(1);
+	}
+}

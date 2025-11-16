@@ -8,7 +8,7 @@ import diplomaNodeJSImage from '../assets/images/diplomaNodeJS.jpg';
 import diplomaProgramacionBasicaImage from '../assets/images/diplomaProgramacionBasica.jpg';
 import diplomaReact17Image from '../assets/images/diplomaReact17.jpg';
 import diplomaReactJSImage from '../assets/images/diplomaReactJS.jpg';
-import logoImage from '../assets/images/logo.png';
+import logoImage from '../assets/images/logo.webp';
 import profileImage from '../assets/images/profileImage.jpg';
 
 const images = {

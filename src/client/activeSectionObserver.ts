@@ -1,10 +1,9 @@
-function activeSectionObserver(navSelectors: string[]) {
+export default function activeSectionObserver(navSelectors: string[]) {
 	const sections = document.querySelectorAll('section[id]');
-
 	const intersectionRatios: Record<string, number> = {};
-
 	let activeSectionId: string | null;
 
+	// Actualiza el diseño y los enlaces de navegación.
 	const updateNavLinks = () => {
 		navSelectors.forEach((selector) => {
 			const nav = document.querySelector(selector);
@@ -54,5 +53,3 @@ function activeSectionObserver(navSelectors: string[]) {
 		observer.observe(section);
 	});
 }
-
-activeSectionObserver(['.dock', '#nav-items']);
