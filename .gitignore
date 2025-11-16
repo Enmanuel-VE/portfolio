@@ -28,7 +28,9 @@ pnpm-debug.log*
 Thumbs.db
 
 # Development Environments (IDE)
-.vscode/ 
-.idea/ 
+.vscode/
+.zed/
+.zed/*
+.idea/
 *.idea/
 *.iml

@@ -1,10 +1,10 @@
 ---
-	import BaseLayout from '../layouts/BaseLayout.astro';
-	import Hero from '../components/organisms/Hero.astro';
 	import AboutMe from '../components/organisms/AboutMe.astro';
 	import Certificates from '../components/organisms/Certificates.astro';
-	import Projects from '../components/organisms/Projects.astro';
 	import Contacts from '../components/organisms/Contacts.astro';
+	import Hero from '../components/organisms/Hero.astro';
+	import Projects from '../components/organisms/Projects.astro';
+	import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout>
 	<Hero/>
@@ -13,3 +13,61 @@
 	<Certificates/>
 	<Contacts/>
 </BaseLayout>
+
+<style is:global>
+	@import '../styles/global.css';
+
+	@keyframes reveal {
+		from {
+			opacity: 0;
+			transform: translateY(8vh) scale(0.6);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0px) scale(1);
+		}
+	}
+
+	@keyframes animation-pulse {
+		from {
+			transform: scale(0.5);
+			opacity: 0;
+		}
+		to {
+			transform: scale(1.15);
+			opacity: 1;
+		}
+	}
+
+	@keyframes ilumination-title {
+		from {
+			text-shadow: 0 0 0px white;
+		}
+		to {
+			text-shadow: 0 0 6px white;
+		}
+	}
+
+	@keyframes disapper-animation {
+		from {
+			opacity: 1;
+		}
+		99% {
+			opacity: 0;
+		}
+		to {
+			display: none;
+		}
+	}
+
+	@keyframes bouncePulse {
+		from {
+			transform: translateY(0) scale(1);
+			opacity: 0.5;
+		}
+		to {
+			transform: translateY(-25%) scale(1.25);
+			opacity: 1;
+		}
+	}
+</style>

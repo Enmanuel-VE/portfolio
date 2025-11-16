@@ -27,7 +27,7 @@
 		].join(', '),
 	};
 ---
-<html class="scroll-smooth" lang={meta.language}>
+<html lang={meta.language}>
 	<head>
 		<meta charset={meta.charset}>
 		<meta name="viewport" content={meta.viewport}>
@@ -43,10 +43,7 @@
 	<body data-theme>
 		<script src={initTheme} is:inline></script>
 
-		<div
-			class="flex flex-col min-h-screen bg-[#f0f0f0] dark:bg-[rgb(25,0,27)]"
-			id="app"
-		>
+		<div class="flex flex-col h-screen" id="app">
 			<slot/>
 			<ThemeToggleButton
 				id="theme-toggle-button-404"
@@ -56,14 +53,3 @@
 		</div>
 	</body>
 </html>
-
-<style is:global>
-	@import 'tailwindcss';
-	@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
-
-	#app > main {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-	}
-</style>

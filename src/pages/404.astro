@@ -6,19 +6,30 @@
 	const base = import.meta.env.BASE_URL;
 ---
 <NotFoundLayout>
-	<main class="flex flex-col justify-center items-center dark:text-white">
+	<main
+		class="flex flex-col flex-1 justify-center items-center dark:text-white"
+	>
 		<header
 			class="flex flex-col w-fit text-center justify-center items-center gap-4 p-4"
 		>
 			<figure class="bounce">
 				<a href={base}>
-					<Image
-						class="h-[15dvh] w-[15dvh] image-logo hidden dark:block transition-scale duration-300 ease-in-out hover:scale-110 cursor-pointer"
-						title="Logo del portafolio"
-						loading="eager"
-						src={images.logoImage}
-						alt="logo"
-					/>
+					<div class="image-logo">
+						<Image
+							class="h-[15vh] w-[10vh] object-fill block dark:hidden transition-scale duration-300 ease-in-out hover:scale-110 cursor-pointer"
+							title="Logo del portafolio"
+							loading="eager"
+							src={images.darkLogoImage}
+							alt="logo"
+						/>
+						<Image
+							class="h-[15vh] w-[15vh] hidden dark:block transition-scale duration-300 ease-in-out hover:scale-110 cursor-pointer"
+							title="Logo del portafolio"
+							loading="eager"
+							src={images.logoImage}
+							alt="logo"
+						/>
+					</div>
 				</a>
 			</figure>
 			<div class="flex flex-col gap-2">
@@ -40,7 +51,9 @@
 	</main>
 </NotFoundLayout>
 
-<style>
+<style is:global>
+	@import '../styles/global.css';
+
 	.image-logo {
 		animation: rotateAnimation 5s linear infinite;
 		transform-style: preserve-3d;

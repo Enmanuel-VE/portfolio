@@ -1,7 +1,8 @@
 ---
 	import 'swiper/css';
-	import { certificates, type CertificateType } from '../../data/certificates';
+	import { type CertificateType, certificates } from '../../data/certificates';
 	import CertificateCard from './CertificateCard.astro';
+
 	const cards: CertificateType[] = certificates.map((c) => ({ ...c.asObject }));
 ---
 <div class="swiper w-full">

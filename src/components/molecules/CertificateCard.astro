@@ -1,8 +1,8 @@
 ---
+	import { Image } from 'astro:assets';
 	import type { CertificateType } from '../../data/certificates';
 	import ButtonCard from '../atoms/ButtonCard.astro';
 	import TitleCard from '../atoms/TitleCard.astro';
-	import { Image } from 'astro:assets';
 
 	type Props = Pick<
 		CertificateType,
@@ -36,7 +36,7 @@
 
 	<div
 		title={`Certificado de ${props.title}`}
-		class="absolute inset-0 z-[5] bg-gradient-to-t from-white dark:from-[rgb(25,0,35)] dark:from-black/70 via-transparent to-white dark:to-[rgb(25,0,35)] dark:to-black/70"
+		class="absolute inset-0 z-5 bg-linear-to-t from-white dark:from-[rgb(25,0,35)] via-transparent to-white dark:to-[rgb(25,0,35)]"
 	></div>
 
 	<header class="flex flex-row items-center gap-4 p-4 z-10">

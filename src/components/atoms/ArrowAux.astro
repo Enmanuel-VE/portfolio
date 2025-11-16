@@ -2,7 +2,7 @@
 	import { ChevronDown } from '@lucide/astro';
 ---
 <a
-	class="absolute bottom-[calc(var(--spacing)*4+8dvh)] sm:bottom-4 left-1/2 z-15 -translate-x-1/2 transform cursor-pointer"
+	class="absolute bottom-[calc(1rem+8dvh)] sm:bottom-4 left-1/2 z-15 -translate-x-1/2 transform cursor-pointer"
 	href="#projects-section"
 	aria-label="Ir a proyectos"
 	title="Ir a proyectos"
@@ -15,17 +15,6 @@
 </a>
 
 <style>
-	@keyframes bouncePulse {
-		from {
-			transform: translateY(0) scale(1);
-			opacity: 0.5;
-		}
-		to {
-			transform: translateY(-25%) scale(1.25);
-			opacity: 1;
-		}
-	}
-
 	.animate-bounce-pulse {
 		animation: bouncePulse 1s ease-in-out alternate infinite;
 		&:hover {
@@ -37,17 +26,5 @@
 		animation: disapper-animation linear both;
 		animation-timeline: scroll(root block);
 		animation-range: 0 100px;
-	}
-
-	@keyframes disapper-animation {
-		from {
-			opacity: 1;
-		}
-		99% {
-			opacity: 0;
-		}
-		to {
-			display: none;
-		}
 	}
 </style>

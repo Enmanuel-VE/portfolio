@@ -1,8 +1,16 @@
 ---
-	import Navbar from '../components/molecules/Navbar.astro';
 	import Dock from '../components/molecules/Dock.astro';
+	import Navbar from '../components/molecules/Navbar.astro';
 
-	import '../styles/global.css';
+	const NAME = 'Enmanuel Antoni Bracho Villanueva';
+	const SHORT_NAME = 'Enmanuel Bracho';
+	const JOB_TITLE = 'Frontend Developer';
+	const UNIVERSITY = 'UNEFA';
+
+	const BASE_URL = 'https://enmanuel-ve.github.io';
+	const PORTFOLIO_URL = `${BASE_URL}/portfolio/`;
+	const LOGO = `${import.meta.env.BASE_URL}/logo.webp`;
+	const SCREENSHOT = `${BASE_URL}${import.meta.env.BASE_URL}/assets/screenshotOfThePage.webp`;
 
 	const stack = [
 		Astro.generator,
@@ -16,83 +24,111 @@
 	].join(', ');
 
 	const keywords = [
-		'Enmanuel',
-		'Bracho',
 		'Ingeniería',
 		'frontend',
-		'React',
-		'TypeScript',
-		'Tailwind',
-		'Astro',
 		'desarrollador',
-		'portfolio',
 		'portafolio',
 		'Venezuela',
-		'UNEFA',
+		UNIVERSITY,
 		'sistemas',
 	].join(', ');
 
 	const meta = {
-		seo: {
-			title: `Enmanuel Bracho | Desarrollador frontend especializado en React, Astro y Tailwind`,
-			description: `Descubre el portafolio de Enmanuel Bracho, desarrollador frontend de Venezuela experto en React, Astro y Tailwind. Proyectos modernos, UI elegante y código escalable.`,
-			robots: 'index, follow',
-			keywords,
-		},
+		author: { name: NAME },
+		generator: { stack },
+
 		html: {
 			language: 'es',
 			charset: 'utf-8',
 			viewport: 'width=device-width, initial-scale=1.0',
 		},
-		author: { name: 'Enmanuel Antoni Bracho Villanueva' },
-		generator: { stack },
-	};
 
-	const base = import.meta.env.BASE_URL;
-	const logo = `${base}/logo.webp`;
-	const initTheme = `${base}/client/initTheme.js`;
+		seo: {
+			title: `${SHORT_NAME} | Desarrollador frontend especializado en React, Astro y Tailwind`,
+			description: `Descubre el portafolio de ${SHORT_NAME}, desarrollador frontend de Venezuela experto en React, Astro y Tailwind. Proyectos modernos, UI elegante y código escalable.`,
+			robots: 'index, follow',
+			keywords,
+			canonical: `${BASE_URL}${import.meta.env.BASE_URL}`,
+		},
+
+		og: {
+			title: `${SHORT_NAME} | ${JOB_TITLE}`,
+			description: `Soy un ${JOB_TITLE.toLowerCase()} experto en React, Astro y Tailwind, con buenos gustos en diseño y una pasión por la innovación. Descubre más sobre mi trabajo y proyectos aquí.`,
+			image: SCREENSHOT,
+			imageWidth: '1280',
+			imageHeight: '720',
+			url: `${BASE_URL}${import.meta.env.BASE_URL}`,
+			type: 'website',
+		},
+
+		schema: {
+			'@context': 'https://schema.org',
+			'@graph': [
+				{
+					'@type': 'Person',
+					name: NAME,
+					jobTitle: JOB_TITLE,
+					affiliation: {
+						'@type': 'CollegeOrUniversity',
+						name: UNIVERSITY,
+					},
+					url: PORTFOLIO_URL,
+					sameAs: [
+						'https://github.com/Enmanuel-VE',
+						'https://www.linkedin.com/in/enmanuel-antoni-bracho-villanueva/',
+					],
+				},
+				{
+					'@type': 'WebSite',
+					url: PORTFOLIO_URL,
+					name: `Portafolio de ${SHORT_NAME}`,
+					description: `Portafolio de ${JOB_TITLE} especializado en React, Tailwind y TypeScript.`,
+				},
+			],
+		},
+	} as const;
+
+	const initTheme = `${import.meta.env.BASE_URL}/client/initTheme.js`;
 ---
 <html lang={meta.html.language}>
 	<head>
-		<link rel="canonical" href={`https://enmanuel-ve.github.io${base}`}>
+		<link rel="canonical" href={meta.seo.canonical}>
 		<meta name="description" content={meta.seo.description}>
 		<meta name="keywords" content={meta.seo.keywords}>
 		<meta name="robots" content={meta.seo.robots}>
 		<meta charset={meta.html.charset}>
 		<meta name="viewport" content={meta.html.viewport}>
-		<meta http-equiv="Content-Language" content={meta.html.language}>
 		<meta name="generator" content={meta.generator.stack}>
 		<meta name="author" content={meta.author.name}>
-		<link rel="icon" type="image/svg+xml" href={logo}>
+		<link rel="icon" type="image/svg+xml" href={LOGO}>
 
 		<!-- Open Graph -->
-		<meta
-			property="og:title"
-			content="Enmanuel Bracho | Desarrollador Frontend"
+		<meta property="og:title" content={meta.og.title}>
+		<meta property="og:description" content={meta.og.description}>
+		<meta property="og:image" content={meta.og.image}>
+		<meta property="og:image:width" content={meta.og.imageWidth}>
+		<meta property="og:image:height" content={meta.og.imageHeight}>
+		<meta property="og:url" content={meta.og.url}>
+		<meta property="og:type" content={meta.og.type}>
+
+		<!-- Schema.org -->
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify(meta.schema)}
 		>
-		<meta
-			property="og:description"
-			content="Soy un desarrollador frontend experto en React, Astro y Tailwind, con buenos gustos en diseño y una pasión por la innovación. Descubre más sobre mi trabajo y proyectos aquí."
-		>
-		<meta
-			property="og:image"
-			content={`https://enmanuel-ve.github.io${base}/assets/screenshotOfThePage.webp`}
-		>
-		<meta property="og:image:width" content="1280">
-		<meta property="og:image:height" content="720">
-		<meta property="og:url" content={`https://enmanuel-ve.github.io${base}`}>
-		<meta property="og:type" content="website">
+        </script>
 
 		<title>{meta.seo.title}</title>
 	</head>
 
 	<body data-theme>
-		<script src={initTheme} is:inline></script>
+		<script is:inline src={initTheme}></script>
 
 		<div id="app">
 			<Navbar/>
 
-			<main>
+			<main class="flex flex-col flex-1">
 				<slot/>
 			</main>
 

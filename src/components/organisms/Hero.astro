@@ -1,11 +1,16 @@
 ---
-	import type { AstroComponent } from '@lucide/astro';
-	import { Download, Github, LinkedinIcon, Mail } from '@lucide/astro';
+	import {
+		type AstroComponent,
+		Download,
+		Github,
+		LinkedinIcon,
+		Mail,
+	} from '@lucide/astro';
 	import ArrowAux from '../atoms/ArrowAux.astro';
 	import DownloadButton from '../atoms/DownloadButton.astro';
 	import Particle from '../atoms/Particle.astro';
-	import SectionLayout from '../layouts/SectionLayout.astro';
 	import ThemeToggleButton from '../atoms/ThemeToggleButton.astro';
+	import SectionLayout from '../layouts/SectionLayout.astro';
 
 	const base = import.meta.env.BASE_URL;
 
@@ -38,7 +43,7 @@
 ---
 <SectionLayout
 	id="home-section"
-	className="h-[100dvh] overflow-hidden"
+	className="h-screen overflow-hidden"
 	ariaLabel="Presentación personal"
 >
 	<div

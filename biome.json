@@ -1,5 +1,6 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.2/schema.json",
+
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -27,7 +28,17 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"nursery": {
+				"useSortedClasses": {
+					"level": "warn",
+					"fix": "safe",
+					"options": {
+						"attributes": ["classList"],
+						"functions": ["clsx", "cva", "tw", "tw.*"]
+					}
+				}
+			},
+
 			"style": {
 				"useExponentiationOperator": "off"
 			}
@@ -52,13 +63,12 @@
 	},
 
 	"css": {
+		"parser": { "tailwindDirectives": true },
+
 		"formatter": {
 			"enabled": true,
 			"quoteStyle": "single",
 			"indentWidth": 2
-		},
-		"parser": {
-			"tailwindDirectives": true
 		}
 	},
 
@@ -71,27 +81,9 @@
 
 	"overrides": [
 		{
-			"includes": ["**/*.astro"],
-			"assist": {
-				"enabled": true,
-				"actions": {
-					"source": {
-						"organizeImports": "off"
-					}
-				}
-			},
+			"includes": ["**/*.svelte", "**/*.astro", "**/*.vue"],
 			"linter": {
 				"rules": {
-					"nursery": {
-						"useSortedClasses": {
-							"level": "info",
-
-							"options": {
-								"attributes": ["class", "className"],
-								"functions": ["clsx", "cva", "tw", "tw.*"]
-							}
-						}
-					},
 					"style": {
 						"useConst": "off",
 						"useImportType": "off"
