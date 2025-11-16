@@ -39,7 +39,11 @@
 			robots: 'index, follow',
 			keywords,
 		},
-		html: { language: 'es', charset: 'utf-8', viewport: 'width=device-width' },
+		html: {
+			language: 'es',
+			charset: 'utf-8',
+			viewport: 'width=device-width, initial-scale=1.0',
+		},
 		author: { name: 'Enmanuel Antoni Bracho Villanueva' },
 		generator: { stack },
 	};
@@ -50,7 +54,7 @@
 ---
 <html lang={meta.html.language}>
 	<head>
-		<link rel="canonical">
+		<link rel="canonical" href="https://enmanuel-ve.github.io">
 		<meta name="description" content={meta.seo.description}>
 		<meta name="keywords" content={meta.seo.keywords}>
 		<meta name="robots" content={meta.seo.robots}>
@@ -71,8 +75,12 @@
 		>
 		<meta
 			property="og:image"
-			content={`${base}/assets/screenshotOfThePage.webp`}
+			content={`https://enmanuel-ve.github.io${base}/assets/screenshotOfThePage.webp`}
 		>
+
+		<meta property="og:image:width" content="1280">
+		<meta property="og:image:height" content="720">
+
 		<meta property="og:url" content="https://enmanuel-ve.github.io">
 		<meta property="og:type" content="website">
 
