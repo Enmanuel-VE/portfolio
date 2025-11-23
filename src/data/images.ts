@@ -1,3 +1,4 @@
+import airplaneImage from '../assets/images/airplane.png';
 import bentoGridImage from '../assets/images/bentoGridProject.png';
 import calculatorImage from '../assets/images/calculatorProject.png';
 import darkLogoImage from '../assets/images/darkLogo.png';
@@ -10,6 +11,8 @@ import diplomaProgramacionBasicaImage from '../assets/images/diplomaProgramacion
 import diplomaReact17Image from '../assets/images/diplomaReact17.jpg';
 import diplomaReactJSImage from '../assets/images/diplomaReactJS.jpg';
 import logoImage from '../assets/images/logo.webp';
+import monkeyWithSignSayingCVImage from '../assets/images/monkeyWithSignSayingCV.png';
+import movieProjectorImage from '../assets/images/movieProjector.png';
 import profileImage from '../assets/images/profileImage.jpg';
 
 const images = {
@@ -26,6 +29,9 @@ const images = {
 	diplomaEstrategiasIngles2022Image,
 	diplomaReact17Image,
 	darkLogoImage,
+	monkeyWithSignSayingCVImage,
+	movieProjectorImage,
+	airplaneImage,
 } as const;
 
 export default images;

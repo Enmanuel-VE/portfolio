@@ -1,10 +1,250 @@
 ---
+	import { Image } from 'astro:assets';
+	import {
+		type AstroComponent,
+		Download,
+		DownloadIcon,
+		Github,
+		LinkedinIcon,
+		Mail,
+	} from '@lucide/astro';
+	import images from '../../data/images.ts';
+	import DownloadButton from '../atoms/DownloadButton.astro';
 	import SectionLayout from '../layouts/SectionLayout.astro';
+
+	const base = import.meta.env.BASE_URL;
+	type ContactLink = { title: string; url: string; icon: AstroComponent };
+
+	const contactLinks: ContactLink[] = [
+		{
+			title: 'Linkedin',
+			url: 'https://www.linkedin.com/in/enmanuel-antoni-bracho-villanueva/',
+			icon: LinkedinIcon,
+		},
+		{
+			title: 'Github',
+			url: 'https://github.com/Enmanuel-VE',
+			icon: Github,
+		},
+		{
+			title: 'Correo',
+			url: 'mailto:enmanuelbracho.dev@gmail.com',
+			icon: Mail,
+		},
+	];
+
+	type NavLinkData = { url: `#${string}`; text: string; ariaLabel: string };
+
+	const navLinkList: NavLinkData[] = [
+		{ url: '#home-section', text: 'Inicio', ariaLabel: 'Inicio' },
+		{ url: '#projects-section', text: 'Proyectos', ariaLabel: 'Proyectos' },
+		{ url: '#about-me-section', text: 'Sobre mí', ariaLabel: 'Sobre mí' },
+		{
+			url: '#certificates-section',
+			text: 'Certificados',
+			ariaLabel: 'Certificados',
+		},
+		{ url: '#contacts-section', text: 'Contactos', ariaLabel: 'Contactos' },
+	];
 ---
 <SectionLayout
 	id="contacts-section"
-	className="min-h-auto h-[calc(100dvh*1/2)] shrink-0 bg-black"
+	className="bg-black relative text-white"
 	ariaLabel="Sobre mí"
 >
-	Contactos
+	<div class="relative bg-primary-light dark:bg-primary-dark">
+		<div class="airplane z-10">
+			<Image
+				class="w-15 h-15"
+				src={images.airplaneImage}
+				role="presentation"
+				loading="lazy"
+				alt="Airplane decorative"
+			/>
+		</div>
+	</div>
+
+	<div
+		class="relative justify-evenly items-center overflow-hidden w-full flex flex-row bg-primary-light dark:bg-primary-dark rounded-b-3xl h-[30vh]"
+	>
+		<div class="flex flex-row gap-4 items-center justify-center">
+			<div class="element-with-shadow w-30 h-[80%]">
+				<Image
+					class="object-cover w-full h-full"
+					src={images.monkeyWithSignSayingCVImage}
+					role="presentation"
+					loading="lazy"
+					alt="Decorative monkey"
+				/>
+			</div>
+
+			<DownloadButton
+				className="text-sm h-fit dark:shadow-rose-500/20 shadow-lg"
+				label="Curriculum"
+				url={`${base}/docs/CV.pdf`}
+				download="CV-Enmanuel-Bracho-FrontendDeveloper.pdf"
+				Icon={Download}
+				ariaLabel="Descargar currículum"
+			/>
+		</div>
+		<div class="element-with-shadow hidden sm:block w-30 h-[80%]">
+			<Image
+				class="object-cover w-full h-full "
+				src={images.movieProjectorImage}
+				loading="lazy"
+				alt="Movie projector"
+				role="presentation"
+			/>
+		</div>
+	</div>
+
+	<div class="flex flex-col bg-black w-full min-h-[40vh] gap-4 p-4">
+		<div
+			class="flex flex-row flex-wrap justify-between sm:justify-evenly md:justify-between py-8 gap-4 md:gap-0 flex-1"
+		>
+			<div class="hidden sm:flex flex-col gap-4 w-1/3 ">
+				<div class="flex flex-col gap-2">
+					<h3
+						title="Enmanuel Bracho - Desarrollador Frontend"
+						class="text-xl font-semibold"
+					>
+						Enmanuel Bracho
+						<span class="hidden xl:inline">- Desarrollador Frontend</span>
+					</h3>
+					<p class="text-sm text-pretty flex-1/2">
+						Desarrollador frontend junior, especializado en
+						JavaScript/TypeScript, React, CSS/Tailwind y Astro. Creo soluciones
+						creativas a problemas repetitivas.
+					</p>
+				</div>
+				<figure
+					class="flex flex-col flex-1/2 px-2 py-8 rounded-xl bg-[rgba(25,0,35,0.7)] text-xs text-pretty text-center justify-center gap-1"
+				>
+					<blockquote class="italic text-white/75">
+						"Si puedes imaginarlo, puedes programarlo."
+					</blockquote>
+					<figcaption class="font-semibold">
+						Homenaje a <cite>- Programación ATS</cite>
+					</figcaption>
+				</figure>
+			</div>
+
+			<div class="flex flex-col gap-2 md:w-1/3 md:text-right">
+				<h3 title="Pongamonos al día" class="text-xl font-semibold">
+					Pongamonos al día
+				</h3>
+				<ul class="flex flex-col gap-2 text-sm text-pretty text-white/75">
+					{
+					contactLinks.map((item) => (
+						<li >
+        				    <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={item.title}
+          						class="flex md:flex-row-reverse flex-row items-center gap-2 hover:underline hover:text-white" href={item.url} title={item.title}>
+              						<item.icon/>
+
+                    {item.title}
+    				    </a>
+
+						</li>
+					))
+				}
+					<li>
+						<a
+							class="flex md:flex-row-reverse flex-row items-center gap-2 hover:underline hover:text-white"
+							href={`${base}/docs/CV.pdf`}
+							download="CV-Enmanuel-Bracho-FrontendDeveloper.pdf"
+							title="Descargar curriculum"
+						>
+							<DownloadIcon/>
+							Curriculum
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="flex flex-col gap-2 md:w-1/3 md:text-right">
+				<h3 title="Navegación" class="text-xl font-semibold">Navegación</h3>
+				<ul class="flex flex-col gap-2 text-sm text-pretty text-white/75">
+					{
+     					navLinkList.map((item) => (
+      						<li><a
+                        title={item.ariaLabel}
+                        class="hover:underline hover:text-white" href={item.url} aria-label={item.ariaLabel}>{item.text}</a></li>
+     					))
+					}
+				</ul>
+			</div>
+		</div>
+		<footer
+			class="flex flex-col md:flex-row gap-2 justify-between text-sm border-t border-rose-500/75 pt-4"
+		>
+			<p class="text-center md:text-left text-white/75">
+				<span class="font-semibold"
+					>©{new Date().getFullYear()}
+					Enmanuel Antoni Bracho Villanueva.</span
+				>
+				Código liberado bajo la licencia MIT.
+			</p>
+			<p class="text-center md:text-left text-white/75">Creado con ❤</p>
+		</footer>
+	</div>
 </SectionLayout>
+
+<style>
+	.element-with-shadow {
+		position: relative;
+		z-index: 1;
+	}
+
+	.element-with-shadow::after {
+		content: '';
+		position: absolute;
+		bottom: -05px;
+		left: 50%;
+		transform: translateX(-50%) rotateX(70deg);
+		width: 100%;
+		height: 40px;
+		background: rgba(0, 0, 0, 0.3);
+		filter: blur(10px);
+		border-radius: 50%;
+		z-index: -1;
+	}
+
+	body[data-theme='dark'] .element-with-shadow::after {
+		background: yellow;
+		opacity: 0.2;
+		left: 0%;
+		animation: expandCollapseShadow 3s infinite alternate;
+	}
+
+	@keyframes expandCollapseShadow {
+		from {
+			transform: scale(0.85);
+			opacity: 0.2;
+		}
+		to {
+			transform: scale(1);
+			opacity: 0.3;
+		}
+	}
+
+	.airplane {
+		position: absolute;
+		bottom: 5vh;
+		animation: airplaneFlies 25s linear infinite;
+	}
+
+	@keyframes airplaneFlies {
+		from {
+			transform: translateX(105vw) scale(0.8) rotate(5deg) rotateY(10deg);
+		}
+		50% {
+			transform: translateX(50vw) translateY(-10vh) scale(1) rotate(0deg)
+				rotateY(0deg);
+		}
+		to {
+			transform: translateX(-5vw) scale(0.8) rotate(-5deg) rotateY(-10deg);
+		}
+	}
+</style>

@@ -1,6 +1,5 @@
 ---
-	import Dock from '../components/molecules/Dock.astro';
-	import Navbar from '../components/molecules/Navbar.astro';
+	import NavigationContainer from '../components/molecules/NavigationContainer.astro';
 
 	const NAME = 'Enmanuel Antoni Bracho Villanueva';
 	const SHORT_NAME = 'Enmanuel Bracho';
@@ -126,20 +125,16 @@
 		<script is:inline src={initTheme}></script>
 
 		<div id="app">
-			<Navbar/>
-
 			<main class="flex flex-col flex-1">
 				<slot/>
 			</main>
 
-			<Dock/>
+			<NavigationContainer/>
 		</div>
 
 		<script>
-			import activeSectionObserver from '../client/activeSectionObserver';
-			import toggleTitle from '../client/toggleTitle';
+			import { toggleTitle } from '../client/toggleTitle';
 
-			activeSectionObserver(['.dock', '#nav-items']);
 			toggleTitle();
 		</script>
 	</body>

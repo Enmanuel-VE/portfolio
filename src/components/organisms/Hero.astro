@@ -51,7 +51,6 @@
 		aria-hidden="true"
 	></div>
 	<ThemeToggleButton
-		id="theme-toggle-button-mobile"
 		className={"z-30 absolute top-2 right-2 flex sm:hidden"}
 		sizeIcon="w-6 h-6"
 	/>
@@ -87,7 +86,7 @@
               contactLinks.map((link) => (
                 <li class="group">
                   <a
-                    class="flex flex-row items-center justify-center gap-2 rounded-3xl border border-gray-500/40 bg-white px-2 py-1 text-sm text-black backdrop-blur transition-transform duration-300 ease-in-out group-hover:scale-120 group-hover:shadow-xl hover:border-rose-500 dark:border-rose-500/40 dark:bg-black dark:text-white"
+                    class="flex flex-row items-center justify-center gap-2 rounded-3xl border border-gray-500/40 bg-white px-2 py-1 text-sm text-black backdrop-blur transition-transform duration-300 ease-in-out group-hover:scale-110 active:scale-90 active:shadow-none group-hover:shadow-xl hover:border-rose-500 dark:border-rose-500/40 dark:bg-black dark:text-white"
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -106,7 +105,7 @@
 
 			<aside class="flex flex-col items-center justify-center">
 				<DownloadButton
-					className="text-sm"
+					className="text-sm active:shadow-none hover:shadow-xl"
 					label="Curriculum"
 					url={`${base}/docs/CV.pdf`}
 					download="CV-Enmanuel-Bracho-FrontendDeveloper.pdf"

@@ -1,0 +1,55 @@
+---
+	import Dock from './Dock.astro';
+	import Navbar from './Navbar.astro';
+---
+<Navbar/>
+<Dock/>
+
+<style is:global>
+	.nav-base-styles {
+		transition: all;
+
+		animation: navScrollLight linear both;
+		animation-timeline: scroll(root block);
+		animation-range: 0 100px;
+	}
+
+	body[data-theme='dark'] .nav-base-styles {
+		transition: all;
+		animation: navScrollDark linear both;
+		animation-timeline: scroll(root block);
+		animation-range: 0 100px;
+	}
+
+	@keyframes navScrollLight {
+		from {
+			border-color: transparent;
+			background-color: transparent;
+			backdrop-filter: blur(0px);
+		}
+		to {
+			border-color: rgba(107, 114, 128, 0.4);
+			background-color: rgba(255, 255, 255, 0.7);
+			backdrop-filter: blur(8px);
+		}
+	}
+
+	@keyframes navScrollDark {
+		from {
+			border-color: transparent;
+			background-color: transparent;
+			backdrop-filter: blur(0px);
+		}
+		to {
+			border-color: rgba(244, 63, 94, 0.4);
+			background-color: rgba(30, 2, 50, 0.7);
+			backdrop-filter: blur(8px);
+		}
+	}
+</style>
+
+<script>
+	import activeSectionObserver from '../../client/activeSectionObserver';
+
+	activeSectionObserver(['.dock', '#nav-items']);
+</script>

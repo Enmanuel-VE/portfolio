@@ -42,52 +42,8 @@
 		</div>
 
 		<ThemeToggleButton
-			id="theme-toggle-button"
 			className="nav-base-styles border"
 			sizeIcon="h-[clamp(0px,3.5vw,1.5rem)] w-[clamp(0px,3.5vw,1.5rem)]"
 		/>
 	</nav>
 </header>
-
-<style is:global>
-	.nav-base-styles {
-		transition: all;
-
-		animation: navScrollLight linear both;
-		animation-timeline: scroll(root block);
-		animation-range: 0 100px;
-	}
-
-	body[data-theme='dark'] .nav-base-styles {
-		transition: all;
-		animation: navScrollDark linear both;
-		animation-timeline: scroll(root block);
-		animation-range: 0 100px;
-	}
-
-	@keyframes navScrollLight {
-		from {
-			border-color: transparent;
-			background-color: transparent;
-			backdrop-filter: blur(0px);
-		}
-		to {
-			border-color: rgba(107, 114, 128, 0.4);
-			background-color: rgba(255, 255, 255, 0.7);
-			backdrop-filter: blur(8px);
-		}
-	}
-
-	@keyframes navScrollDark {
-		from {
-			border-color: transparent;
-			background-color: transparent;
-			backdrop-filter: blur(0px);
-		}
-		to {
-			border-color: rgba(244, 63, 94, 0.4);
-			background-color: rgba(30, 2, 50, 0.7);
-			backdrop-filter: blur(8px);
-		}
-	}
-</style>

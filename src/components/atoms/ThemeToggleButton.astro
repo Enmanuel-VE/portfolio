@@ -3,18 +3,19 @@
 
 	interface Props {
 		className?: string;
-		id: string;
 		sizeIcon: `w-${string} h-${string}` | `h-${string} w-${string}`;
 	}
 
-	const { className, id, sizeIcon } = Astro.props;
+	const { className, sizeIcon } = Astro.props;
+
+	const ID = crypto.randomUUID();
 ---
 <button
 	class={`aspect-square cursor-pointer group hover:scale-110 active:scale-90 transition-scale duration-300 ease-in-out rounded-full p-2 ${className || ""}`}
 	aria-label="Cambiar tema"
 	title="Cambiar tema"
 	type="button"
-	id={id}
+	id={ID}
 >
 	<div
 		class={`relative ${sizeIcon} aspect-square overflow-hidden sm:h-6 sm:w-6`}
@@ -30,37 +31,39 @@
 		/>
 	</div>
 
-	<script is:inline define:vars={{id}}>
-		const THEME = { Light: 'light', Dark: 'dark' };
+	<script is:inline define:vars={{ID}}>
+		const toggleButton = document.getElementById(ID);
+		toggleButton.addEventListener('click', theme().handleToggleTheme);
 
-		const toggleButton = document.getElementById(id);
+		function theme() {
+			const THEME = { LIGHT: 'light', DARK: 'dark' };
 
-		function applyTheme(theme) {
-			const BODY = document.body;
-			BODY.setAttribute('data-theme', theme);
+			function applyTheme(theme) {
+				localStorage.setItem('theme', theme);
+				document.body.setAttribute('data-theme', theme);
+			}
+
+			function nextTheme(current) {
+				return current === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+			}
+
+			function getCurrentTheme(saved) {
+				return saved === THEME.DARK ? THEME.DARK : THEME.LIGHT;
+			}
+
+			function handleToggleTheme() {
+				const current = getCurrentTheme(localStorage.getItem('theme'));
+				const newTheme = nextTheme(current);
+
+				applyTheme(newTheme);
+			}
+
+			return { handleToggleTheme };
 		}
-
-		function themeSaved() {
-			const getTheme = localStorage.getItem('theme');
-			const isLight = getTheme === THEME.Light;
-			const theme = isLight ? THEME.Light : THEME.Dark;
-
-			return theme;
-		}
-
-		function handleToggleTheme() {
-			const isLight = themeSaved() === THEME.Light;
-			const newTheme = isLight ? THEME.Dark : THEME.Light;
-
-			localStorage.setItem('theme', newTheme);
-			applyTheme(newTheme);
-		}
-
-		if (toggleButton) toggleButton.addEventListener('click', handleToggleTheme);
 	</script>
 </button>
 
-<style>
+<style is:global>
 	.theme-icon {
 		position: absolute;
 		inset: 0;
